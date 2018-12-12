@@ -229,9 +229,6 @@
     <Compile Include="Usql\Arbol\Nodos\Ssl\Asignar\_SSL_ASIGNAR_2.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Asignar\_SSL_ASIGNAR_3.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Asignar\_VAL.cs" />
-    <Compile Include="Usql\Arbol\Nodos\Ssl\Backup\_SSL_BACKUP.cs" />
-    <Compile Include="Usql\Arbol\Nodos\Ssl\Backup\_SSL_COMPLETO.cs" />
-    <Compile Include="Usql\Arbol\Nodos\Ssl\Backup\_SSL_DUMP.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Contar\_SSL_CONTAR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Declarar\_SSL_DECLARAR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_FECHA.cs" />
@@ -260,6 +257,9 @@
     <Compile Include="Usql\Arbol\Nodos\Ssl\Sentencias\Si\_SSL_SI_1.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Sentencias\Si\_SSL_SI_2.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Sentencias\_SSL_SENTENCIAS.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Ssl\Ssl_back\_SSL_BACKUP.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Ssl\Ssl_back\_SSL_COMPLETO.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Ssl\Ssl_back\_SSL_DUMP.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\_SSL.cs" />
     <Compile Include="Usql\Gramatica\anlzUsql.cs" />
     <Compile Include="Usql\Gramatica\gramUsql.cs" />
