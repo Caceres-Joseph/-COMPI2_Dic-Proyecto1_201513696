@@ -34,7 +34,7 @@ namespace DBMS.PlyCs.Gramatica
             RegexBasedTerminal valBoolean = new RegexBasedTerminal("valBoolean", "(false|true|verdadero|falso)");
 
             StringLiteral valCaracter = new StringLiteral("valCaracter", "\'");
-            StringLiteral valCadena = new StringLiteral("valCadena", "\"");
+            //StringLiteral valCadena = new StringLiteral("valCadena", "\"");
             var valCadena2 = new StringLiteral("valCadena2", "‘(.)*’");
 
 
@@ -43,6 +43,9 @@ namespace DBMS.PlyCs.Gramatica
             var valDecimal = new RegexBasedTerminal("valDecimal", "[0-9]+\\.[0-9]+");
 
             IdentifierTerminal valId = new IdentifierTerminal("valId");
+
+
+            RegexBasedTerminal valCadena = new RegexBasedTerminal("valCadena", "\"([^\"]+|[\r\n])*\"");
 
             #endregion
 
@@ -102,6 +105,9 @@ namespace DBMS.PlyCs.Gramatica
             NonTerminal INSTR = new NonTerminal("INSTR");
             NonTerminal LST_INSTR = new NonTerminal("LST_INSTR"); 
             NonTerminal E = new NonTerminal("E");
+            NonTerminal VAL_CADENA = new NonTerminal("VAL_CADENA");
+
+
             #endregion
 
             #region Gramatica 
@@ -113,11 +119,11 @@ namespace DBMS.PlyCs.Gramatica
 
             LST_INSTR.Rule = MakePlusRule(LST_INSTR, sComa, INSTR);
 
-            INSTR.Rule = valCadena + sDosPuntos + valCadena
-                        | valCadena + sDosPuntos + valNumero
-                        | valCadena + sDosPuntos + PARENT ;
+            INSTR.Rule =  VAL_CADENA + sDosPuntos + VAL_CADENA
+                        | VAL_CADENA + sDosPuntos + valNumero
+                        | VAL_CADENA + sDosPuntos + PARENT ;
 
-
+            VAL_CADENA.Rule = valCadena;
 
              
 

@@ -1,0 +1,97 @@
+CREAR BASE_DATOS Proyecto1db;
+CREAR BASE_DATOS	 jhosef;
+
+CREAR TABLA jhosef(INTEGER id Llave_Primaria Autoincrementable, TEXT Nombre No Nulo, DATE fh_nac No Nulo, BOOL trabaja);
+
+CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
+
+
+CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
+@comision, INTEGER @codigo){
+ CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
+}
+
+DECLARAR @variable1, @variable2 INTEGER = 23;
+DECLARAR @ejemplo TEXT = "Hola mundo";
+DECLARAR @empresa1 EMPRESA;
+
+@a = 3 * 23;  
+@ejemplo = saludo("Hola");
+
+
+CREAR USUARIO usuario1 COLOCAR password = "holaMundo";
+
+@empresa1.nit.hola = 87654321-0;
+
+SI( @a < 10 ){ 
+@b = 23; 
+}SINO{ 
+@b = 46; 
+}
+
+
+
+SELECCIONA (  @a * 15 ){ 
+CASO 10 :  RETORNO 10; 
+CASO 15 :  RETORNO 15; 
+DEFECTO : RETORNO "xD"; 
+} 
+
+PARA(  DECLARAR @a integer   = 10 ; @a > 0; --){ 
+@b = 23; 
+} 
+
+MIENTRAS(  @a < 10 ){ 
+@a = @a + 1; 
+@b = 23; 
+} 
+
+
+
+IMPRIMIR("Hola mundo!");
+BACKUP USQLDUMP Proyecto1 Proyecto1_backup;
+BACKUP COMPLETO Proyecto1 Proyecto1_backup2;
+
+
+RESTAURAR USQLDUMP "/home/usuario/backups/backup_prueba.udmp";
+RESTAURAR COMPLETO "/home/usuario/backups/backup_prueba.udmp"; 
+USAR Proyecto1;
+
+
+ALTERAR TABLA Estudiante2 AGREGAR (INTEGER edad2, TEXT direccion2, Bool bandera);
+ALTERAR TABLA Estudiante QUITAR trabaja;
+ALTERAR objeto empresa AGREGAR (INTEGER nit);
+ALTERAR objeto empresa QUITAR direccion, nit;
+ALTERAR USUARIO Admin CAMBIAR password = "1234";
+ELIMINAR TABLA estudiante;
+ELIMINAR BASE_DATOS Proyecto1;
+ELIMINAR OBJETO empresa;
+ELIMINAR Usuario usuario1;
+
+INSERTAR EN TABLA estudiante ("JOSE LUIS FIGUEROA", 10-10-1994,1,  10-10-1994 12:00:33);
+INSERTAR EN TABLA estudiante (Nombre, fh_nac) VALORES ("Jose Luis Figueroa", 32);
+
+ACTUALIZAR TABLA estudiante (nombre, trabaja) VALORES ("Carlos Enriquez",0);
+
+ACTUALIZAR TABLA estudiante (nombre, trabaja) VALORES ("Jose Luis Martinez Hernandez",1) DONDE nombre == "Jose Luis Martinez" && trabaja == 0;
+
+BORRAR EN TABLA estudiante DONDE nombre =="Jose Luis Martinez" && trabaja ==0;
+BORRAR EN TABLA estudiante;
+
+SELECCIONAR nombre, fh_nac DE estudiante DONDE id > 10 ORDENAR POR fh_nac; 
+SELECCIONAR * DE estudiante, asignacion DONDE estudiante.id == asignacion.id_estudiante;
+SELECCIONAR nombre, fh_nac DE estudiante DONDE id < 10;
+SELECCIONAR * DE estudiante;
+
+OTORGAR PERMISOS usuario1, Proyecto1.estudiante;
+OTORGAR PERMISOS usuario1, Proyecto1.*;
+DENEGAR PERMISOS usuario1, Proyecto1.estudiante;
+DENEGAR PERMISOS usuario1, Proyecto1.*;
+
+@fecha = FECHA();
+@fecha_h = FECHA_HORA(); 
+@val= CONTAR(<<SELECCIONAR * DE estudiante>>);
+
+
+
+

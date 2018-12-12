@@ -1,5 +1,6 @@
 ﻿using DBMS.PlyCs.Gramatica;
 using DBMS.Sockets;
+using DBMS.Usql.Gramatica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,11 +34,12 @@ namespace DBMS
             txtConsola.Dock = DockStyle.Fill;
             txtConsola.Multiline = true;
             txtConsola.Text = ">> Servidor DBMS";
-
+            txtConsola.ScrollBars = ScrollBars.Both;
 
             txtPlyCs.Theme = MetroFramework.MetroThemeStyle.Dark;
             txtPlyCs.Dock = DockStyle.Fill;
             txtPlyCs.Multiline = true;
+            txtPlyCs.ScrollBars = ScrollBars.Both;
 
 
             tabConsola.Controls.Add(txtConsola);
@@ -74,8 +76,13 @@ namespace DBMS
         private void btnStop_Click(object sender, EventArgs e)
         {
 
-            anlzPly gramPly = new anlzPly();
-            gramPly.iniciarAnalisis(txtPlyCs.Text);
+            //anlzPly gramPly = new anlzPly();
+            //gramPly.iniciarAnalisis(txtPlyCs.Text);
+
+
+
+            anlzUsql analizador = new anlzUsql();
+            analizador.iniciarAnalisis(txtPlyCs.Text);
         }
 
 

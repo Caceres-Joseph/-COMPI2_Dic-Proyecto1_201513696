@@ -87,6 +87,9 @@ namespace DBMS.PlyCs.Arbol
                 case "PARENT":
                     retorno = new _PARENT(nombreNoTerminal);
                     break;
+                case "VAL_CADENA":
+                    retorno = new _VAL_CADENA(nombreNoTerminal);
+                    break;
                 default:
                     retorno = new nodoModelo("Desc_" + nombreNoTerminal);
                     Console.WriteLine("[generarArbol]No se encontró el nodo:" + nombreNoTerminal);

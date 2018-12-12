@@ -4,6 +4,8 @@
 
     Public nombre As String
     Public areaCodigo As New RichTextBox
+
+
     Public tab As New MetroFramework.Controls.MetroTabPage
 
 
@@ -28,6 +30,8 @@
     'Definiendo richText
     Public Function defRich()
         areaCodigo.Dock = DockStyle.Fill
+        areaCodigo.ShortcutsEnabled = True
+        areaCodigo.Multiline = True
 
     End Function
 

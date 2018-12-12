@@ -28,15 +28,23 @@ Partial Class IdeModel
         Me.MetroTile2 = New MetroFramework.Controls.MetroTile()
         Me.MenuOpciones = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AbrirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator = New System.Windows.Forms.ToolStripSeparator()
+        Me.GuardarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarcomoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ImprimirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VistapreviadeimpresiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeshacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RehacerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CortarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopiarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PegarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.SeleccionartodoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -49,22 +57,14 @@ Partial Class IdeModel
         Me.toolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.AcercadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.TabsEditor = New MetroFramework.Controls.MetroTabControl()
         Me.MetroTabControl2 = New MetroFramework.Controls.MetroTabControl()
         Me.MetroTabPage2 = New MetroFramework.Controls.MetroTabPage()
         Me.MetroTabPage3 = New MetroFramework.Controls.MetroTabPage()
         Me.MetroTabPage4 = New MetroFramework.Controls.MetroTabPage()
         Me.MetroTabPage5 = New MetroFramework.Controls.MetroTabPage()
-        Me.NuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AbrirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GuardarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImprimirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VistapreviadeimpresiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CortarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopiarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PegarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuOpciones.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -106,7 +106,7 @@ Partial Class IdeModel
         Me.MenuOpciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.EditarToolStripMenuItem, Me.HerramientasToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuOpciones.Location = New System.Drawing.Point(195, 9)
         Me.MenuOpciones.Name = "MenuOpciones"
-        Me.MenuOpciones.Size = New System.Drawing.Size(260, 24)
+        Me.MenuOpciones.Size = New System.Drawing.Size(352, 24)
         Me.MenuOpciones.TabIndex = 4
         Me.MenuOpciones.Text = "MenuStrip1"
         '
@@ -117,10 +117,37 @@ Partial Class IdeModel
         Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem.Text = "&Archivo"
         '
+        'NuevoToolStripMenuItem
+        '
+        Me.NuevoToolStripMenuItem.Image = CType(resources.GetObject("NuevoToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.NuevoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
+        Me.NuevoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.NuevoToolStripMenuItem.Text = "&Nuevo"
+        '
+        'AbrirToolStripMenuItem
+        '
+        Me.AbrirToolStripMenuItem.Image = CType(resources.GetObject("AbrirToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.AbrirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.AbrirToolStripMenuItem.Name = "AbrirToolStripMenuItem"
+        Me.AbrirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.AbrirToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.AbrirToolStripMenuItem.Text = "&Abrir"
+        '
         'toolStripSeparator
         '
         Me.toolStripSeparator.Name = "toolStripSeparator"
         Me.toolStripSeparator.Size = New System.Drawing.Size(203, 6)
+        '
+        'GuardarToolStripMenuItem
+        '
+        Me.GuardarToolStripMenuItem.Image = CType(resources.GetObject("GuardarToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.GuardarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.GuardarToolStripMenuItem.Name = "GuardarToolStripMenuItem"
+        Me.GuardarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.GuardarToolStripMenuItem.Text = "&Guardar"
         '
         'GuardarcomoToolStripMenuItem
         '
@@ -132,6 +159,23 @@ Partial Class IdeModel
         '
         Me.toolStripSeparator1.Name = "toolStripSeparator1"
         Me.toolStripSeparator1.Size = New System.Drawing.Size(203, 6)
+        '
+        'ImprimirToolStripMenuItem
+        '
+        Me.ImprimirToolStripMenuItem.Image = CType(resources.GetObject("ImprimirToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ImprimirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ImprimirToolStripMenuItem.Name = "ImprimirToolStripMenuItem"
+        Me.ImprimirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
+        Me.ImprimirToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.ImprimirToolStripMenuItem.Text = "&Imprimir"
+        '
+        'VistapreviadeimpresiónToolStripMenuItem
+        '
+        Me.VistapreviadeimpresiónToolStripMenuItem.Image = CType(resources.GetObject("VistapreviadeimpresiónToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.VistapreviadeimpresiónToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.VistapreviadeimpresiónToolStripMenuItem.Name = "VistapreviadeimpresiónToolStripMenuItem"
+        Me.VistapreviadeimpresiónToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.VistapreviadeimpresiónToolStripMenuItem.Text = "&Vista previa de impresión"
         '
         'toolStripSeparator2
         '
@@ -154,31 +198,53 @@ Partial Class IdeModel
         'DeshacerToolStripMenuItem
         '
         Me.DeshacerToolStripMenuItem.Name = "DeshacerToolStripMenuItem"
-        Me.DeshacerToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.DeshacerToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.DeshacerToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.DeshacerToolStripMenuItem.Text = "&Deshacer"
         '
         'RehacerToolStripMenuItem
         '
         Me.RehacerToolStripMenuItem.Name = "RehacerToolStripMenuItem"
-        Me.RehacerToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Y), System.Windows.Forms.Keys)
-        Me.RehacerToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.RehacerToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.RehacerToolStripMenuItem.Text = "&Rehacer"
         '
         'toolStripSeparator3
         '
         Me.toolStripSeparator3.Name = "toolStripSeparator3"
-        Me.toolStripSeparator3.Size = New System.Drawing.Size(160, 6)
+        Me.toolStripSeparator3.Size = New System.Drawing.Size(159, 6)
+        '
+        'CortarToolStripMenuItem
+        '
+        Me.CortarToolStripMenuItem.Image = CType(resources.GetObject("CortarToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CortarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.CortarToolStripMenuItem.Name = "CortarToolStripMenuItem"
+        Me.CortarToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.CortarToolStripMenuItem.Text = "Cor&tar"
+        '
+        'CopiarToolStripMenuItem
+        '
+        Me.CopiarToolStripMenuItem.Image = CType(resources.GetObject("CopiarToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.CopiarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
+        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.CopiarToolStripMenuItem.Text = "&Copiar"
+        '
+        'PegarToolStripMenuItem
+        '
+        Me.PegarToolStripMenuItem.Image = CType(resources.GetObject("PegarToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.PegarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.PegarToolStripMenuItem.Name = "PegarToolStripMenuItem"
+        Me.PegarToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.PegarToolStripMenuItem.Text = "&Pegar"
         '
         'toolStripSeparator4
         '
         Me.toolStripSeparator4.Name = "toolStripSeparator4"
-        Me.toolStripSeparator4.Size = New System.Drawing.Size(160, 6)
+        Me.toolStripSeparator4.Size = New System.Drawing.Size(159, 6)
         '
         'SeleccionartodoToolStripMenuItem
         '
         Me.SeleccionartodoToolStripMenuItem.Name = "SeleccionartodoToolStripMenuItem"
-        Me.SeleccionartodoToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.SeleccionartodoToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.SeleccionartodoToolStripMenuItem.Text = "&Seleccionar todo"
         '
         'HerramientasToolStripMenuItem
@@ -210,30 +276,30 @@ Partial Class IdeModel
         'ContenidoToolStripMenuItem
         '
         Me.ContenidoToolStripMenuItem.Name = "ContenidoToolStripMenuItem"
-        Me.ContenidoToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.ContenidoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ContenidoToolStripMenuItem.Text = "&Contenido"
         '
         'ÍndiceToolStripMenuItem
         '
         Me.ÍndiceToolStripMenuItem.Name = "ÍndiceToolStripMenuItem"
-        Me.ÍndiceToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.ÍndiceToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ÍndiceToolStripMenuItem.Text = "Índic&e"
         '
         'BuscarToolStripMenuItem
         '
         Me.BuscarToolStripMenuItem.Name = "BuscarToolStripMenuItem"
-        Me.BuscarToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.BuscarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.BuscarToolStripMenuItem.Text = "&Buscar"
         '
         'toolStripSeparator5
         '
         Me.toolStripSeparator5.Name = "toolStripSeparator5"
-        Me.toolStripSeparator5.Size = New System.Drawing.Size(132, 6)
+        Me.toolStripSeparator5.Size = New System.Drawing.Size(149, 6)
         '
         'AcercadeToolStripMenuItem
         '
         Me.AcercadeToolStripMenuItem.Name = "AcercadeToolStripMenuItem"
-        Me.AcercadeToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
+        Me.AcercadeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AcercadeToolStripMenuItem.Text = "&Acerca de..."
         '
         'SplitContainer1
@@ -255,6 +321,14 @@ Partial Class IdeModel
         Me.SplitContainer1.SplitterDistance = 206
         Me.SplitContainer1.TabIndex = 9
         '
+        'TreeView1
+        '
+        Me.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TreeView1.Location = New System.Drawing.Point(0, 0)
+        Me.TreeView1.Name = "TreeView1"
+        Me.TreeView1.Size = New System.Drawing.Size(202, 616)
+        Me.TreeView1.TabIndex = 0
+        '
         'SplitContainer2
         '
         Me.SplitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
@@ -274,14 +348,6 @@ Partial Class IdeModel
         Me.SplitContainer2.Size = New System.Drawing.Size(1070, 620)
         Me.SplitContainer2.SplitterDistance = 357
         Me.SplitContainer2.TabIndex = 0
-        '
-        'TreeView1
-        '
-        Me.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TreeView1.Location = New System.Drawing.Point(0, 0)
-        Me.TreeView1.Name = "TreeView1"
-        Me.TreeView1.Size = New System.Drawing.Size(202, 616)
-        Me.TreeView1.TabIndex = 0
         '
         'TabsEditor
         '
@@ -361,77 +427,6 @@ Partial Class IdeModel
         Me.MetroTabPage5.VerticalScrollbarBarColor = True
         Me.MetroTabPage5.VerticalScrollbarHighlightOnWheel = False
         Me.MetroTabPage5.VerticalScrollbarSize = 10
-        '
-        'NuevoToolStripMenuItem
-        '
-        Me.NuevoToolStripMenuItem.Image = CType(resources.GetObject("NuevoToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.NuevoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.NuevoToolStripMenuItem.Name = "NuevoToolStripMenuItem"
-        Me.NuevoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NuevoToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.NuevoToolStripMenuItem.Text = "&Nuevo"
-        '
-        'AbrirToolStripMenuItem
-        '
-        Me.AbrirToolStripMenuItem.Image = CType(resources.GetObject("AbrirToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.AbrirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AbrirToolStripMenuItem.Name = "AbrirToolStripMenuItem"
-        Me.AbrirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.AbrirToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.AbrirToolStripMenuItem.Text = "&Abrir"
-        '
-        'GuardarToolStripMenuItem
-        '
-        Me.GuardarToolStripMenuItem.Image = CType(resources.GetObject("GuardarToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.GuardarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.GuardarToolStripMenuItem.Name = "GuardarToolStripMenuItem"
-        Me.GuardarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.GuardarToolStripMenuItem.Text = "&Guardar"
-        '
-        'ImprimirToolStripMenuItem
-        '
-        Me.ImprimirToolStripMenuItem.Image = CType(resources.GetObject("ImprimirToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ImprimirToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ImprimirToolStripMenuItem.Name = "ImprimirToolStripMenuItem"
-        Me.ImprimirToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.ImprimirToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.ImprimirToolStripMenuItem.Text = "&Imprimir"
-        '
-        'VistapreviadeimpresiónToolStripMenuItem
-        '
-        Me.VistapreviadeimpresiónToolStripMenuItem.Image = CType(resources.GetObject("VistapreviadeimpresiónToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.VistapreviadeimpresiónToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.VistapreviadeimpresiónToolStripMenuItem.Name = "VistapreviadeimpresiónToolStripMenuItem"
-        Me.VistapreviadeimpresiónToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.VistapreviadeimpresiónToolStripMenuItem.Text = "&Vista previa de impresión"
-        '
-        'CortarToolStripMenuItem
-        '
-        Me.CortarToolStripMenuItem.Image = CType(resources.GetObject("CortarToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.CortarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.CortarToolStripMenuItem.Name = "CortarToolStripMenuItem"
-        Me.CortarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.CortarToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.CortarToolStripMenuItem.Text = "Cor&tar"
-        '
-        'CopiarToolStripMenuItem
-        '
-        Me.CopiarToolStripMenuItem.Image = CType(resources.GetObject("CopiarToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.CopiarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.CopiarToolStripMenuItem.Name = "CopiarToolStripMenuItem"
-        Me.CopiarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopiarToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.CopiarToolStripMenuItem.Text = "&Copiar"
-        '
-        'PegarToolStripMenuItem
-        '
-        Me.PegarToolStripMenuItem.Image = CType(resources.GetObject("PegarToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.PegarToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.PegarToolStripMenuItem.Name = "PegarToolStripMenuItem"
-        Me.PegarToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PegarToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.PegarToolStripMenuItem.Text = "&Pegar"
         '
         'IdeModel
         '

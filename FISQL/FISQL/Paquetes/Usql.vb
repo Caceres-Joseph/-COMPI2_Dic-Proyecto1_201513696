@@ -11,6 +11,7 @@ Public Class Usql
         'voy hacer un replace
         usql = usql.Replace("""", "'")
 
+        usql = usql.Replace(vbLf, vbCrLf)
         cadenaEnvio = "[" + Constants.vbCrLf + """paquete"":""usql""," + Constants.vbCrLf +
             """instruccion"":""" + usql + """" + Constants.vbCrLf + "]"
     End Sub

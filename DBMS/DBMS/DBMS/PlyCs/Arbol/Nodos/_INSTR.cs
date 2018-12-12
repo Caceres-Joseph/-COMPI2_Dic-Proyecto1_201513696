@@ -1,4 +1,5 @@
 ﻿using DBMS.PlyCs.Arbol.Elementos;
+using DBMS.Usql.Gramatica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,15 +25,34 @@ namespace DBMS.PlyCs.Arbol.Nodos
 
 
             itemRetorno retorno = new itemRetorno(0);
-            String primerAtributo = lstAtributos.getValItem(0);
-
+            _VAL_CADENA nodoCad1 = (_VAL_CADENA)hijos[0];
+            String primerAtributo = nodoCad1.getCadena();
 
             if (primerAtributo.ToLower()=="instruccion")
             {
 
 
+                _VAL_CADENA nodoCad2 = (_VAL_CADENA)hijos[1];
+                String segundaCadena = nodoCad2.getCadena();
                 //ejecutando la cadena
-                Console.WriteLine(lstAtributos.getValItem(2));
+                Console.WriteLine("ejecutando la cadena");
+                Console.WriteLine(segundaCadena);
+
+
+                
+                anlzUsql analizador = new anlzUsql();
+                try
+                {
+
+                    analizador.iniciarAnalisis(segundaCadena);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Error al analizar USQL");
+                }
+
+
+
 
 
                 //el retorno del analizador

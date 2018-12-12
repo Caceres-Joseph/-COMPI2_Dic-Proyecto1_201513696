@@ -41,7 +41,7 @@ namespace DBMS.PlyCs.Gramatica
             {
                  
                 // seman.S(raiz);
-                grafo.generarImagen(raiz);
+                //grafo.generarImagen(raiz);
                  
                 //generando el arbol
                 arbolPlycs generar = new arbolPlycs(gramatica.nombreArchivo); 
