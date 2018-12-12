@@ -77,6 +77,8 @@ namespace DBMS.Usql.Gramatica
              +----------------------------
              */
 
+            var sDobleMenor = ToTerm("<<");
+            var sDobleMayor = ToTerm(">>");
 
             var sMas = ToTerm("+");
             var sMenos = ToTerm("-");
@@ -113,6 +115,7 @@ namespace DBMS.Usql.Gramatica
 
             var sCierraInterrogante = ToTerm("?");
             var sDosPuntos = ToTerm(":");
+
 
             /*
              +-----------------------------
@@ -385,7 +388,7 @@ namespace DBMS.Usql.Gramatica
 
             DDL_CREAR_PROC.Rule = tCrear + tProcedimiento + valId + sAbreParent + LST_PARAMETRO + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
 
-            DDL_CREAR_FUNCION.Rule = tCrear + tFuncion + valId + sAbreParent + LST_PARAMETRO + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
+            DDL_CREAR_FUNCION.Rule = tCrear + tFuncion + valId + sAbreParent + LST_PARAMETRO + sCierraParent + TIPO + sAbreLlave + LST_CUERPO + sCierraLlave;
 
 
             DDL_RETORNO.Rule = tRetorno + VALOR; 
@@ -664,7 +667,7 @@ namespace DBMS.Usql.Gramatica
 
 
             //  ''' CONTAR  '''
-            SSL_CONTAR.Rule =tContar + sAbreParent + sMenorQue + sMenorQue + DML_SELECCIONAR + sMayorQue + sMayorQue + sCierraParent;
+            SSL_CONTAR.Rule =tContar + sAbreParent + sDobleMenor + DML_SELECCIONAR + sDobleMayor + sCierraParent;
 
             //  ''' BACKUP  '''
             SSL_BACKUP.Rule = SSL_DUMP
@@ -694,7 +697,7 @@ namespace DBMS.Usql.Gramatica
             */
 
 
-            LST_PARAMETRO.Rule = MakePlusRule(LST_PARAMETRO, sComa, PARAMETRO);
+            LST_PARAMETRO.Rule = MakeStarRule(LST_PARAMETRO, sComa, PARAMETRO);
 
             PARAMETRO.Rule = TIPO + sArroba + valId;
 
@@ -720,7 +723,7 @@ namespace DBMS.Usql.Gramatica
                        | tNo + tNulo
                        | tAutoincrementable
                        | tLlave_primaria
-                       | tLlave_foranea
+                       | tLlave_foranea + valId
                        | tUnico
                        ;
             /*
@@ -843,12 +846,10 @@ namespace DBMS.Usql.Gramatica
             E_CAD1.Rule=valCadena2; 
             E_DEC.Rule=valDecimal;
             E_NUM.Rule=valNumero;
-            */
-
-
+             
             E_SSL.Rule=SSL_OPE_TIPO; 
             E_CONT.Rule=SSL_CONTAR;
-
+*/
 
             /*
              +-----------------------------
