@@ -12,25 +12,24 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 {
     class itemValor
     {
+
         /*
         |--------------------------------------------------------------------------
         | Tipos que soporta el lenguaje
         |--------------------------------------------------------------------------
-        | cadena
-        | booleano
-        | entero
-        | decimal
-        | fecha
-        | fechahora
-        | hora
+        | text
+        | bool
+        | integer
+        | double
+        | date
+        | datetime 
         | nulo
-        | objeto
-        | vacio
+        | objeto 
         */
 
 
-         string tipo;
-       // public string tipo2 = "";
+        string tipo;
+        // public string tipo2 = "";
         public Object valor;
         public List<int> dimensiones;
         public String nombreObjeto = "";
@@ -43,7 +42,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         //esto sirve para el nombre de la pregunta
         public token nombrePregunta = new token();
 
-     
+
 
 
         public itemValor()
@@ -60,13 +59,13 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         CultureInfo enUS = new CultureInfo("en-US");
         public void convertirCadena(String cadena)
         {
-            
+
             //parseando a fecha/hora
             //parseando a fecha
             //paresando a hora
             try
             {
-                this.tipo = "fechahora";
+                this.tipo = "datetime";
                 //DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
 
                 DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss", enUS, DateTimeStyles.None);
@@ -78,7 +77,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 //  Console.WriteLine("[itemValor]No es fechaHora"+e);
                 try
                 {
-                    this.tipo = "fecha";
+                    this.tipo = "date";
                     DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                     this.valor = oDate;
@@ -96,7 +95,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     catch (Exception e3)
                     {
                         // Console.WriteLine("[itemValor]No es hora" + e3);
-                        this.tipo = "cadena";
+                        this.tipo = "txt";
                         this.valor = cadena;
                     }
                 }
@@ -119,16 +118,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         |--------------------------------------------------------------------------
         | Obteniendo los tipos
         |--------------------------------------------------------------------------
-        | cadena
-        | booleano
-        | entero
-        | decimal
-        | fecha
-        | fechahora
-        | hora
+        | text
+        | bool
+        | integer
+        | double
+        | date
+        | datetime 
         | nulo
-        | objeto
-        | vacio
+        | objeto 
         */
         public Boolean getBooleano()
         {
@@ -226,9 +223,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
             imprimirVariable2();
             int i = 0;
-            foreach(int inte in dimensiones)
+            foreach (int inte in dimensiones)
             {
-                println("dimen" + i +": "+inte);
+                println("dimen" + i + ": " + inte);
                 i++;
             }
 
@@ -291,7 +288,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 }
                 else if (isTypeObjeto())
                 {
-                    println("objeto."+nombreObjeto);
+                    println("objeto." + nombreObjeto);
 
                 }
                 else if (isTypeVacio())
@@ -314,17 +311,17 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         |--------------------------------------------------------------------------
         */
 
-       
+
 
         public object getValorParseado(String tipo)
         {
 
             switch (tipo)
             {
-                case "cadena":
-                    return getCadena(); 
+                case "txt":
+                    return getCadena();
 
-                case "booleano":
+                case "bool":
                     if (isTypeBooleano())
                     {
                         return getBooleano();
@@ -345,12 +342,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                             return null;
                         }
 
-                    }else if (isTypeCadena())
+                    }
+                    else if (isTypeCadena())
                     {
-                        if (getCadena().ToLower().Equals("vardadero")|| getCadena().ToLower().Equals("true"))
+                        if (getCadena().ToLower().Equals("vardadero") || getCadena().ToLower().Equals("true"))
                         {
                             return true;
-                        }else if (getCadena().ToLower().Equals("falso") || getCadena().ToLower().Equals("false"))
+                        }
+                        else if (getCadena().ToLower().Equals("falso") || getCadena().ToLower().Equals("false"))
                         {
                             return false;
                         }
@@ -363,9 +362,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     {
                         return null;
                     }
-                case "entero":
+                case "integer":
 
-                    
+
                     if (isTypeEntero())
                     {
                         return getEntero();
@@ -385,14 +384,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     {
                         return Convert.ToInt32(getDecimal());
                     }
-                    else if (isTypeFechaHora()||isTypeFecha()||isTypeHora())
+                    else if (isTypeFechaHora() || isTypeFecha() || isTypeHora())
                     {
 
                         DateTime starDate = DateTime.ParseExact("01/01/2000 00:00:00", "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         DateTime endDate = getFechaHora();
 
-                        Double numDays = (endDate - starDate).Days; 
-                        return Convert.ToInt32(numDays); 
+                        Double numDays = (endDate - starDate).Days;
+                        return Convert.ToInt32(numDays);
                     }
                     else
                     {
@@ -403,12 +402,12 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                         }
                         catch (Exception e)
                         {
-                            println("error al parsear a entrero"+e.ToString());
+                            println("error al parsear a entrero" + e.ToString());
                             return null;
                         }
                     }
 
-                case "decimal":
+                case "double":
                     if (isTypeDecimal())
                     {
                         return getDecimal();
@@ -440,14 +439,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
                         Double numDays = (endDate - starDate).Days;
 
-                        return numDays; 
+                        return numDays;
                     }
                     else
                     {
                         return null;
                     }
 
-                case "fecha":
+                case "date":
                     if (isTypeFecha())
                     {
                         return getFechaHora();
@@ -457,7 +456,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                         return null;
                     }
 
-                case "fechahora":
+                case "datetime":
                     if (isTypeFechaHora())
                     {
                         return getFechaHora();
@@ -506,27 +505,27 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
         public void setTypeCadena()
         {
-            this.tipo = "cadena";
+            this.tipo = "txt";
         }
         public void setTypeBooleano()
         {
-            this.tipo = "booleano";
+            this.tipo = "bool";
         }
         public void setTypeEntero()
         {
-            this.tipo = "entero";
+            this.tipo = "integer";
         }
         public void setTypeDecimal()
         {
-            this.tipo = "decimal";
+            this.tipo = "double";
         }
         public void setTypeFecha()
         {
-            this.tipo = "fecha";
+            this.tipo = "date";
         }
         public void setTypeFechaHora()
         {
-            this.tipo = "fechahora";
+            this.tipo = "datetime";
         }
         public void setTypeHora()
         {
@@ -561,32 +560,32 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
       */
         public void setValue(String cadena)
         {
-            this.tipo = "cadena";
+            this.tipo = "txt";
             this.valor = cadena;
         }
         public void setValue(Boolean valor)
         {
-            this.tipo = "booleano";
+            this.tipo = "bool";
             this.valor = valor;
         }
         public void setValue(int entrada)
         {
-            this.tipo = "entero";
+            this.tipo = "integer";
             this.valor = entrada;
         }
         public void setValue(double entrada)
         {
-            this.tipo = "decimal";
+            this.tipo = "double";
             this.valor = entrada;
         }
         public void setValueFecha(DateTime fecha)
         {
-            this.tipo = "fecha";
+            this.tipo = "date";
             this.valor = fecha;
         }
         public void setValueFechaHora(DateTime fecha)
         {
-            this.tipo = "fechahora";
+            this.tipo = "datetime";
             this.valor = fecha;
         }
         public void setValueHora(DateTime hora)
@@ -617,23 +616,23 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
 
-            if (tipo.Equals("entero"))
+            if (tipo.Equals("integer"))
             {
                 return tipo;
             }
-            else if (tipo.Equals("cadena"))
+            else if (tipo.Equals("txt"))
             {
                 return tipo;
             }
-            else if (tipo.Equals("decimal"))
+            else if (tipo.Equals("double"))
             {
                 return tipo;
             }
-            else if (tipo.Equals("booleano"))
+            else if (tipo.Equals("bool"))
             {
                 return tipo;
             }
-            else if (tipo.Equals("fecha"))
+            else if (tipo.Equals("date"))
             {
                 return tipo;
             }
@@ -641,7 +640,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             {
                 return tipo;
             }
-            else if (tipo.Equals("fechahora"))
+            else if (tipo.Equals("datetime"))
             {
                 return tipo;
             }
@@ -683,22 +682,22 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         {
             switch (cadena)
             {
-                case "cadena":
+                case "txt":
                     setTypeCadena();
                     break;
-                case "booleano":
+                case "bool":
                     setTypeBooleano();
                     break;
-                case "entero":
+                case "integer":
                     setTypeEntero();
                     break;
-                case "decimal":
+                case "double":
                     setTypeDecimal();
                     break;
-                case "fecha":
+                case "date":
                     setTypeFecha();
                     break;
-                case "fechahora":
+                case "datetime":
                     setTypeFechaHora();
                     break;
                 case "hora":
@@ -729,42 +728,42 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
         public Boolean isTypeCadena()
         {
-            if (this.tipo.Equals("cadena"))
+            if (this.tipo.Equals("txt"))
                 return true;
             else
                 return false;
         }
         public Boolean isTypeBooleano()
         {
-            if (this.tipo.Equals("booleano"))
+            if (this.tipo.Equals("bool"))
                 return true;
             else
                 return false;
         }
         public Boolean isTypeEntero()
         {
-            if (this.tipo.Equals("entero"))
+            if (this.tipo.Equals("integer"))
                 return true;
             else
                 return false;
         }
         public Boolean isTypeDecimal()
         {
-            if (this.tipo.Equals("decimal"))
+            if (this.tipo.Equals("double"))
                 return true;
             else
                 return false;
         }
         public Boolean isTypeFecha()
         {
-            if (this.tipo.Equals("fecha"))
+            if (this.tipo.Equals("date"))
                 return true;
             else
                 return false;
         }
         public Boolean isTypeFechaHora()
         {
-            if (this.tipo.Equals("fechahora"))
+            if (this.tipo.Equals("datetime"))
                 return true;
             else
                 return false;

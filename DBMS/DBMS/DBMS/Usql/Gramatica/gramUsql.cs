@@ -1,4 +1,5 @@
-﻿using Irony.Parsing;
+﻿using DBMS.Usql.Arbol.Elementos.Tablas;
+using Irony.Parsing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace DBMS.Usql.Gramatica
     class gramUsql : Grammar
     {
 
-        //tablaErrores tablaErrores;
+        tablaErrores tablaErrores;
         public String nombreArchivo;
-        public gramUsql(String archivo) : base(caseSensitive: false)//Diferencia entre mayusculas y minusculas
+        public gramUsql(tablaErrores tabla, String archivo) : base(caseSensitive: false)//Diferencia entre mayusculas y minusculas
         {
 
+            this.tablaErrores = tabla;
             this.nombreArchivo = archivo;
 
             #region ER
@@ -869,7 +871,6 @@ namespace DBMS.Usql.Gramatica
             #endregion
         }
 
-
         public override void ReportParseError(ParsingContext context)
         {
             String error = (String)context.CurrentToken.ValueString;
@@ -886,17 +887,14 @@ namespace DBMS.Usql.Gramatica
                 string[] division = error.Split(delimiter, 2);
                 division = division[1].Split('.');
                 error = "Caracter Invalido " + division[0];
-
-                Console.WriteLine("Caracter invalido -> line:" + fila + " col:" + columna + " tok:" + division[0]);
-                //tablaErrores.insertErrorLexical(nombreArchivo, fila, columna, "Caractero no reconocido:" + division[0]);
+                tablaErrores.insertErrorLexical(nombreArchivo, fila, columna, "Caractero no reconocido:" + division[0]);
             }
             else
             {
 
                 fila = context.Source.Location.Line;
                 columna = context.Source.Location.Column;
-                Console.WriteLine("No se esperaba -> line:" + fila + " col:" + columna + " tok:" + error);
-                //tablaErrores.insertErrorSyntax(nombreArchivo, fila, columna, "No se esperaba token:" + error);
+                tablaErrores.insertErrorSyntax(nombreArchivo, fila, columna, "No se esperaba token:" + error);
             }
 
             base.ReportParseError(context);

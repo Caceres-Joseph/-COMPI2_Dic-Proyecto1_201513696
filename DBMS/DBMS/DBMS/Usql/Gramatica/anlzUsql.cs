@@ -16,11 +16,21 @@ namespace DBMS.Usql.Gramatica
     {
         public tablaSimbolos tablaDeSimbolos;
         public nodoModelo raizArbol;
+
+
+        public anlzUsql()
+        {
+
+
+            tablaDeSimbolos = new tablaSimbolos(); 
+            raizArbol = new nodoModelo("raiz", tablaDeSimbolos);
+        }
+
         public String iniciarAnalisis(String cadena)
         {
 
 
-            gramUsql gramatica = new gramUsql("usql");
+            gramUsql gramatica = new gramUsql(tablaDeSimbolos.tablaErrores,"usql");
             LanguageData lenguaje = new LanguageData(gramatica);
             Parser parser = new Parser(lenguaje);
             ParseTree arbol = parser.Parse(cadena);
@@ -37,13 +47,14 @@ namespace DBMS.Usql.Gramatica
             {
 
                 // seman.S(raiz);
-                grafo.generarImagen(raiz);
+                //grafo.generarImagen(raiz);
 
                 //generando el arbol
                 arbolUsql generar = new arbolUsql(gramatica.nombreArchivo);
                 raizArbol = generar.generar(raizArbol, raiz, tablaDeSimbolos);
                 raizArbol.ejecutar();
 
+                Console.WriteLine("--- Aalisis USQL Exitoso ----");
 
                 return "";
 
