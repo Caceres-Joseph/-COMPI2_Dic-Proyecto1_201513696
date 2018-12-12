@@ -48,6 +48,8 @@ namespace DBMS.PlyCs.Gramatica
                 raizArbol = generar.generar(raizArbol, raiz);
                 itemRetorno ret= raizArbol.ejecutar();
 
+
+
                 if (ret.isRetorno())
                 {
                     Console.WriteLine("retornando : " + ret.cadenaRetorno);

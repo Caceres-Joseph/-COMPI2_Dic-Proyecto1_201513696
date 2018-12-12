@@ -1,6 +1,7 @@
 ﻿using DBMS.Ast;
 using DBMS.Usql.Arbol;
 using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Nodos;
 using Irony.Parsing;
@@ -17,6 +18,8 @@ namespace DBMS.Usql.Gramatica
         public tablaSimbolos tablaDeSimbolos;
         public nodoModelo raizArbol;
 
+
+        public List<elementoClase> lstClases;
 
         public anlzUsql()
         {
@@ -47,12 +50,16 @@ namespace DBMS.Usql.Gramatica
             {
 
                 // seman.S(raiz);
-                //grafo.generarImagen(raiz);
+                grafo.generarImagen(raiz);
 
                 //generando el arbol
                 arbolUsql generar = new arbolUsql(gramatica.nombreArchivo);
                 raizArbol = generar.generar(raizArbol, raiz, tablaDeSimbolos);
                 raizArbol.ejecutar();
+
+                tablaDeSimbolos.imprimirClases();
+
+
 
                 Console.WriteLine("--- Aalisis USQL Exitoso ----");
 

@@ -15,9 +15,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public tablaErrores tablaErrores = new tablaErrores();
         public String rutaProyect = "";
 
-        public List<elementoClase> lstClases;
-        public List<elementoClase> lstPreguntas;
+        public List<elementoClase> lstClases; 
          
+
+        //para lo que se encuentra afuera 
+
 
 
           
@@ -29,26 +31,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public tablaSimbolos( )
         { 
             //lstAst = new List<nodoModelo>();
-            lstClases = new List<elementoClase>();
-            lstPreguntas = new List<elementoClase>();
+            lstClases = new List<elementoClase>(); 
 
 
         }
-
-        public Boolean esPregunta(String idVal)
-        {
-            Boolean retorno = false;
-
-            foreach (elementoClase el in lstPreguntas)
-            {
-                if (el.nombreClase.valLower.Equals(idVal))
-                {
-                    return true;
-                }
-            }
-
-            return retorno;
-        }
+         
 
         public void setRutaProyecto(String ruta)
         {
@@ -68,29 +55,18 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
             rutaProyect = ruta;
 
         }
-
-        public Boolean iniciarAnalisis(String cadena, String nombreArchivo)
-        {
-             
-            Boolean retorno = false;
-             
-            return retorno;
-        }
+         
 
 
         public void imprimirClases()
         {
 
+            Console.WriteLine("------------- Objetos ----------------------");
             foreach (elementoClase temp in lstClases)
             {
                 temp.imprimir();
             }
-
-            Console.WriteLine("------------- Preguntas ----------------------");
-            foreach (elementoClase temp in lstPreguntas)
-            {
-                temp.imprimir();
-            }
+             
         }
 
         public void iniciarEjecucion()
@@ -112,6 +88,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
             }
             tablaErrores.println("[tablaSimbolos]No hay principal para ejecutar ");
         }
+
 
 
 
@@ -143,38 +120,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
 
                 }
             }
-
-            cargarExtendsPreguntas();
+             
         }
-        public void cargarExtendsPreguntas()
-        {
-            foreach (elementoClase clase in lstPreguntas)
-            {
-                if (!clase.extender.valLower.Equals(""))
-                {
-                    //hay que buscar la clase y cargar los metodos
-
-                    elementoClase tempClase = getClase(clase.extender);
-                    if (tempClase == null)
-                    {
-                        tablaErrores.insertErrorSemantic("No se encuentra la clase: " + clase.extender.val + " de la que se quiere heredar", clase.extender);
-                        return;
-                    }
-
-
-                    //heredando metodos, funciones, y constructores
-                    clase.lstVariablesGlobales.heredar(tempClase.lstVariablesGlobales.listaPolimorfa);
-
-
-                    clase.lstMetodo_funcion.heredar(tempClase.lstMetodo_funcion.listaPolimorfa);
-                    clase.lstConstructoresHeredados.heredar(tempClase.lstConstructores.listaPolimorfa);
-                    //clase.lstVariablesGlobales.heredar(tempClase.lstVariablesGlobales.listaPolimorfa);
-
-                    //cargando 
-
-                }
-            }
-        }
+       
 
         public void ejecutandoClase(elementoClase clase)
         {
@@ -209,26 +157,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
 
         }
 
-
-
-
-        public elementoClase getPregunta(token nombre)
-        {
-
-            foreach (elementoClase temp in lstPreguntas)
-            {
-                if (temp.nombreClase.valLower.Equals(nombre.valLower))
-                {
-                    return temp;
-
-                }
-            }
-
-            //no encontro la clase 
-            //tablaErrores.insertErrorSemantic("No se puede crear una instancia al objeto: " + nombre.val + " debido a que no existe esa clase en este ambito", nombre);
-            return null;
-
-        }
+         
 
 
 

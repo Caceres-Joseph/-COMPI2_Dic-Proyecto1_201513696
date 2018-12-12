@@ -7,7 +7,7 @@ CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
 
 
 CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
-@comision, INTEGER @codigo){
+@comision, INTEGER @codigo) INTEGER{
  CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
 }
 
