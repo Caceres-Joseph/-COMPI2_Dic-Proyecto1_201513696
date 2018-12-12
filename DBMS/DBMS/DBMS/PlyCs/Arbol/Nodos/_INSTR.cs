@@ -35,8 +35,8 @@ namespace DBMS.PlyCs.Arbol.Nodos
                 _VAL_CADENA nodoCad2 = (_VAL_CADENA)hijos[1];
                 String segundaCadena = nodoCad2.getCadena();
                 //ejecutando la cadena
-                Console.WriteLine("ejecutando la cadena");
-                Console.WriteLine(segundaCadena);
+                //Console.WriteLine("ejecutando la cadena");
+                //Console.WriteLine(segundaCadena);
 
 
                 

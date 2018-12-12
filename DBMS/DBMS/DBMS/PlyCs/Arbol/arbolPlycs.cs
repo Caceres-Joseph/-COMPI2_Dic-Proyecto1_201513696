@@ -1,4 +1,5 @@
-﻿using DBMS.PlyCs.Arbol.Nodos;
+﻿using DBMS.Globales;
+using DBMS.PlyCs.Arbol.Nodos;
 using DBMS.TablaErrores;
 using Irony.Parsing;
 using System;
