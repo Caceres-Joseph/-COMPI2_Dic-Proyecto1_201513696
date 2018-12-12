@@ -327,8 +327,7 @@ namespace DBMS.Usql.Gramatica
             NonTerminal E_NUM = new NonTerminal("E_NUM");
             NonTerminal E_SSL = new NonTerminal("E_SSL");
             NonTerminal E_CONT = new NonTerminal("E_CONT");
-
-            NonTerminal LST_FUNC = new NonTerminal("LST_FUNC");
+             
 
             #endregion
 
@@ -389,8 +388,7 @@ namespace DBMS.Usql.Gramatica
             DDL_CREAR_PROC.Rule = tCrear + tProcedimiento + valId + sAbreParent + LST_PARAMETRO + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
 
             DDL_CREAR_FUNCION.Rule = tCrear + tFuncion + valId + sAbreParent + LST_PARAMETRO + sCierraParent + TIPO + sAbreLlave + LST_CUERPO + sCierraLlave;
-
-
+             
             DDL_RETORNO.Rule = tRetorno + VALOR; 
             DDL_DETENER.Rule = tDetener;
 

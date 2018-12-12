@@ -1,4 +1,8 @@
 ﻿using DBMS.Ast;
+using DBMS.Usql.Arbol;
+using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Nodos;
 using Irony.Parsing;
 using System;
 using System.Collections.Generic;
@@ -10,6 +14,8 @@ namespace DBMS.Usql.Gramatica
 {
     class anlzUsql
     {
+        public tablaSimbolos tablaDeSimbolos;
+        public nodoModelo raizArbol;
         public String iniciarAnalisis(String cadena)
         {
 
@@ -34,15 +40,10 @@ namespace DBMS.Usql.Gramatica
                 grafo.generarImagen(raiz);
 
                 //generando el arbol
-                /*arbolPlycs generar = new arbolPlycs(gramatica.nombreArchivo);
-                raizArbol = generar.generar(raizArbol, raiz);
-                itemRetorno ret = raizArbol.ejecutar();
+                arbolUsql generar = new arbolUsql(gramatica.nombreArchivo);
+                raizArbol = generar.generar(raizArbol, raiz, tablaDeSimbolos);
+                raizArbol.ejecutar();
 
-                if (ret.isRetorno())
-                {
-                    Console.WriteLine("retornando : " + ret.cadenaRetorno);
-                }
-                */
 
                 return "";
 

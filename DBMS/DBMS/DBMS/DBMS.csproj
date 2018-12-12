@@ -88,6 +88,7 @@
     <Compile Include="PlyCs\TablaErrores\lstAtributos.cs" />
     <Compile Include="PlyCs\TablaErrores\tablaErrores.cs" />
     <Compile Include="Globales\token.cs" />
+    <Compile Include="Usql\Arbol\arbolUsql.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Elementos\elementoClase.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Elementos\elementoEntorno.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Elementos\elementoError.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_FUNCION.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_PROC.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_USUARIO.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_DETENER.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_RETORNO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dml\Actualizar\_DML_ACTUALIZAR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dml\Actualizar\_DML_ACTUALIZAR_1.cs" />
@@ -216,6 +218,7 @@
     <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_FECHA.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_FECHA_HORA.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_IMPRIMIR.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_NATIVAS.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Nativas\_SSL_OPE_TIPO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Restore\_SSL_RESTAURAR_COMPLETO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Ssl\Restore\_SSL_RESTAURAR_DUMP.cs" />
