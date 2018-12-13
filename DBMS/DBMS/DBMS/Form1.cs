@@ -87,15 +87,15 @@ namespace DBMS
 
         public static void mensajeConsola(String mensaje)
         {
-            DateTime hoy = DateTime.Today;
-            txtConsola.Text = txtConsola.Text + System.Environment.NewLine + ">>[" + hoy.ToString() + "]" + mensaje;
+            DateTime hoy = DateTime.Now;
+            txtConsola.Text = txtConsola.Text + System.Environment.NewLine + ">>[" + hoy.ToString() + "]  " + mensaje;
         }
 
 
         public static void mensajePly(String mensaje)
         {
-            DateTime hoy = DateTime.Today;
-            txtPlyCs.Text = txtPlyCs.Text + System.Environment.NewLine+">>[" + hoy.ToString() + "]" + mensaje;
+            DateTime hoy = DateTime.Now;
+            txtPlyCs.Text = txtPlyCs.Text + System.Environment.NewLine+">>[" + hoy.ToString() + "]  " + mensaje;
         }
 
 
