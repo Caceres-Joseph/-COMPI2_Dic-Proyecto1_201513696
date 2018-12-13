@@ -1,5 +1,6 @@
 ﻿using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Listas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
 using System;
 using System.Collections.Generic;
@@ -15,24 +16,25 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public tablaErrores tablaErrores = new tablaErrores();
         public String rutaProyect = "";
 
-        public List<elementoClase> lstClases; 
+
+        //la lista de objetos
+        public List<elementoClase> lstClases;
          
-
-        //para lo que se encuentra afuera 
-
-
-
-          
+        //los procedimientos y funciones
+        public lstMetodo_funcion lstMetodo_funcion;
+        public lstVariablesGlobales lstVariablesGlobales;
 
 
-        //public List<nodoModelo> lstAst;
+
 
 
         public tablaSimbolos( )
         { 
-            //lstAst = new List<nodoModelo>();
-            lstClases = new List<elementoClase>(); 
 
+
+            lstClases = new List<elementoClase>();
+            this.lstMetodo_funcion = new lstMetodo_funcion(this, "metodos_funciones"); 
+            this.lstVariablesGlobales = new lstVariablesGlobales(this, "var_globales");
 
         }
          
@@ -60,8 +62,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
 
         public void imprimirClases()
         {
-
-            Console.WriteLine("------------- Objetos ----------------------");
+             
             foreach (elementoClase temp in lstClases)
             {
                 temp.imprimir();
@@ -75,63 +76,28 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
 
 
 
-
+            //se cargan los atributos de los obejtos 
 
             foreach (elementoClase temp in lstClases)
-            {
-                if (temp.lstPrincipal.getCount() > 0)
-                {
-                    ejecutandoClase(temp);
-
-                    return;
-                }
-            }
-            tablaErrores.println("[tablaSimbolos]No hay principal para ejecutar ");
+            { 
+                    ejecutandoClase(temp); 
+            } 
         }
 
-
-
-
-        public void cargarExtends()
-        {
-            foreach (elementoClase clase in lstClases)
-            {
-                if (!clase.extender.valLower.Equals(""))
-                {
-                    //hay que buscar la clase y cargar los metodos
-
-                    elementoClase tempClase = getClase(clase.extender);
-                    if (tempClase == null)
-                    {
-                        tablaErrores.insertErrorSemantic("No se encuentra la clase: " + clase.extender.val + " de la que se quiere heredar", clase.extender);
-                        return;
-                    }
-
-
-                    //heredando metodos, funciones, y constructores
-                    clase.lstVariablesGlobales.heredar(tempClase.lstVariablesGlobales.listaPolimorfa);
-
-
-                    clase.lstMetodo_funcion.heredar(tempClase.lstMetodo_funcion.listaPolimorfa);
-                    clase.lstConstructoresHeredados.heredar(tempClase.lstConstructores.listaPolimorfa);
-                    //clase.lstVariablesGlobales.heredar(tempClase.lstVariablesGlobales.listaPolimorfa);
-
-                    //cargando 
-
-                }
-            }
-             
-        }
+         
        
 
         public void ejecutandoClase(elementoClase clase)
         {
             ///hay que crear una instancia al objeto
-            println("Ejecutando el main de " + clase.nombreClase.valLower);
+            println("Cargando las variables globales  de " + clase.nombreClase.valLower);
             objetoClase ObjClase = new objetoClase(clase, this);
             ObjClase.ejecutarGlobales();
-            ObjClase.ejecutarPrincipal();
-            //ObjClase.imprimirTablaEntornos();
+           // ObjClase.ejecutarPrincipal();
+
+
+
+            ObjClase.imprimirTablaEntornos();
         }
 
         public void println(String mensaje)

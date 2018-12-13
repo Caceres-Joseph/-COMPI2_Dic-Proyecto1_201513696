@@ -16,6 +16,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
         public lstMetodo_funcion lstMetodo_funcion;
         public lstConstructores lstConstructores;
         public lstConstructores lstConstructoresHeredados;
+
+
         //public lstPolimorfismo lstSobrescritura;
         public lstVariablesGlobales lstVariablesGlobales;
         

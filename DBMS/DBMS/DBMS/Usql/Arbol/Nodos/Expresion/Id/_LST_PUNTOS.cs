@@ -12,5 +12,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
         public _LST_PUNTOS(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
+
+
     }
 }

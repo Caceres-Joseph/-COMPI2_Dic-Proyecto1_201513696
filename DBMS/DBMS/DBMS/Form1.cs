@@ -20,9 +20,7 @@ namespace DBMS
        public static  MetroFramework.Controls.MetroTextBox txtConsola = new MetroFramework.Controls.MetroTextBox();
        public static  MetroFramework.Controls.MetroTextBox txtPlyCs = new MetroFramework.Controls.MetroTextBox();
        Thread thread;
-
-
-
+         
         public Form1()
         {
             InitializeComponent();

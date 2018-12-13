@@ -26,6 +26,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
             listaPolimorfa = new List<elementoPolimorfo>();
             this.nombre = nombre;
         }
+ 
 
         public void insertarElemento(elementoPolimorfo elem)
         {

@@ -14,7 +14,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public tablaSimbolos tabla;
         public tablaEntornos(tablaSimbolos tabla, objetoClase este)
         {
-            raiz = new elementoEntorno(null, tabla, "global", este);
+            raiz = new elementoEntorno(null, tabla, "global");
         }
 
 

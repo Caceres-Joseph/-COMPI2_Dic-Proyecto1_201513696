@@ -14,12 +14,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
         public Dictionary<String, itemEntorno> lstEntorno;
         public elementoEntorno anterior;
         public tablaSimbolos tabla;
-        public String nombre;
-        public objetoClase este; //sirve para guardar el puntero de la misma clase
+        public String nombre; 
 
-        public elementoEntorno(elementoEntorno anterior, tablaSimbolos tabla, String nombre, objetoClase este)
-        {
-            this.este = este;
+        public elementoEntorno(elementoEntorno anterior, tablaSimbolos tabla, String nombre)
+        { 
             this.nombre = nombre;
             this.tabla = tabla;
             this.anterior = anterior;

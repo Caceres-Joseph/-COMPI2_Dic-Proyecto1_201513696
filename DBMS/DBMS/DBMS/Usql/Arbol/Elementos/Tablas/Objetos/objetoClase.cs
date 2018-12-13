@@ -42,24 +42,24 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Objetos
         |----------------------------------------------
         |  Ejecutando el constructor
         |----------------------------------------------
-        */
+      
 
         public void ejecutarConstructor(token nombre, int dimension, lstValores parametros, elementoEntorno tablaEntorno)
         {
          
-            /*
-             * Console.WriteLine("-------------");
+          
+             Console.WriteLine("-------------");
             foreach (itemValor tmp in parametros.listaValores)
             {
                 Console.WriteLine("[ObjetoClase]->");
 
                 tmp.imprimirVariable();
             }
-            */
+           
 
             cuerpoClase.lstConstructores.ejecutarMetodo(nombre, parametros, tablaEntorno);
         }
-
+ */
         /*
         |----------------------------------------------
         |  Ejecutando una función o un método.
@@ -88,11 +88,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Objetos
         |----------------------------------------------
         |  Ejecutando Forulario.
         |----------------------------------------------
-        */
+        
 
         public itemValor ejecutarFormulario(token nombre, lstValores parametros, elementoEntorno entorno)
         {
-            /*foreach (itemValor tmp in parametros.listaValores)
+             foreach (itemValor tmp in parametros.listaValores)
             {
 
 
@@ -101,30 +101,30 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Objetos
                 Console.WriteLine("tipo->"+tmp.getTipo());
                 Console.WriteLine("nombreObjeto->" + tmp.nombreObjeto);
                 tmp.imprimirVariable();
-            }*/
+            }
 
             return cuerpoClase.lstFormularios.getMetodoFuncion(nombre, parametros, entorno,"formulario");
 
         }
-
+*/
         /*
         |----------------------------------------------
         |  Ejecutando Constructor Heredado
         |----------------------------------------------
-        */
+        
 
         public void ejecutarConstructorHeredado( lstValores parametros, elementoEntorno tablaEntorno, token linea)
         {
              
             cuerpoClase.lstConstructoresHeredados.ejecutarConstructorHeredad( parametros, tablaEntorno, linea);
         }
-
+*/
 
         /*
         |----------------------------------------------
         |  Ejecutando el Main
         |----------------------------------------------
-        */
+        
 
         public void ejecutarPrincipal()
         {
@@ -132,7 +132,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Objetos
             elementoEntorno hijo1 = new elementoEntorno(tablaEntorno.raiz, tablaSimbolos, "main", this);
             cuerpoClase.lstPrincipal.ejecutar(hijo1);
         }
-
+*/
          
 
         public void imprimirTablaEntornos()

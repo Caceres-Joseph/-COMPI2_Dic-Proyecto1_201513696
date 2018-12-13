@@ -402,7 +402,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                         }
                         catch (Exception e)
                         {
-                            println("error al parsear a entrero" + e.ToString());
+                            println("error al parsear a entrero"  );
                             return null;
                         }
                     }
@@ -526,11 +526,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public void setTypeFechaHora()
         {
             this.tipo = "datetime";
-        }
-        public void setTypeHora()
-        {
-            this.tipo = "hora";
-        }
+        } 
         public void setTypeNulo()
         {
             this.tipo = "nulo";
@@ -611,11 +607,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
       |--------------------------------------------------------------------------
       */
 
-        public String getTipoApartirDeString(String tipo)
+        public static String getTipoApartirDeString(String tipo)
         {
 
-
-
+             
             if (tipo.Equals("integer"))
             {
                 return tipo;
@@ -635,33 +630,16 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             else if (tipo.Equals("date"))
             {
                 return tipo;
-            }
-            else if (tipo.Equals("hora"))
-            {
-                return tipo;
-            }
+            }  
             else if (tipo.Equals("datetime"))
             {
                 return tipo;
-            }
-            else if (tipo.Equals("pregunta"))
-            {
-
-                return tipo;
-            }
-            else if (tipo.Equals("formulario"))
-            {
-                return tipo;
-            }
-            else if (tipo.Equals("respuesta"))
+            } 
+            else if (tipo.Equals("nulo"))
             {
                 return tipo;
             }
             else if (tipo.Equals("vacio"))
-            {
-                return tipo;
-            }
-            else if (tipo.Equals("nulo"))
             {
                 return tipo;
             }
@@ -699,10 +677,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     break;
                 case "datetime":
                     setTypeFechaHora();
-                    break;
-                case "hora":
-                    setTypeHora();
-                    break;
+                    break; 
                 case "nulo":
                     setTypeNulo();
                     break;

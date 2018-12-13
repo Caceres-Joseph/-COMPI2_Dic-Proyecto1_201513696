@@ -17,9 +17,7 @@ namespace DBMS.Usql.Gramatica
     {
         public tablaSimbolos tablaDeSimbolos;
         public nodoModelo raizArbol;
-
-
-        public List<elementoClase> lstClases;
+         
 
         public anlzUsql()
         {
@@ -40,9 +38,10 @@ namespace DBMS.Usql.Gramatica
             ParseTreeNode raiz = arbol.Root;
 
 
+            Console.WriteLine("====================== INICIANDO ANALISIS USQL ====================");
             if (raiz == null)
             {
-                Console.WriteLine("Arbol Vacio");
+                Console.WriteLine("======= Arbol Vacio =======");
                 return "";
                  
             }
@@ -55,13 +54,24 @@ namespace DBMS.Usql.Gramatica
                 //generando el arbol
                 arbolUsql generar = new arbolUsql(gramatica.nombreArchivo);
                 raizArbol = generar.generar(raizArbol, raiz, tablaDeSimbolos);
-                raizArbol.ejecutar();
-
-                tablaDeSimbolos.imprimirClases();
+                raizArbol.ejecutar(); 
 
 
+                //cargando las globales de los atributos
+                raizArbol.tablaSimbolos.iniciarEjecucion();
 
-                Console.WriteLine("--- Aalisis USQL Exitoso ----");
+
+
+                //esta es la ejecución final
+                elementoEntorno global = new elementoEntorno(null, tablaDeSimbolos, "global");
+                raizArbol.ejecutar(global);
+
+
+                Console.WriteLine("-------------- global ------------------");
+                global.imprimir();
+
+
+                //imprimir();
 
                 return "";
 
@@ -69,5 +79,19 @@ namespace DBMS.Usql.Gramatica
 
             //return false;
         }
+
+
+        public void imprimir()
+        {
+
+            Console.WriteLine("--------------[ Objetos ]---------------------");
+            tablaDeSimbolos.imprimirClases(); 
+            Console.WriteLine("--------------[ Funciones metodos ]-----------");
+            tablaDeSimbolos.lstMetodo_funcion.imprimir(); 
+            Console.WriteLine("--------------[ Aalisis USQL Exitoso ]--------");
+        }
+
+
+
     }
 }

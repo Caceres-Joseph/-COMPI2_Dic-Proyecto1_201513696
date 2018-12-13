@@ -39,7 +39,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
             //neuvo entorno
             {
 
-                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, nombreAmbitoEntorno, tablaEntorno.este);
+                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, nombreAmbitoEntorno);
                 guardarParametrosEnLaTabla(temp.lstParametros, parametros, hijo1);
 
 

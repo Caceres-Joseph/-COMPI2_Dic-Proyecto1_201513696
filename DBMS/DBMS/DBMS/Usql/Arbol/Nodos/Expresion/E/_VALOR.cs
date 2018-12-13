@@ -31,5 +31,22 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             _E ope = (_E)hijo;
             return ope.getValor(elementoEntor); 
         }
+
+
+
+        public itemValor getValor(elementoEntorno elementoEntor)
+        {
+
+            itemValor retorno = new itemValor();
+            retorno.setTypeNulo();
+
+
+
+            if (hayErrores())
+                return retorno;
+            nodoModelo hijo = hijos[0];
+            _E ope = (_E)hijo;
+            return ope.getValor(elementoEntor);
+        }
     }
 }

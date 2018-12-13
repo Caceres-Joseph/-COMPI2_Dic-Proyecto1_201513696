@@ -46,9 +46,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
                     //aqui tengo qee validar los objetos
-                    this.valor = valor;
-                    itemValor tempIt = new itemValor();
-                    String tipoDato1 = tempIt.getTipoApartirDeString(tipo.valLower);
+                    this.valor = valor; 
+                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
 
                     if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
                         this.valor.setTypeObjeto(tipo.valLower);
@@ -83,9 +82,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     this.valor = valor;
                     this.valor.valor = valor.getValorParseado(tipo.valLower);
 
-
-                    itemValor tempIt = new itemValor();
-                    String tipoDato1 = tempIt.getTipoApartirDeString(tipo.valLower);
+                     
+                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
                     if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
                         this.valor.setTypeObjeto(tipo.valLower);
 
@@ -102,9 +100,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
                     //aqui tengo qee validar los objetos
-                    this.valor = valor;
-                    itemValor tempIt = new itemValor();
-                    String tipoDato1 = tempIt.getTipoApartirDeString(tipo.valLower);
+                    this.valor = valor; 
+                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
                     if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
                         this.valor.setTypeObjeto(tipo.valLower);
 
@@ -161,9 +158,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             //aquí también hay que verificar las dimensiones
 
 
-            //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo"))
-            itemValor tempIt = new itemValor();
-            String tipoDato1 = tempIt.getTipoApartirDeString(tipo1);
+            //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo")) 
+            String tipoDato1 = itemValor.getTipoApartirDeString(tipo1);
 
             if (valor2.getTipo().Equals("nulo"))
             {

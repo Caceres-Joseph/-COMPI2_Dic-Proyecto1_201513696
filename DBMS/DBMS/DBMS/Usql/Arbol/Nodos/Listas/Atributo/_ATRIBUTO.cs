@@ -69,6 +69,13 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Atributo
             else
                 return new token("nulo");
 
+
+            //tengo que verificar si existe el tipo de objeto, si no es error prro
+
+
+
+
+
         }
         
 

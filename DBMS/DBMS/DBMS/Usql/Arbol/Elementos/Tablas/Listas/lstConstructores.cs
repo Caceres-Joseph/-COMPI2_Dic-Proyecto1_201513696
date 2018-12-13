@@ -31,7 +31,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
             if (temp != null)
             //neuvo entorno
             {
-                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, "main", tablaEntorno.este);
+                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, "main");
                
 
 
@@ -82,7 +82,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
             if (temp != null)
             //neuvo entorno
             {
-                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, "main", tablaEntorno.este);
+                elementoEntorno hijo1 = new elementoEntorno(tablaEntorno, tabla, "main");
                 guardarParametrosEnLaTabla(temp.lstParametros, parametros, hijo1);
 
 
