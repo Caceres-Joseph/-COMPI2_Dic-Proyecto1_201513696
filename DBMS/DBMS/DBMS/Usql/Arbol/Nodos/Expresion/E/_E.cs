@@ -10,6 +10,7 @@ using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeLogico;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
+using DBMS.Usql.Arbol.Nodos.Expresion.Id;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 {
@@ -105,9 +106,10 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                         nodoModelo busq = getNodo("ID_VAR_FUNC");
                         if (busq != null)
                         {
-                            /*_ID_VAR_FUNC idFunc = (_ID_VAR_FUNC)busq;
-                            return idFunc.getValor(elmen);*/
-                            return ob;
+
+                            _ID_VAR_FUNC idFunc = (_ID_VAR_FUNC)busq;
+                            return idFunc.getValor(elmen);
+                             
                         }
 
                         tablaSimbolos.tablaErrores.insertErrorSyntax("[E]Se esperaba un signo para operación unaria", new token());

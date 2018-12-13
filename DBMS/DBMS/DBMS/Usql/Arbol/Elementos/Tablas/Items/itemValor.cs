@@ -95,7 +95,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     catch (Exception e3)
                     {
                         // Console.WriteLine("[itemValor]No es hora" + e3);
-                        this.tipo = "txt";
+                        this.tipo = "text";
                         this.valor = cadena;
                     }
                 }
@@ -318,7 +318,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
             switch (tipo)
             {
-                case "txt":
+                case "text":
                     return getCadena();
 
                 case "bool":
@@ -505,7 +505,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
         public void setTypeCadena()
         {
-            this.tipo = "txt";
+            this.tipo = "text";
         }
         public void setTypeBooleano()
         {
@@ -556,7 +556,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
       */
         public void setValue(String cadena)
         {
-            this.tipo = "txt";
+            this.tipo = "text";
             this.valor = cadena;
         }
         public void setValue(Boolean valor)
@@ -615,7 +615,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             {
                 return tipo;
             }
-            else if (tipo.Equals("txt"))
+            else if (tipo.Equals("text"))
             {
                 return tipo;
             }
@@ -660,7 +660,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         {
             switch (cadena)
             {
-                case "txt":
+                case "text":
                     setTypeCadena();
                     break;
                 case "bool":
@@ -703,7 +703,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
         public Boolean isTypeCadena()
         {
-            if (this.tipo.Equals("txt"))
+            if (this.tipo.Equals("text"))
                 return true;
             else
                 return false;

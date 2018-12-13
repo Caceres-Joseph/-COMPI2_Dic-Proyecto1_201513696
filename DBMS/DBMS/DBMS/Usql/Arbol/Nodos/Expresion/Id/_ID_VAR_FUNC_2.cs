@@ -32,5 +32,24 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
               
         }
 
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | Recuperando valor
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+
+        public override itemValor getValor(elementoEntorno elementoEntor)
+        {
+
+            itemValor retorno = new itemValor();
+             
+            return getValId(lstAtributos.listaAtributos[1].tok, elementoEntor);
+             
+        }
+
     }
 }
