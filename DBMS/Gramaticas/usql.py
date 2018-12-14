@@ -61,9 +61,8 @@ DDL_CREAR_FUNCION		->crear funcion ( LST_PARAMETRO ) {LST_CUERPO }
 						
 DDL_COMPLEMENTO			-> makePlusRule(DDL_COMPLEMENTO, DDL_COMPLEMENTO_P);
 	
-
-
-DDL_COMPLEMENTO_P 		->Nulo 
+ 
+DDL_COMPLEMENTO_P 		-> Nulo 
 						|  No Nulo 
 						|  Autoincrementable
 						|  Llave_primaria

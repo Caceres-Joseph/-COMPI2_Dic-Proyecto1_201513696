@@ -41,6 +41,9 @@ namespace DBMS.Usql.Gramatica
 
             CommentTerminal comentariobloque = new CommentTerminal("comentariobloque", "#*", "*#");
             CommentTerminal comentariolinea = new CommentTerminal("comentariolinea", "#", "\n", "\r\n");
+
+
+
             /*Se ignoran los terminales solo se reconoce*/
             NonGrammarTerminals.Add(comentariobloque);
             NonGrammarTerminals.Add(comentariolinea);

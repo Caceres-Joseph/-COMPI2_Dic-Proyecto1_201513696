@@ -1,4 +1,8 @@
 ﻿using DBMS.Globales;
+using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Listas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +16,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public token tipo;
         public token nombre;
         public itemValor valor;
-        public token visibilidad;
-        //public int dimension = 0;
+
+
+
+        public token visibilidad = new token("publico");
         public List<int> dimension = new List<int>();
         public tablaSimbolos tabla;
 
@@ -35,88 +41,55 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public itemEntorno(token nombre, token tipo, itemValor valor, token visibilidad, List<int> dimension, tablaSimbolos tabla)
         {
 
-            //validando si lo que estoy esperando es un arreglo
+            this.tabla = tabla;
+            this.nombre = nombre;
+            this.tipo = tipo;
+            this.valor = new itemValor();
 
-            if (dimension.Count > 0)
+            validarTipos validador = new validarTipos(tabla);
+            if (!validador.validandoTipo(nombre, tipo, valor))
             {
-                if (dimension.Count == valor.dimensiones.Count)
+
+                return;
+            }
+
+
+            if (itemValor.getTipoApartirDeString(tipo.valLower).Equals("objeto"))
+            {
+
+                elementoClase temp = tabla.getClase(tipo);
+                if (temp != null)
                 {
-                    this.tipo = tipo;
-                    this.nombre = nombre;
+                    objetoClase nuevoObjeto = new objetoClase(temp, tabla);
+                    lstValores lstValores2 = new lstValores();
+                    nuevoObjeto.ejecutarGlobales();//cargando sus valores globales 
 
-
-                    //aqui tengo qee validar los objetos
-                    this.valor = valor; 
-                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
-
-                    if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
-                        this.valor.setTypeObjeto(tipo.valLower);
-
-
-                    this.visibilidad = visibilidad;
-                    this.dimension = valor.dimensiones; //asi ya tiene dimensiones definidas
-
+                    //asignando el objeto
+                    this.valor.setValue(nuevoObjeto, tipo.valLower);
                 }
-                else
-                {
-                    tabla.tablaErrores.insertErrorSemantic("Se esta recibiendo :" + valor.dimensiones.Count + " en la matriz : " + nombre.val + " de dimension:" + dimension.Count, nombre);
-                }
+
             }
             else
             {
 
-                this.tabla = tabla;
-
-                if (valor.dimensiones.Count != 0)
-                {
-                    tabla.tablaErrores.insertErrorSemantic("Se está intentando guardar en la variable :" + nombre.val + " de tipo " + tipo.valLower + ", una matriz de dimension : " + valor.dimensiones.Count, nombre);
-                }
-                else if (sePuedeParsear(tipo.valLower, valor))
-                {
-                    this.tipo = tipo;
-                    this.nombre = nombre;
-
-
-                    //guardar el valor parseado.
-
-                    this.valor = valor;
-                    this.valor.valor = valor.getValorParseado(tipo.valLower);
-
-                     
-                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
-                    if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
-                        this.valor.setTypeObjeto(tipo.valLower);
-
-
-
-                    this.visibilidad = visibilidad;
-                    this.dimension = dimension;
-                }
-                else if (validandoTipo(tipo.valLower, valor))
+                if (valor.getTipo().Equals("nulo"))
                 {
 
-                    this.tipo = tipo;
-                    this.nombre = nombre;
-
-
-                    //aqui tengo qee validar los objetos
-                    this.valor = valor; 
-                    String tipoDato1 = itemValor.getTipoApartirDeString(tipo.valLower);
-                    if (tipoDato1.Equals("objeto") != valor.isTypeNulo())
-                        this.valor.setTypeObjeto(tipo.valLower);
-
-
-
-                    this.visibilidad = visibilidad;
-                    this.dimension = dimension;
+                    this.valor = new itemValor();
+                    this.valor.setValueDefault(tipo.valLower);
                 }
                 else
                 {
-                    tabla.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + nombre.val + " de tipo " + tipo.valLower + ", un valor de tipo " + valor.getTipo(), nombre);
-
-                    //error semantico, se está intentando asiganar un valor diferente al declarado por la variable
+                    this.valor = valor;
                 }
+
+
+                //this.valor = valor;
             }
+
+
+
+
         }
 
 
@@ -153,41 +126,6 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
         }*/
 
-        public static Boolean validandoTipo(String tipo1, itemValor valor2)
-        {
-            //aquí también hay que verificar las dimensiones
-
-
-            //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo")) 
-            String tipoDato1 = itemValor.getTipoApartirDeString(tipo1);
-
-            if (valor2.getTipo().Equals("nulo"))
-            {
-                return true;
-            }
-            else if (tipoDato1.Equals("objeto") && valor2.isTypeObjeto())
-            //validando que sean los mismos tipos
-            {
-                if (tipo1.Equals(valor2.nombreObjeto))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            else if (tipoDato1.Equals(valor2.getTipo()) || valor2.getTipo().Equals("nulo"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
 
         public static Boolean sePuedeParsear(String tipo1, itemValor valor2)
         {

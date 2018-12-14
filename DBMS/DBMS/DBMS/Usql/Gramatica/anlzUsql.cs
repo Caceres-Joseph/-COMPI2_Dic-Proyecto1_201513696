@@ -58,7 +58,7 @@ namespace DBMS.Usql.Gramatica
 
 
                 //cargando las globales de los atributos
-                raizArbol.tablaSimbolos.iniciarEjecucion();
+                //raizArbol.tablaSimbolos.iniciarEjecucion();
 
 
 

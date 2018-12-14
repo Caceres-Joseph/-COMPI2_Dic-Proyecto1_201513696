@@ -3,6 +3,7 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.Llaves;
+using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,14 +164,12 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
                 {
                     itemValor parametro2 = lstParametros2.getItemValor(i);
 
-
-
-                    //Console.WriteLine("------------------------");
-                    //Console.WriteLine("dic.key.dimension-> " + dic.Key.dimension);
-                    //Console.WriteLine("parametro2.dimensiones->" + parametro2.dimensiones.Count);
-
-                    if ((dic.Key.dimension == parametro2.dimensiones.Count) && (itemEntorno.validandoTipo(dic.Value.tipo.valLower, parametro2)))
+                     
+                    validarTipos validador = new validarTipos(tabla); 
+                    if ((dic.Key.dimension == parametro2.dimensiones.Count) && validador.validandoTipoSinMensaje(new token(dic.Key.nombre), dic.Value.tipo, parametro2))
                     {
+
+                        ;
                         token tNombre = new token(dic.Key.nombre);
                         token tTipo = new token(dic.Value.tipo.valLower);
 

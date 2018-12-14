@@ -3,6 +3,7 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.Listas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Llaves;
+using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 using DBMS.Usql.Arbol.Nodos;
 using System;
 using System.Collections.Generic;
@@ -223,7 +224,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
                      }*/
 
                     //if ((dic.Key.dimension == parametro2.dimensiones.Count) && (dic.Value.tipo.valLower.Equals(parametro2.getTipo())))
-                    if ((dic.Key.dimension == parametro2.dimensiones.Count) && itemEntorno.validandoTipo(dic.Value.tipo.valLower, parametro2))
+                    validarTipos validador = new validarTipos(tablaSimbolos);
+
+
+
+                    if ((dic.Key.dimension == parametro2.dimensiones.Count) && validador.validandoTipoSinMensaje(new token(dic.Key.nombre), dic.Value.tipo, parametro2))
                     {
 
                     }
@@ -245,6 +250,6 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
 
         }
 
-        
+
     }
 }

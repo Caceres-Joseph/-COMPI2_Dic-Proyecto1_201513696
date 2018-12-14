@@ -56,6 +56,79 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
 
+        /**
+         * <br>|--------------------------------------------------------------------------
+         * <br>| Set Value
+         * <br>|--------------------------------------------------------------------------
+         * <br>| Se usa cuando se envian los valores, y luego estos son parseados
+         */
+        /**
+         * @param cadena Se esta recibiendo un tipo cadena
+         */
+        public void setValor(String cadena)
+        {
+            setTypeCadena();
+            this.valor = cadena;
+        }
+
+
+        /**
+         * @param entero
+         */
+        public void setValor(int valor)
+        {
+            setTypeEntero();
+            this.valor = valor;
+        }
+
+        /**
+         * @param valor Valor booleano
+         */
+        public void setValor(Boolean valor)
+        {
+            setTypeBooleano();
+            this.valor = valor;
+        }
+
+        /**
+         * @param entrada Valor entero 
+         */
+        public void setValor(double entrada)
+        {
+            setTypeDecimal();
+            this.valor = entrada;
+        }
+
+
+        /**
+         * @param entrada Valor date 
+         */
+        public void setValorDate(DateTime entrada)
+        {
+            setTypeFecha();
+            this.valor = entrada;
+        }
+
+
+        /**
+         * @param entrada Valor date 
+         */
+        public void setValorDateTime(DateTime entrada)
+        {
+            setTypeFechaHora();
+            this.valor = entrada;
+             
+        }
+        /** 
+         * Convierte el valor en nulo
+         */
+        public void setValor()
+        {
+            this.tipo = "nulo";
+            this.valor = null;
+        }
+         
+
         CultureInfo enUS = new CultureInfo("en-US");
         public void convertirCadena(String cadena)
         {
@@ -465,16 +538,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     {
                         return null;
                     }
-
-                case "hora":
-                    if (isTypeHora())
-                    {
-                        return getFechaHora();
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                     
 
                 case "nulo":
                     //tengo que validar el tipo antes prro
@@ -531,7 +595,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         {
             this.tipo = "nulo";
         }
-        public void setTypeObjeto(String nombreObjeto)
+        public void setTypeOb(String nombreObjeto)
         {
             this.tipo = "objeto";
             this.nombreObjeto = nombreObjeto;
@@ -686,7 +750,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     break;
                 //tipo objeto
                 default:
-                    setTypeObjeto(tipo);
+                    setTypeOb(tipo);
                     break;
 
             }
@@ -772,6 +836,55 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 return false;
         }
 
+
+        /*
+        |--------------------------------------------------------------------------
+        | Get Type
+        |--------------------------------------------------------------------------
+        */
+
+
+        public void setValueDefault(String tipo)
+        {
+
+            switch (tipo)
+            {
+                case "text":
+                    setValor("");
+                    break;
+                case "bool":
+                    setValor(false);
+                    break;
+
+
+
+                case "integer":
+                    setValor(0);
+                    break;
+
+
+                case "double":
+                    setValor(1.0);
+                    break;
+
+
+
+                case "date":
+                    setValorDate(DateTime.Today); 
+                    break;
+                case "datetime":
+                    setValorDateTime(DateTime.Now);
+                    break;
+                case "nulo":
+                    setValor();
+                    break; 
+
+                default:
+                    setValor();
+                    break;
+            }
+
+        }
 
 
         /*

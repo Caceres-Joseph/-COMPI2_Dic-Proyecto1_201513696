@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
 {
@@ -15,7 +15,20 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
         {
         }
 
+        public override void ejecutar(elementoEntorno elem)
+        {
+            foreach (elementoPolimorfo temp in listaPolimorfa)
+            {
 
+                 
+
+                itemEntorno it = new itemEntorno(temp.nombre, temp.tipo, new itemValor(), temp.visibilidad, temp.getDimension(), tabla);
+                elem.insertarEntorno(it); 
+
+            }
+        }
+
+        /*
         public override void ejecutar(elementoEntorno elem)
         {
             foreach (elementoPolimorfo temp in listaPolimorfa)
@@ -42,7 +55,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
                 }
             }
         }
-
+        */
 
 
 

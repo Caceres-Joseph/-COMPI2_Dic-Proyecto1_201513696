@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DBMS.Usql.Arbol.Elementos.Tablas
 {
@@ -108,6 +109,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
 
             this.listaErrores.Add(elem);
             println("[Error]Semantico-> " + mensaje + " linea:" + elem.linea);
+
+            //MessageBox.Show("[Error]Semantico-> " + mensaje);
         }
 
 

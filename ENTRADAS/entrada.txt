@@ -3,7 +3,14 @@ CREAR BASE_DATOS	 jhosef;
 
 CREAR TABLA jhosef(INTEGER id Llave_Primaria Autoincrementable, TEXT Nombre No Nulo, DATE fh_nac No Nulo, BOOL trabaja);
 
-CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
+
+
+CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono); 
+CREAR OBJETO Direccion(INTEGER avenida, INTEGER calle, TEXT nombre, Empresa emp);
+DECLARAR @variable1  Empresa;
+
+
+
 
 
 CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
@@ -11,7 +18,17 @@ CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
  CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
 }
 
+
+
 DECLARAR @variable1, @variable2 INTEGER = 23;
+
+
+
+
+
+
+
+
 DECLARAR @ejemplo TEXT = "Hola mundo";
 DECLARAR @empresa1 EMPRESA;
 

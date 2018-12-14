@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 using DBMS.Usql.Arbol.Nodos.Expresion.Id;
 
 namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
@@ -68,68 +69,45 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             return retorno;
 
         }
-         
-        public Boolean validandoTipo(String tipo1, String tipo2)
+        /*
+
+        public Boolean validandoTipo(itemEntorno tipo1, itemValor tipo2)
         {
-             
-            if (itemValor.getTipoApartirDeString(tipo1).Equals(tipo2) || tipo2.Equals("nulo"))
+
+
+            if (itemValor.getTipoApartirDeString(tipo1.tipo.valLower).Equals(tipo2.getTipo()) || tipo2.Equals("nulo"))
             {
+
+                //revisando si es de tipo objeto
+                if (!tipo2.nombreObjeto.Equals(tipo1.tipo.valLower))
+                {
+                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.nombreObjeto, tipo1.nombre);
+                    return false;
+                }
                 return true;
             }
             else
             {
+                tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.getTipo(), tipo1.nombre);
                 return false;
             }
 
-        }
+        }*/
+
+
         public void asignarValor(itemEntorno destino, itemValor valor)
         {
 
-            //validando si lo que estoy esperando es un arreglo
+            validarTipos validador = new validarTipos(tablaSimbolos);
 
-            if (destino.dimension.Count > 0)
-            {
-                if (destino.dimension.Count == valor.dimensiones.Count)
-                {
 
-                    if (validandoTipo(destino.tipo.valLower, valor.getTipo()))
-                    {
-
-                        //aquí le asigno el valor
-                        destino.valor = valor;
-
-                    }
-                    else
-                    {
-                        tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + destino.nombre.val + " de tipo " + destino.tipo.valLower + ", un valor de tipo " + valor.getTipo(), destino.nombre);
-                    }
-                }
-                else
-                {
-                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se esta recibiendo :" + valor.dimensiones.Count + " en la matriz : " + destino.nombre.val + " de dimension:" + destino.dimension.Count, destino.nombre);
-                }
+            
+            if (validador.validandoTipo(destino.nombre, destino.tipo, valor))
+            { 
+                //aquí le asigno el valor 
+                destino.valor = valor;
             }
-            else
-            {
-                if (valor.dimensiones.Count != 0)
-                {
-                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en la variable :" + destino.nombre.val + " de tipo " + destino.tipo.valLower + ", una matriz de dimension : " + valor.dimensiones.Count, destino.nombre);
-                }
-                else if (validandoTipo(destino.tipo.valLower, valor.getTipo()))
-                {
-
-                    //aquí le asigno el valor
-
-                    destino.valor = valor;
-                }
-                else
-                {
-                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + destino.nombre.val + " de tipo " + destino.tipo.valLower + ", un valor de tipo " + valor.getTipo(), destino.nombre);
-
-                    //error semantico, se está intentando asiganar un valor diferente al declarado por la variable
-                }
-            }
-        }
+        } 
 
     }
 }

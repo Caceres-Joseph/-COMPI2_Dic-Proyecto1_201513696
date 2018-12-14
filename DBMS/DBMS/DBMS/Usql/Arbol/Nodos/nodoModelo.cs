@@ -78,7 +78,7 @@ namespace DBMS.Usql.Arbol.Nodos
 
         }
 
-        public itemRetorno ejecutarHijos(elementoEntorno elem)
+        public virtual itemRetorno ejecutarHijos(elementoEntorno elem)
         {
 
             itemRetorno retorno = new itemRetorno(0);

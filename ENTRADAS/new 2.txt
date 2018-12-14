@@ -1,0 +1,33 @@
+
+        public override void ReportParseError(ParsingContext context)
+        {
+            String error = (String)context.CurrentToken.ValueString;
+            int linea;
+            int col;
+
+			//detecta la columna
+            col = context.Source.Location.Column;
+			
+			//detecta la linea
+            linea = context.Source.Location.Line;
+
+            if (error.Contains("Invalid character"))
+            {
+                string delimStr = ":";
+                char[] delimiter = delimStr.ToCharArray();
+                string[] division = error.Split(delimiter, 2);
+                division = division[1].Split('.'); 
+		        Console.writeLine("Caractero no reconocido:" + division[0]+ " linea:" + linea.toString());
+
+            }
+            else
+            {
+
+                linea = context.Source.Location.Line;
+                col = context.Source.Location.Column;
+		        Console.writeLine("El token no se esperaba:" + division[0]+ " linea:" + linea.toString());
+				
+            }
+
+            base.ReportParseError(context);
+        }

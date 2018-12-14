@@ -91,10 +91,14 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Declarar
             { 
                 //Se declaro la variable pero el valor es nulo 
                 itemEntorno it = new itemEntorno(nombre, tipo, valor, visibilidad, dimension, tablaSimbolos);
+
+                 
                 tablaEntornos.insertarEntorno(it);
+
             }
         }
          
+
 
 
 
@@ -136,5 +140,30 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Declarar
             }
              
         }
+
+
+        /*
+        public Boolean validandoTipo(itemEntorno tipo1, itemValor tipo2)
+        {
+
+
+            if (itemValor.getTipoApartirDeString(tipo1.tipo.valLower).Equals(tipo2.getTipo()) || tipo2.Equals("nulo"))
+            {
+
+                //revisando si es de tipo objeto
+                if (!tipo2.nombreObjeto.Equals(tipo1.tipo.valLower))
+                {
+                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.nombreObjeto, tipo1.nombre);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.getTipo(), tipo1.nombre);
+                return false;
+            }
+
+        }*/
     }
 }

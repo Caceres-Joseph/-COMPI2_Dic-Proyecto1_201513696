@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBMS.Globales;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,36 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
     {
         public int tipoRetorno = 0;
         public itemValor valor = new itemValor();
+
+
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Control de flujo
+        |--------------------------------------------------------------------------
+        */
+
+        public void setBreak()
+        {
+
+        }
+
+
+        public void setRetorno()
+        {
+
+        }
+
+        public void setRetornoVal()
+        {
+
+        }
+
+
+
+        public token tokRetorno = new token();
 
         public itemRetorno(int tipoRetorno)
         {

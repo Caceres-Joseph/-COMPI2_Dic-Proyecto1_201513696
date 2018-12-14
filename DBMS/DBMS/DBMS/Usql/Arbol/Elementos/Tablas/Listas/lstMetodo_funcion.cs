@@ -2,6 +2,7 @@
 using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 using DBMS.Usql.Arbol.Nodos.Inicio;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
                             {
 
                                 //para los tipos
-                                if (itemEntorno.validandoTipo(temp.tipo.valLower, result.valor))
+                                validarTipos validador = new validarTipos(tabla);
+                                 
+
+                                if (validador.validandoTipoSinMensaje(temp.nombre, temp.tipo, result.valor))
                                 {
                                     return result.valor;
                                 } 

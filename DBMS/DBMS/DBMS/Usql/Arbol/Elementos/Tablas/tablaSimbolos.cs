@@ -24,17 +24,19 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public lstMetodo_funcion lstMetodo_funcion;
         public lstVariablesGlobales lstVariablesGlobales;
 
+        //lista de objetos
+        public lstObjetos listaObjetos;
 
 
 
-
-        public tablaSimbolos( )
+        public tablaSimbolos()
         { 
 
 
             lstClases = new List<elementoClase>();
             this.lstMetodo_funcion = new lstMetodo_funcion(this, "metodos_funciones"); 
             this.lstVariablesGlobales = new lstVariablesGlobales(this, "var_globales");
+            this.listaObjetos = new lstObjetos(this);
 
         }
          
@@ -90,12 +92,12 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public void ejecutandoClase(elementoClase clase)
         {
             ///hay que crear una instancia al objeto
-            println("Cargando las variables globales  de " + clase.nombreClase.valLower);
+            //println("Cargando las variables globales  de " + clase.nombreClase.valLower);
             objetoClase ObjClase = new objetoClase(clase, this);
             ObjClase.ejecutarGlobales();
-           // ObjClase.ejecutarPrincipal();
+            // ObjClase.ejecutarPrincipal();
 
-
+            listaObjetos.insertar(ObjClase);
 
             ObjClase.imprimirTablaEntornos();
         }

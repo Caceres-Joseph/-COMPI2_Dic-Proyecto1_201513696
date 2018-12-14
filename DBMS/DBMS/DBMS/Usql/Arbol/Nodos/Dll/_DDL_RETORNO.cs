@@ -12,5 +12,9 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
         public _DDL_RETORNO(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
+
+
+
+
     }
 }

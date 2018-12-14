@@ -104,6 +104,7 @@
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstAtributos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstConstructores.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstMetodo_funcion.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstObjetos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstPolimorfismo.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstPrincipal.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Listas\lstValores.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaEntornos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaErrores.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaSimbolos.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\Validar\validarTipos.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dcl\_DCL.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dcl\_DCL_DENEGAR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dcl\_DCL_DENEGAR1.cs" />

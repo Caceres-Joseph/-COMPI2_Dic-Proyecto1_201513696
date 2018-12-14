@@ -17,6 +17,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Objetos
         public elementoClase cuerpoClase;
         public tablaEntornos tablaEntorno;
         public tablaSimbolos tablaSimbolos;
+
+
         //aqui tambien tiene que haber una tabla de entorno prro
 
         public objetoClase(elementoClase cuerpoClase, tablaSimbolos tabla)
