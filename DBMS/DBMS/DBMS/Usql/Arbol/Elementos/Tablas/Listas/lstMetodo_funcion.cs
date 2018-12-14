@@ -33,8 +33,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
             itemValor retorno = new itemValor();
             retorno.setTypeVacio();
 
-            //aqui es donde tengo que buscar si existe 
-            Console.WriteLine("ejecutando Metodo:" + nombre.val);
+            //aqui es donde tengo que buscar si existe  
             elementoPolimorfo temp = getElementoPolimorfo2(nombre, parametros);
             if (temp != null)
             //neuvo entorno

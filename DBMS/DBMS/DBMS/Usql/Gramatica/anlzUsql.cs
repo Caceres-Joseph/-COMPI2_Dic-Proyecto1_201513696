@@ -67,11 +67,11 @@ namespace DBMS.Usql.Gramatica
                 raizArbol.ejecutar(global);
 
 
-                Console.WriteLine("-------------- global ------------------");
-                global.imprimir();
+                //Console.WriteLine("-------------- global ------------------");
+                //global.imprimir();
 
 
-                imprimir();
+                //imprimir();
 
                 return "";
 
