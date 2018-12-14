@@ -1,0 +1,61 @@
+
+
+
+
+CREAR PROCEDIMIENTO  principal()
+{
+
+	imprimir("**  Metodos recursivos ***");
+
+	imprimir("El fibonacci de 13 es 233:");
+	imprimir(fibo(13));
+	imprimir("El factorial de 5 debe ser 120;");
+	imprimir(factorial(5)); 
+	imprimir("El akerman 3,4 es 125:");
+	imprimir(akerman(3,4));
+}
+
+CREAR FUNCION akerman(INTEGER @m, INTEGER @n) INTEGER
+{
+	si(@m == 0)
+	{
+		retorno (@n + 1);
+	}
+
+	si(@m > 0 && @n == 0)
+	{
+		retorno  akerman(@m - 1, 1);
+	}
+	sino
+	{
+		
+		retorno  akerman(@m -1, akerman(@m, @n-1));
+	}
+}
+
+CREAR FUNCION fibo(INTEGER @n) INTEGER
+{
+	si(@n == 0 || @n == 1)
+	{
+		retorno  @n;
+	}
+	sino
+	{
+		retorno  fibo(@n-1) + fibo(@n -2);
+	}
+}
+
+
+CREAR FUNCION factorial(INTEGER @n) INTEGER
+{
+	si(@n == 0)
+	{
+		retorno  1;
+	}
+	sino
+	{
+		retorno  (@n * factorial(@n-1));
+	}
+}
+
+principal();

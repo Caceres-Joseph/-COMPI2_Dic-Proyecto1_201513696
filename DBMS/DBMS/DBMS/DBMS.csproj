@@ -127,6 +127,7 @@
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_USUARIO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_DETENER.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_RETORNO.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_RETORNO1.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dml\Actualizar\_DML_ACTUALIZAR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dml\Actualizar\_DML_ACTUALIZAR_1.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dml\Actualizar\_DML_ACTUALIZAR_2.cs" />

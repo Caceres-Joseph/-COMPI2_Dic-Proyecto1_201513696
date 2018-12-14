@@ -15,10 +15,33 @@ imprimir(@variable1.emp.codigo);
 Crear procedimiento suma(Direccion@num1, integer @num2){
 	@variable1.emp.codigo=21;
 	imprimir("valor del parametro"+@num1.emp.codigo);
+	Retorno;
 	imprimir("la suma de los numeros es  :"+(@num1.emp.codigo+@num2));
 }
 suma (@variable1,32);
 imprimir("El valor cambiado es :"+ @variable1.emp.codigo);
+
+
+
+
+
+Declarar @var1 direccion;
+
+CREAR OBJETO Direccion(INTEGER avenida, INTEGER calle, TEXT nombre, TEXT descripcion);
+CREAR FUNCION crearDireccion (INTEGER @calle, INTEGER @avenida, TEXT @nombre, TEXT @descripcion) Direccion {
+	DECLARAR @direc DIRECCION;
+	@direc.calle = @calle;
+	@direc.avenida = @avenida;
+	@direc.nombre = @nombre;
+	@direc.descripcion = @descripcion;
+ 
+
+	RETORNO @direc;
+}
+
+@var1=crearDireccion(12,11,"guatemala","capital");
+
+imprimir(@var1.calle+" avenida"+@var1.avenida+" nombre:"+@var1.nombre+" descripcion:"+@var1.descripcion);
 
 
 

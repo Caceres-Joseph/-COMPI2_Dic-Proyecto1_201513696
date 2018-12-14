@@ -54,5 +54,47 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
         }
 
 
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | DESTINO
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+        public override itemEntorno getDestino(elementoEntorno elementoEntorno)
+        {
+            token nombreFunc = lstAtributos.listaAtributos[0].tok;
+            tablaSimbolos.tablaErrores.insertErrorSemantic("No se puede asignar un valor al retorno de la función: "+ nombreFunc.val, nombreFunc);
+
+
+            return new itemEntorno(tablaSimbolos);
+
+        }
+
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | Recuperando valor
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+
+        public override itemValor getValor(elementoEntorno elementoEntor)
+        {
+
+            itemRetorno retorno = new itemRetorno(0);
+
+            token nombreFunc = lstAtributos.listaAtributos[0].tok;
+
+
+            //le tengo que enviar el entorno global compa
+            itemValor retornoFunc = tablaSimbolos.lstMetodo_funcion.getMetodoFuncion(nombreFunc, new lstValores(), elementoEntor, nombreFunc.val);
+            return retornoFunc; 
+        }
+
+
+
     }
 }

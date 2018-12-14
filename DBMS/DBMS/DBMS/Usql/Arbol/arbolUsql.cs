@@ -528,9 +528,11 @@ namespace DBMS.Usql.Arbol
                 case "E":
                     retorno = new _E(nombreNoTerminal, tabla);
                     break;
-                     
 
-
+                case "DDL_RETORNO1":
+                    retorno = new _DDL_RETORNO1(nombreNoTerminal, tabla);
+                    break;
+                      
                 default:
                     retorno = new nodoModelo("Desc_" + nombreNoTerminal, tabla);
                     Console.WriteLine("[generarArbol]No se encontró el nodo:" + nombreNoTerminal);

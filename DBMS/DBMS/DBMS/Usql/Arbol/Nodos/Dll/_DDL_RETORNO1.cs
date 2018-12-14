@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
-using DBMS.Usql.Arbol.Nodos.Expresion.E;
 
 namespace DBMS.Usql.Arbol.Nodos.Dll
 {
-    class _DDL_RETORNO : nodoModelo
+    class _DDL_RETORNO1 : nodoModelo
     {
         /*
-         * tRetorno + VALOR
+         * tRetorno
          */
-        public _DDL_RETORNO(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
+        public _DDL_RETORNO1(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
-         
+
+
+
+
         /*
         |-------------------------------------------------------------------------------------------------------------------
         | EJECUCIÓN FINAL
@@ -43,22 +44,8 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
             itemRetorno retorno = new itemRetorno(1);
             if (hayErrores())
                 return retorno;
+            return retorno;
 
-            nodoModelo nodoTemp = getNodo("VALOR");
-            if (nodoTemp != null)
-            {
-                _VALOR val = (_VALOR)nodoTemp;
-                itemValor tempValor = val.getValor(tablaEntornos, lstAtributos.getToken(0));
-
-                retorno.setValueRetorno(tempValor);
-                return retorno;
-
-            }
-            else
-            {
-                Console.WriteLine(nombre+"  Nodo nulo:");
-                return retorno;
-            }
-         } 
+        }
     }
 }

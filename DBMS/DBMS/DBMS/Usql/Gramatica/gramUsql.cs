@@ -31,7 +31,7 @@ namespace DBMS.Usql.Gramatica
             RegexBasedTerminal valTime = new RegexBasedTerminal("valTime", "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]");
 
             RegexBasedTerminal valDate = new RegexBasedTerminal("valDate", "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]");
-            
+
 
             /*
              +-----------------------------
@@ -184,7 +184,7 @@ namespace DBMS.Usql.Gramatica
             var tDonde = ToTerm("donde");
             var tActualizar = ToTerm("actualizar");
             var tBorrar = ToTerm("borrar");
-            var tSeleccionar = ToTerm("seleccionar"); 
+            var tSeleccionar = ToTerm("seleccionar");
             var tDe = ToTerm("de");
             var tAsc = ToTerm("asc");
             var tDesc = ToTerm("desc");
@@ -203,7 +203,7 @@ namespace DBMS.Usql.Gramatica
 
 
             NonTerminal S = new NonTerminal("S");
-             
+
             NonTerminal GLOBAL = new NonTerminal("GLOBAL");
             NonTerminal LST_CUERPO = new NonTerminal("LST_CUERPO");
             NonTerminal CUERPO = new NonTerminal("CUERPO");
@@ -217,8 +217,8 @@ namespace DBMS.Usql.Gramatica
             NonTerminal DDL_CREAR_FUNCION = new NonTerminal("DDL_CREAR_FUNCION");
             NonTerminal DDL_COMPLEMENTO = new NonTerminal("DDL_COMPLEMENTO");
             NonTerminal DDL_COMPLEMENTO_P = new NonTerminal("DDL_COMPLEMENTO_P");
-            NonTerminal DDL_RETORNO = new NonTerminal("DDL_RETORNO");  
-            NonTerminal DDL_DETENER = new NonTerminal("DDL_DETENER"); 
+            NonTerminal DDL_RETORNO = new NonTerminal("DDL_RETORNO");
+            NonTerminal DDL_DETENER = new NonTerminal("DDL_DETENER");
             NonTerminal DML = new NonTerminal("DML");
             NonTerminal DML_USAR = new NonTerminal("DML_USAR");
             NonTerminal DML_ALTERAR = new NonTerminal("DML_ALTERAR");
@@ -327,12 +327,12 @@ namespace DBMS.Usql.Gramatica
             NonTerminal E_ID = new NonTerminal("E_ID");
             NonTerminal E_BOOL = new NonTerminal("E_BOOL");
             NonTerminal E_CAD = new NonTerminal("E_CAD");
-            NonTerminal E_CAD1 = new NonTerminal("E_CAD1"); 
+            NonTerminal E_CAD1 = new NonTerminal("E_CAD1");
             NonTerminal E_DEC = new NonTerminal("E_DEC");
             NonTerminal E_NUM = new NonTerminal("E_NUM");
             NonTerminal E_SSL = new NonTerminal("E_SSL");
             NonTerminal E_CONT = new NonTerminal("E_CONT");
-             
+            NonTerminal DDL_RETORNO1 = new NonTerminal("DDL_RETORNO1");
 
             #endregion
 
@@ -346,16 +346,17 @@ namespace DBMS.Usql.Gramatica
             */
             S.Rule = LST_CUERPO;
 
- 
+
 
             LST_CUERPO.Rule = MakeStarRule(LST_CUERPO, CUERPO);
 
             CUERPO.Rule = DDL + sPuntoComa
                 | DCL + sPuntoComa
                 | ID_VAR_FUNC + sPuntoComa
-                | DML + sPuntoComa 
+                | DML + sPuntoComa
                 | SSL
                 | DDL_RETORNO + sPuntoComa
+                | DDL_RETORNO1 + sPuntoComa
                 | DDL_DETENER + sPuntoComa
                 | DDL2
                 | SSL_CONTAR + sPuntoComa
@@ -393,8 +394,9 @@ namespace DBMS.Usql.Gramatica
             DDL_CREAR_PROC.Rule = tCrear + tProcedimiento + valId + sAbreParent + LST_PARAMETRO + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
 
             DDL_CREAR_FUNCION.Rule = tCrear + tFuncion + valId + sAbreParent + LST_PARAMETRO + sCierraParent + TIPO + sAbreLlave + LST_CUERPO + sCierraLlave;
-             
-            DDL_RETORNO.Rule = tRetorno + VALOR; 
+
+            DDL_RETORNO.Rule = tRetorno + VALOR;
+            DDL_RETORNO1.Rule = tRetorno;
             DDL_DETENER.Rule = tDetener;
 
 
@@ -458,7 +460,7 @@ namespace DBMS.Usql.Gramatica
 
 
 
-            DML_ALT_TABLA_QUIT.Rule = tAlterar +tTabla +valId+ tQuitar +LST_VAL_ID;
+            DML_ALT_TABLA_QUIT.Rule = tAlterar + tTabla + valId + tQuitar + LST_VAL_ID;
 
             DML_ALT_OBJ_ADD.Rule = tAlterar + tObjeto + valId + tAgregar + sAbreParent + LST_ATRIBUTO + sCierraParent;
 
@@ -481,10 +483,10 @@ namespace DBMS.Usql.Gramatica
             DML_DEL_TABLA.Rule = tEliminar + tTabla + valId;
 
 
-            DML_DEL_BASE.Rule = tEliminar +tBase_datos + valId;
+            DML_DEL_BASE.Rule = tEliminar + tBase_datos + valId;
 
 
-            DML_DEL_OBJ.Rule = tEliminar +tObjeto +valId;
+            DML_DEL_OBJ.Rule = tEliminar + tObjeto + valId;
 
 
             DML_DEL_US.Rule = tEliminar + tUsuario + valId;
@@ -506,9 +508,9 @@ namespace DBMS.Usql.Gramatica
                                      ;
 
 
-            DML_ACTUALIZAR_1.Rule = tActualizar+ tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent;
+            DML_ACTUALIZAR_1.Rule = tActualizar + tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent;
 
-            DML_ACTUALIZAR_2.Rule = tActualizar+ tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent+ tDonde +VALOR;
+            DML_ACTUALIZAR_2.Rule = tActualizar + tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent + tDonde + VALOR;
 
 
             //  ''' BORRAR '''
@@ -540,8 +542,8 @@ namespace DBMS.Usql.Gramatica
 
 
 
-            DML_ORDENAR.Rule = tOrdenar+ tPor + valId + tAsc 
-                                    | tOrdenar + tPor + valId + tDesc 
+            DML_ORDENAR.Rule = tOrdenar + tPor + valId + tAsc
+                                    | tOrdenar + tPor + valId + tDesc
                                     | tOrdenar + tPor + valId
                                     ;
 
@@ -552,19 +554,19 @@ namespace DBMS.Usql.Gramatica
             */
 
 
-            SSL.Rule = SSL_DECLARAR + sPuntoComa 
-                    |SSL_ASIGNAR + sPuntoComa
-                    |SSL_SENTENCIAS
+            SSL.Rule = SSL_DECLARAR + sPuntoComa
+                    | SSL_ASIGNAR + sPuntoComa
+                    | SSL_SENTENCIAS
                     | SSL_NATIVAS + sPuntoComa
                     | SSL_BACKUP + sPuntoComa
-                   // | SSL_CONTAR + sPuntoComa
-                   
+                    // | SSL_CONTAR + sPuntoComa
+
                     ;
 
 
             //''' DECLARAR '''
-            SSL_DECLARAR.Rule= tDeclarar+ LST_VARS+ TIPO +VAL
-                    | tDeclarar+ LST_VARS+ TIPO
+            SSL_DECLARAR.Rule = tDeclarar + LST_VARS + TIPO + VAL
+                    | tDeclarar + LST_VARS + TIPO
                 ;
 
 
@@ -576,13 +578,13 @@ namespace DBMS.Usql.Gramatica
 
 
             SSL_ASIGNAR_1.Rule = ID_VAR_FUNC + VAL;
-            SSL_ASIGNAR_2.Rule = ID_VAR_FUNC + sMas + sMas; 
+            SSL_ASIGNAR_2.Rule = ID_VAR_FUNC + sMas + sMas;
             SSL_ASIGNAR_3.Rule = ID_VAR_FUNC + sMenos + sMenos;
 
 
             VAL.Rule = sIgual + VALOR;
 
-             
+
 
             SSL_SENTENCIAS.Rule = SSL_SI
                     | SSL_SELECCIONA
@@ -601,9 +603,9 @@ namespace DBMS.Usql.Gramatica
             SSL_SI.Rule = SSL_SI_1
                         | SSL_SI_2;
 
-            SSL_SI_1.Rule =tSi+sAbreParent+ VALOR+ sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
+            SSL_SI_1.Rule = tSi + sAbreParent + VALOR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
 
-            SSL_SI_2.Rule =tSi+ sAbreParent +VALOR+ sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave + SSL_SINO;
+            SSL_SI_2.Rule = tSi + sAbreParent + VALOR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave + SSL_SINO;
 
 
 
@@ -619,8 +621,8 @@ namespace DBMS.Usql.Gramatica
                     ;
 
 
-            SSL_SELECCIONA_1.Rule =tSelecciona + sAbreParent +VALOR +sCierraParent +sAbreLlave + SSL_CASOS + sCierraLlave;
-            SSL_SELECCIONA_2.Rule =tSelecciona + sAbreParent + VALOR+ sCierraParent+ sAbreLlave+ SSL_CASOS+ SSL_SEL_DEFECTO +sCierraLlave;
+            SSL_SELECCIONA_1.Rule = tSelecciona + sAbreParent + VALOR + sCierraParent + sAbreLlave + SSL_CASOS + sCierraLlave;
+            SSL_SELECCIONA_2.Rule = tSelecciona + sAbreParent + VALOR + sCierraParent + sAbreLlave + SSL_CASOS + SSL_SEL_DEFECTO + sCierraLlave;
 
 
             SSL_CASOS.Rule = MakePlusRule(SSL_CASOS, SSL_CASO);
@@ -640,7 +642,7 @@ namespace DBMS.Usql.Gramatica
                                 | SSL_PARA_5
                                 | SSL_PARA_6;
 
-            SSL_PARA_1.Rule = tPara +sAbreParent+ SSL_DECLARAR +sPuntoComa+ VALOR + sPuntoComa + SSL_ASIGNAR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
+            SSL_PARA_1.Rule = tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + VALOR + sPuntoComa + SSL_ASIGNAR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
             SSL_PARA_2.Rule = tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + VALOR + sPuntoComa + sMenos + sMenos + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
             SSL_PARA_3.Rule = tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + VALOR + sPuntoComa + sMas + sMas + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
             SSL_PARA_4.Rule = tPara + sAbreParent + SSL_ASIGNAR + sPuntoComa + VALOR + sPuntoComa + SSL_ASIGNAR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
@@ -649,7 +651,7 @@ namespace DBMS.Usql.Gramatica
 
 
             //''' MIENTRAS '''
-            SSL_MIENTRAS.Rule =tMientras + sAbreParent + VALOR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
+            SSL_MIENTRAS.Rule = tMientras + sAbreParent + VALOR + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
 
             ///''' IMPRIMIR  '''
 
@@ -670,7 +672,7 @@ namespace DBMS.Usql.Gramatica
 
 
             //  ''' CONTAR  '''
-            SSL_CONTAR.Rule =tContar + sAbreParent + sDobleMenor + DML_SELECCIONAR + sDobleMayor + sCierraParent;
+            SSL_CONTAR.Rule = tContar + sAbreParent + sDobleMenor + DML_SELECCIONAR + sDobleMayor + sCierraParent;
 
             //  ''' BACKUP  '''
             SSL_BACKUP.Rule = SSL_DUMP
@@ -679,7 +681,7 @@ namespace DBMS.Usql.Gramatica
                                 | SSL_RESTAURAR_COMPLETO
                                 ;
 
-             
+
             SSL_DUMP.Rule = tBackup + tUsqldump + valId + valId;
 
             SSL_COMPLETO.Rule = tBackup + tCompleto + valId + valId;
@@ -716,12 +718,12 @@ namespace DBMS.Usql.Gramatica
 
 
 
-            ATRIBUTO.Rule= TIPO + valId
+            ATRIBUTO.Rule = TIPO + valId
                     | TIPO + valId + DDL_COMPLEMENTO
                     ;
 
-            DDL_COMPLEMENTO.Rule= MakePlusRule(DDL_COMPLEMENTO, DDL_COMPLEMENTO_P);
-             
+            DDL_COMPLEMENTO.Rule = MakePlusRule(DDL_COMPLEMENTO, DDL_COMPLEMENTO_P);
+
             DDL_COMPLEMENTO_P.Rule = tNulo
                        | tNo + tNulo
                        | tAutoincrementable
@@ -760,13 +762,13 @@ namespace DBMS.Usql.Gramatica
                             ;
 
 
-            ID_VAR_FUNC_1.Rule =ID_VAR_FUNC + LST_PUNTOS;
-            ID_VAR_FUNC_2.Rule =sArroba + valId;
+            ID_VAR_FUNC_1.Rule = ID_VAR_FUNC + LST_PUNTOS;
+            ID_VAR_FUNC_2.Rule = sArroba + valId;
             ID_VAR_FUNC_3.Rule = valId;
             ID_VAR_FUNC_4.Rule = valId + sAbreParent + sCierraParent;
-            ID_VAR_FUNC_5.Rule= valId + sAbreParent + LST_VALOR + sCierraParent;
+            ID_VAR_FUNC_5.Rule = valId + sAbreParent + LST_VALOR + sCierraParent;
 
-            LST_PUNTOS.Rule =sPunto + valId;
+            LST_PUNTOS.Rule = sPunto + valId;
 
             /*
             +-----------------------------
@@ -779,7 +781,7 @@ namespace DBMS.Usql.Gramatica
                 E
                 ;
 
-            E.Rule =  sMenos + E
+            E.Rule = sMenos + E
 
                 //Aritemeticas
                 | E + sPot + E
@@ -811,7 +813,7 @@ namespace DBMS.Usql.Gramatica
                 | valCadena2
                 | valDecimal
                 | valNumero
-                | valDate +  valTime
+                | valDate + valTime
                 | valDate
                 | SSL_OPE_TIPO
                 | SSL_CONTAR
@@ -821,38 +823,38 @@ namespace DBMS.Usql.Gramatica
                 ;
 
 
-/*
-            E_NEGATIVO.Rule = sMenos + E;
-            E_POT.Rule = E + sPot + E;
-            E_DIV.Rule=E + sDiv + E;
-            E_POR.Rule=E + sPor + E;
-            E_MAS.Rule=E + sMas + E;
-            E_MENOS.Rule=E + sMenos + E;
+            /*
+                        E_NEGATIVO.Rule = sMenos + E;
+                        E_POT.Rule = E + sPot + E;
+                        E_DIV.Rule=E + sDiv + E;
+                        E_POR.Rule=E + sPor + E;
+                        E_MAS.Rule=E + sMas + E;
+                        E_MENOS.Rule=E + sMenos + E;
 
-            E_IGUALACION.Rule=E + sIgualacion + E;
-            E_DIFEREN.Rule=E + sDiferenciacion + E;
-            E_MENOR_QUE.Rule=E + sMenorQue + E;
-            E_MENOR_IGUAL.Rule=E + sMenorIgualQue + E;
-            E_MAYOR_QUE.Rule=E + sMayorQue + E;
-            E_MAYOR_IGUAL.Rule=E + sMayorIgualQue + E;
+                        E_IGUALACION.Rule=E + sIgualacion + E;
+                        E_DIFEREN.Rule=E + sDiferenciacion + E;
+                        E_MENOR_QUE.Rule=E + sMenorQue + E;
+                        E_MENOR_IGUAL.Rule=E + sMenorIgualQue + E;
+                        E_MAYOR_QUE.Rule=E + sMayorQue + E;
+                        E_MAYOR_IGUAL.Rule=E + sMayorIgualQue + E;
 
-            E_AND.Rule=E + sAnd + E;
-            E_OR.Rule=E + sOr + E;
-            E_NOT.Rule=sNot + E;
+                        E_AND.Rule=E + sAnd + E;
+                        E_OR.Rule=E + sOr + E;
+                        E_NOT.Rule=sNot + E;
 
-            
-            E_PARENT.Rule=sAbreParent + E + sCierraParent;
-            E_ID.Rule=ID_VAR_FUNC;
 
-            E_BOOL.Rule=valBoolean;
-            E_CAD.Rule=valCadena;
-            E_CAD1.Rule=valCadena2; 
-            E_DEC.Rule=valDecimal;
-            E_NUM.Rule=valNumero;
-             
-            E_SSL.Rule=SSL_OPE_TIPO; 
-            E_CONT.Rule=SSL_CONTAR;
-*/
+                        E_PARENT.Rule=sAbreParent + E + sCierraParent;
+                        E_ID.Rule=ID_VAR_FUNC;
+
+                        E_BOOL.Rule=valBoolean;
+                        E_CAD.Rule=valCadena;
+                        E_CAD1.Rule=valCadena2; 
+                        E_DEC.Rule=valDecimal;
+                        E_NUM.Rule=valNumero;
+
+                        E_SSL.Rule=SSL_OPE_TIPO; 
+                        E_CONT.Rule=SSL_CONTAR;
+            */
 
             /*
              +-----------------------------
