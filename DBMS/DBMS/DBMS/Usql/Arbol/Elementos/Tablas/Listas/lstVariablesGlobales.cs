@@ -1,5 +1,6 @@
 ﻿using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
 using DBMS.Usql.Arbol.Nodos.Ssl.Asignar;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,41 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
 
         public override void ejecutar(elementoEntorno elem)
         {
-            foreach (elementoPolimorfo temp in listaPolimorfa)
+            foreach (elementoPolimorfo polim in listaPolimorfa)
             {
 
-                 
 
-                itemEntorno it = new itemEntorno(temp.nombre, temp.tipo, new itemValor(), temp.visibilidad, temp.getDimension(), tabla);
-                elem.insertarEntorno(it); 
+                itemValor val = new itemValor();
+
+
+                /*
+                 * Si es objeto se inicializa
+                 */
+                  
+                if (itemValor.getTipoApartirDeString(polim.tipo.valLower).Equals("objeto"))
+                {
+
+                    elementoClase temp = tabla.getClase(polim.tipo);
+                    if (temp != null)
+                    {
+                        objetoClase nuevoObjeto = new objetoClase(temp, tabla);
+                        lstValores lstValores2 = new lstValores();
+                        nuevoObjeto.ejecutarGlobales();//cargando sus valores globales 
+
+                        //asignando el objeto
+                        val.setValue(nuevoObjeto, polim.tipo.valLower);
+                    }
+
+                }
+
+
+                /*
+                 * Inesrtando el nuevo objeto a la tabla de simbolos
+                 */
+
+                itemEntorno it = new itemEntorno(polim.nombre, polim.tipo, val, polim.visibilidad, polim.getDimension(), tabla);
+                 
+                elem.insertarEntorno(it);
 
             }
         }

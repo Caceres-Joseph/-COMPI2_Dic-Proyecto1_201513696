@@ -46,7 +46,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
 
                 if (tipo.Equals("objeto"))
                 {
-                    tipo = "Objeto."+temp.nombreObjeto;
+                    tipo = "Objeto." + temp.nombreObjeto;
                 }
 
                 if (con == 0)
@@ -64,6 +64,17 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
 
 
             return retorno;
+        }
+
+        internal void imprimir()
+        {
+
+            Console.WriteLine("*********** imprimiendo la lista de valores ****************");
+            foreach (itemValor temp in listaValores)
+            {
+                temp.imprimirVariable();
+            }
+
         }
     }
 }

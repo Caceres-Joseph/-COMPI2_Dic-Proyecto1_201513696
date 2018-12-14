@@ -187,7 +187,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
                         }
 
                         itemEntorno varParametro = new itemEntorno(tNombre, tTipo, parametro2, tVisibilidad, listaEntero, tabla);
-                        elementoEntor.insertarEntorno(varParametro);
+                        elementoEntor.insertarEntorno(varParametro); 
+
+
+
                     }
                     else
                     {
@@ -227,8 +230,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
                 {
                     //ahora hay que validar los parametros
 
-
-                    if (temp.compararParametrosLstValores(listaValores))
+                    Boolean comp = temp.compararParametrosLstValores(listaValores);
+                    if (comp)
                     {
                         return temp;
                     }

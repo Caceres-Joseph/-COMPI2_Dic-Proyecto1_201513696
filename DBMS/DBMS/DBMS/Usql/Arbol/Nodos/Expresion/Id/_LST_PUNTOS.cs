@@ -44,9 +44,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
             return getEntornoId(lstAtributos.listaAtributos[1].tok, tempObjeto.tablaEntorno.raiz, new List<int>());
 
         }
-
-
-
+         
         /*
         |-------------------------------------------------------------------------------------------------------------------
         | Recuperando valor
@@ -66,11 +64,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
                 return new itemValor();
             }
 
-
-
-
-
-
+             
             String item1 = lstAtributos.listaAtributos[1].nombretoken;
             token nombreVar = lstAtributos.getToken(1);
 

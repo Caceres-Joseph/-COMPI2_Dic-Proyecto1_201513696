@@ -214,10 +214,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
 
                     itemValor parametro2 = lst2Parametros.getItemValor(i);
 
-                    Console.WriteLine("------------------------");
+                   /* Console.WriteLine("------------------------");
                     Console.WriteLine("dic.key.dimension-> " + dic.Key.dimension);
                     Console.WriteLine("parametro2.dimensiones->" + parametro2.dimensiones.Count);
-
+                    */
                     /* if (parametro2.isTypeObjeto()&&)
                      {
 
@@ -226,9 +226,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
                     //if ((dic.Key.dimension == parametro2.dimensiones.Count) && (dic.Value.tipo.valLower.Equals(parametro2.getTipo())))
                     validarTipos validador = new validarTipos(tablaSimbolos);
 
+                    Boolean bool1 = validador.validandoTipoSinMensaje(new token(dic.Key.nombre), dic.Value.tipo, parametro2);
+                    Boolean bool2 = dic.Key.dimension == parametro2.dimensiones.Count;
 
-
-                    if ((dic.Key.dimension == parametro2.dimensiones.Count) && validador.validandoTipoSinMensaje(new token(dic.Key.nombre), dic.Value.tipo, parametro2))
+                    if (bool2 && bool1)
                     {
 
                     }

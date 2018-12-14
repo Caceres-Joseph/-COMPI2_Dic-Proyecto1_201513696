@@ -7,8 +7,18 @@ CREAR TABLA jhosef(INTEGER id Llave_Primaria Autoincrementable, TEXT Nombre No N
 
 CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono); 
 CREAR OBJETO Direccion(INTEGER avenida, INTEGER calle, TEXT nombre, Empresa emp);
-DECLARAR @variable1  Empresa;
+DECLARAR @variable1  Direccion;
+@variable1.emp.codigo=99;
+imprimir("=================");
+imprimir(@variable1.emp.codigo);
 
+Crear procedimiento suma(Direccion@num1, integer @num2){
+	@variable1.emp.codigo=21;
+	imprimir("valor del parametro"+@num1.emp.codigo);
+	imprimir("la suma de los numeros es  :"+(@num1.emp.codigo+@num2));
+}
+suma (@variable1,32);
+imprimir("El valor cambiado es :"+ @variable1.emp.codigo);
 
 
 
@@ -17,6 +27,8 @@ CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
 @comision, INTEGER @codigo) INTEGER{
  CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono);
 }
+
+
 
 
 

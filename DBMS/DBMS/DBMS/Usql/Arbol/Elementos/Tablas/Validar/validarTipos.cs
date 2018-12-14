@@ -62,6 +62,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
 
 
 
+
         public Boolean validandoTipoSinMensaje(token nombre, token tipo1, itemValor valor2)
         {
             //aquí también hay que verificar las dimensiones
@@ -70,19 +71,20 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
             //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo")) 
             String tipoDato1 = itemValor.getTipoApartirDeString(tipo1.valLower);
 
-            if (valor2.getTipo().Equals("nulo"))
+            if (valor2.isTypeNulo())
             {
                 return true;
             }
             else if (tipoDato1.Equals("objeto") && valor2.isTypeObjeto())
             //validando que sean los mismos tipos
             {
-                if (tipo1.Equals(valor2.nombreObjeto))
+                if (tipo1.valLower.Equals(valor2.nombreObjeto))
                 {
                     return true;
                 }
                 else
-                { 
+                {
+                   
                     return false;
                 }
             }
@@ -98,6 +100,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
             }
 
         }
+
+         
 
 
     }

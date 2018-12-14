@@ -71,7 +71,7 @@ namespace DBMS.Usql.Gramatica
                 global.imprimir();
 
 
-                //imprimir();
+                imprimir();
 
                 return "";
 

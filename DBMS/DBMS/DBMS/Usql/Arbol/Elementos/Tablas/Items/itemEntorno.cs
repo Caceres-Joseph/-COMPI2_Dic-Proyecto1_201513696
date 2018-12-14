@@ -35,7 +35,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             valor.setTypeNulo();
             this.visibilidad = new token("privado"); 
             this.tabla = tabla;
-        } 
+        }
 
         public itemEntorno(token nombre, token tipo, itemValor valor, token visibilidad, List<int> dimension, tablaSimbolos tabla)
         {
@@ -55,18 +55,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
             if (itemValor.getTipoApartirDeString(tipo.valLower).Equals("objeto"))
             {
-
-                elementoClase temp = tabla.getClase(tipo);
-                if (temp != null)
-                {
-                    objetoClase nuevoObjeto = new objetoClase(temp, tabla);
-                    lstValores lstValores2 = new lstValores();
-                    nuevoObjeto.ejecutarGlobales();//cargando sus valores globales 
-
-                    //asignando el objeto
-                    this.valor.setValue(nuevoObjeto, tipo.valLower);
-                }
-
+                this.valor = valor;
+                 
             }
             else
             {
@@ -91,40 +81,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
         }
 
-
-
-        /*public Boolean validandoTipo(String tipo1, String tipo2, itemValor valor2)
-        {
-            //aquí también hay que verificar las dimensiones
-
-
-            //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo"))
-            itemValor tempIt = new itemValor();
-            String tipoDato1 = tempIt.getTipoApartirDeString(tipo1);
-
-            if (tipoDato1.Equals("objeto") && valor2.isTypeObjeto())
-            //validando que sean los mismos tipos
-            {
-                if (tipo1.Equals(valor2.nombreObjeto))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (tipoDato1.Equals(tipo2) || tipo2.Equals("nulo"))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }*/
-
+         
 
         public static Boolean sePuedeParsear(String tipo1, itemValor valor2)
         {
