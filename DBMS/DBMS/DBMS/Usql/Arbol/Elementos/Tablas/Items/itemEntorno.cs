@@ -26,17 +26,16 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
         public List<int> lstDimensionesAcceso = new List<int>();
 
-        /*
+        
         public itemEntorno(tablaSimbolos tabla)
         {
             this.tipo = new token("nulo");
             this.nombre = new token("--");
             this.valor = new itemValor();
             valor.setTypeNulo();
-            this.visibilidad = new token("privado");
-            this.dimension = 0;
+            this.visibilidad = new token("privado"); 
             this.tabla = tabla;
-        }*/
+        } 
 
         public itemEntorno(token nombre, token tipo, itemValor valor, token visibilidad, List<int> dimension, tablaSimbolos tabla)
         {

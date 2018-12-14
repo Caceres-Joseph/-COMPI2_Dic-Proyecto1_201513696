@@ -9,6 +9,9 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
 {
     class _ID_VAR_FUNC_3 : _ID_VAR_FUNC
     {
+        /*
+         * ID_VAR_FUNC_3.Rule = valId;
+         */
         public _ID_VAR_FUNC_3(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }

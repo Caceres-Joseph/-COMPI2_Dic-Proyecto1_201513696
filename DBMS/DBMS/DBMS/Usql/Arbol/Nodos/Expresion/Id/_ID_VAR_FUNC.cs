@@ -12,6 +12,13 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
 {
     class _ID_VAR_FUNC : nodoModelo
     {
+        /*                  | ID_VAR_FUNC_1
+                            | ID_VAR_FUNC_2
+                            | ID_VAR_FUNC_3
+                            | ID_VAR_FUNC_4
+                            | ID_VAR_FUNC_5
+         
+             */
         public _ID_VAR_FUNC(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
