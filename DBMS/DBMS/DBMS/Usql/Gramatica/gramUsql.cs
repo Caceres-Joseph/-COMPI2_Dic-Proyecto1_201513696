@@ -28,9 +28,9 @@ namespace DBMS.Usql.Gramatica
              | Fechas
              +----------------------------
              */
-            RegexBasedTerminal valTime = new RegexBasedTerminal("valTime", "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]");
+            //RegexBasedTerminal valTime = new RegexBasedTerminal("valTime", "[0-9][0-9]:[0-9][0-9]:[0-9][0-9]");
 
-            RegexBasedTerminal valDate = new RegexBasedTerminal("valDate", "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]");
+            //RegexBasedTerminal valDate = new RegexBasedTerminal("valDate", "[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]");
 
 
             /*
@@ -813,8 +813,8 @@ namespace DBMS.Usql.Gramatica
                 | valCadena2
                 | valDecimal
                 | valNumero
-                | valDate + valTime
-                | valDate
+                //| valDate + valTime
+                //| valDate
                 | SSL_OPE_TIPO
                 | SSL_CONTAR
 

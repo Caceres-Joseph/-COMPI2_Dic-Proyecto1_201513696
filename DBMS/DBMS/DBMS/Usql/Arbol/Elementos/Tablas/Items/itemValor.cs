@@ -141,7 +141,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 this.tipo = "datetime";
                 //DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
 
-                DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss", enUS, DateTimeStyles.None);
+                DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy HH:mm:ss", enUS, DateTimeStyles.None);
 
                 this.valor = oDate;
             }
@@ -157,22 +157,12 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 }
                 catch (Exception e2)
                 {
-                    //  Console.WriteLine("[itemValor]No es fecha" + e2);
-                    try
-                    {
-                        this.tipo = "hora";
-                        DateTime oDate = DateTime.ParseExact(cadena, "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-
-                        this.valor = oDate;
-                    }
-                    catch (Exception e3)
-                    {
+                 
                         // Console.WriteLine("[itemValor]No es hora" + e3);
                         this.tipo = "text";
                         this.valor = cadena;
-                    }
-                }
-                //de ultimo es un string alv 
+                     
+                } 
             }
         }
 

@@ -79,8 +79,16 @@ PARA(  @c = 0 ; @c > -3;--){
 
 imprimir("**  Incrementando  **");
 
-PARA(  @c = 0 ; @c < 3; @c++){ 
-	imprimir(@c);
+PARA( DECLARAR @c integer= 0 ; @c < 3; @c++){ 
+	DECLARAR @a INTEGER =1;
+SELECCIONA (  @a * 10 ){ 
+	CASO 11 : 
+		imprimir("es 10");
+		detener;
+	CASO 13 : 
+		imprimir("es 15");  
+	DEFECTO : imprimir("es 18");retorno;
+} 
 } 
 
 PARA(  DECLARAR @a integer = 3 ; @a < 6; ++){ 
@@ -112,6 +120,16 @@ SELECCIONA (  @a * 10 ){
 
 ######################################
 
+#No puedo pasar de las 12 Horas 
+DECLARAR @f DATETIME ="15/12/2018 01:32:23";
+imprimir(@f);
+
+DECLARAR @h DATE ="15/12/2018";
+imprimir(@h);
+
+
+
+######################################
 
 
 

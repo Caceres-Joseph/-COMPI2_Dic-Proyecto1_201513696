@@ -237,7 +237,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
                     retorno = new itemValor();
                     retorno.setTypeNulo();
-                    retorno.convertirCadena2(tok.tok.val);
+                    retorno.convertirCadena(tok.tok.val);
                     return retorno;
                 case "valNumero":
                     try
