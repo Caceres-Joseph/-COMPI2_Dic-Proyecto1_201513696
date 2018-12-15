@@ -52,7 +52,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             //PUNTERO DONDE VOY A GUARDAR EL VALOR
             _ID_VAR_FUNC nodoFunc = (_ID_VAR_FUNC)getNodo("ID_VAR_FUNC");
             itemEntorno destino = nodoFunc.getDestino(elementoEntor);
-
+            
 
             itemValor valor = nodoFunc.getValor(elementoEntor);
             itemValor valor2 = new itemValor();
@@ -62,11 +62,19 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             itemValor resultado = sumatoria.opSumaExterna(elementoEntor, valor, valor2);
 
 
-            asignarValor(destino, resultado);
+            asignarValor(destino, resultado); 
             return retorno;
         }
 
-         
+
+        //para obtener el destino en el for  
+        public override itemEntorno getUltimaVar(elementoEntorno elementoEntor)
+        {
+            //PUNTERO DONDE VOY A GUARDAR EL VALOR
+            _ID_VAR_FUNC nodoFunc = (_ID_VAR_FUNC)getNodo("ID_VAR_FUNC");
+            itemEntorno destino = nodoFunc.getDestino(elementoEntor);
+            return destino;
+        }
 
     }
 }

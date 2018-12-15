@@ -46,9 +46,10 @@ namespace DBMS.PlyCs.Arbol.Nodos
 
                     analizador.iniciarAnalisis(segundaCadena);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Console.WriteLine("Error al analizar USQL");
+                    Console.WriteLine(e.Message.ToString());
                 }
 
 

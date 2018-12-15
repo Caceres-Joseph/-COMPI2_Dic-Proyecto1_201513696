@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.Validar;
 
@@ -34,6 +35,20 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
                 //aquí le asigno el valor 
                 destino.valor = valor;
             }
+        }
+
+
+        //para obtener el destino en el for 
+
+        public virtual  itemEntorno getUltimaVar(elementoEntorno elementoEntor)
+        {
+
+            foreach(_SSL_ASIGNAR tel in hijos)
+            {
+                return tel.getUltimaVar(elementoEntor);
+            }
+
+            return null;
         }
     }
 }

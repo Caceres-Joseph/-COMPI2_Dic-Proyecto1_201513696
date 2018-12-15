@@ -100,9 +100,9 @@ namespace DBMS
 
         private void btnGrafo_Click(object sender, EventArgs e)
         {
-
+            
             anlzUsql analizador = new anlzUsql();
-            analizador.dibujarGrafo(txtPlyCs.Text);
+            analizador.iniciarAnalisis(txtPlyCs.Text);
         }
     }
 }

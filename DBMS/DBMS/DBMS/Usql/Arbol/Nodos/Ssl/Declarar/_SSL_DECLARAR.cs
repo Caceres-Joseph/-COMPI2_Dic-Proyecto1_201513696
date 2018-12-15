@@ -108,13 +108,14 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Declarar
             return retorno;
         }
 
-
         /*
         |-------------------------------------------------------------------------------------------------------------------
         |Funciones
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
+
+        public itemEntorno ultimaVariable=null;
         public void insertarVar(token tipo, itemValor valor, token visibilidad, List<int> dimension, elementoEntorno tablaEntornos)
         {
             _LST_VARS listas = (_LST_VARS)getNodo("LST_VARS");
@@ -128,7 +129,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Declarar
             {
                 //Se declaro la variable pero el valor es nulo 
                 itemEntorno it = new itemEntorno(nombre, tipo, valor, visibilidad, dimension, tablaSimbolos);
-
+                ultimaVariable = it;
 
                 tablaEntornos.insertarEntorno(it);
 

@@ -49,7 +49,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             //PUNTERO DONDE VOY A GUARDAR EL VALOR
             _ID_VAR_FUNC nodoFunc = (_ID_VAR_FUNC)getNodo("ID_VAR_FUNC");
             itemEntorno destino = nodoFunc.getDestino(elementoEntor);
-
+            
 
             //AHORA OBTENGO EL VALOR 
             _VAL nodoVal = (_VAL)getNodo("VAL");
@@ -69,7 +69,17 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
 
         }
 
-         
+
+
+        //para obtener el destino en el for  
+        public override itemEntorno getUltimaVar(elementoEntorno elementoEntor)
+        { 
+            _ID_VAR_FUNC nodoFunc = (_ID_VAR_FUNC)getNodo("ID_VAR_FUNC");
+            itemEntorno destino = nodoFunc.getDestino(elementoEntor); 
+            return destino;
+        }
+
+
 
     }
 }

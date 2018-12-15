@@ -48,13 +48,14 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
             if (hayErrores())
                 return retorno;
 
+            elementoEntorno entornoWhile = new elementoEntorno(elementoEntor, tablaSimbolos, "para");
 
             nodoModelo nodotemp = getNodo("SSL_DECLARAR");
-            nodotemp.ejecutar(elementoEntor);
+            nodotemp.ejecutar(entornoWhile);
 
 
             _VALOR nodoE = (_VALOR)getNodo("VALOR");
-            itemValor valE = nodoE.getValor(elementoEntor);
+            itemValor valE = nodoE.getValor(entornoWhile);
             Object objetoValor = valE.getValorParseado("bool");
             Boolean condicion = false;
 
@@ -74,9 +75,9 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
             while (condicion)
             {
 
+                elementoEntorno entornoPara = new elementoEntorno(entornoWhile, tablaSimbolos, "para"); 
                 _LST_CUERPO nodoCuerpo = (_LST_CUERPO)getNodo("LST_CUERPO");
-                elementoEntorno entornoWhile = new elementoEntorno(elementoEntor, tablaSimbolos, "para");
-                retorno = nodoCuerpo.ejecutar(entornoWhile);
+                retorno = nodoCuerpo.ejecutar(entornoPara);
 
                 //analizando el continue, el break, y el return
 
@@ -106,7 +107,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
 
                 //volviendo analizar el while 
                 nodoE = (_VALOR)getNodo("VALOR");
-                valE = nodoE.getValor(elementoEntor);
+                valE = nodoE.getValor(entornoWhile);
                 objetoValor = valE.getValorParseado("bool");
                 condicion = (Boolean)objetoValor;
             }

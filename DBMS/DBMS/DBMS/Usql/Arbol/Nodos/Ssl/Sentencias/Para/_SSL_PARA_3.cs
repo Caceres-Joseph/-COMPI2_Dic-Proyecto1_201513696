@@ -7,14 +7,18 @@ using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Nodos.Expresion.E;
+using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica;
 using DBMS.Usql.Arbol.Nodos.Inicio;
+using DBMS.Usql.Arbol.Nodos.Ssl.Asignar;
+using DBMS.Usql.Arbol.Nodos.Ssl.Declarar;
 
 namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
 {
-    class _SSL_PARA_3 : nodoModelo
+    class _SSL_PARA_3 : _SSL_ASIGNAR
     {
         /*
-         * tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + VALOR + sPuntoComa + sMas + sMas + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
+         * tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + VALOR + sPuntoComa + 
+         * sMas + sMas + sCierraParent + sAbreLlave + LST_CUERPO + sCierraLlave;
          */
         public _SSL_PARA_3(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
@@ -41,18 +45,23 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
         | 4 = errores
         */
         {
-
             itemRetorno retorno = new itemRetorno(0);
+            itemEntorno destino = null;
+
             if (hayErrores())
                 return retorno;
 
 
-            nodoModelo nodotemp = getNodo("SSL_DECLARAR"); 
-            nodotemp.ejecutar(elementoEntor);
+            elementoEntorno entornoWhile = new elementoEntorno(elementoEntor, tablaSimbolos, "para");
+
+
+            _SSL_DECLARAR nodotemp = (_SSL_DECLARAR)getNodo("SSL_DECLARAR");
+            nodotemp.ejecutar(entornoWhile);
+
 
 
             _VALOR nodoE = (_VALOR)getNodo("VALOR");
-            itemValor valE = nodoE.getValor(elementoEntor);
+            itemValor valE = nodoE.getValor(entornoWhile);
             Object objetoValor = valE.getValorParseado("bool");
             Boolean condicion = false;
 
@@ -72,9 +81,9 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
             while (condicion)
             {
 
+                elementoEntorno entornoPara = new elementoEntorno(entornoWhile, tablaSimbolos, "para");
                 _LST_CUERPO nodoCuerpo = (_LST_CUERPO)getNodo("LST_CUERPO");
-                elementoEntorno entornoWhile = new elementoEntorno(elementoEntor, tablaSimbolos, "While");
-                retorno = nodoCuerpo.ejecutar(entornoWhile);
+                retorno = nodoCuerpo.ejecutar(entornoPara);
 
                 //analizando el continue, el break, y el return
 
@@ -98,12 +107,34 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
                 }
 
 
-                //aquí asigno el ++
+                /*
+                 ********
+                 *  i --
+                 ********
+                 */
 
+                //aquí esta el destino
+                destino = nodotemp.ultimaVariable;
+
+
+                itemValor valor = destino.valor;
+                itemValor valor2 = new itemValor();
+                valor2.setValue(1);
+
+                suma sumatoria = new suma(new _E("hijo1", tablaSimbolos), new _E("hijo2", tablaSimbolos), tablaSimbolos, lstAtributos.getToken(0));
+                itemValor resultado = sumatoria.opSumaExterna(entornoWhile, valor, valor2);
+                asignarValor(destino, resultado);
+
+
+                /*
+                 ********
+                 *  CONDICION
+                 ********
+                 */
 
                 //volviendo analizar el while 
                 nodoE = (_VALOR)getNodo("VALOR");
-                valE = nodoE.getValor(elementoEntor);
+                valE = nodoE.getValor(entornoWhile);
                 objetoValor = valE.getValorParseado("bool");
                 condicion = (Boolean)objetoValor;
             }
@@ -114,7 +145,6 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
             }
             return retorno;
         }
-
 
     }
 }

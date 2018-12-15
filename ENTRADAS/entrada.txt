@@ -3,6 +3,7 @@ CREAR BASE_DATOS	 jhosef;
 
 CREAR TABLA jhosef(INTEGER id Llave_Primaria Autoincrementable, TEXT Nombre No Nulo, DATE fh_nac No Nulo, BOOL trabaja);
 
+#######################################
 
 
 CREAR OBJETO Empresa (INTEGER codigo, TEXT nombre, TEXT telefono); 
@@ -22,7 +23,7 @@ suma (@variable1,32);
 imprimir("El valor cambiado es :"+ @variable1.emp.codigo);
 
 
-
+#######################################
 
 
 Declarar @var1 direccion;
@@ -41,9 +42,56 @@ CREAR FUNCION crearDireccion (INTEGER @calle, INTEGER @avenida, TEXT @nombre, TE
 
 @var1=crearDireccion(12,11,"guatemala","capital");
 
-imprimir(@var1.calle+" avenida"+@var1.avenida+" nombre:"+@var1.nombre+" descripcion:"+@var1.descripcion);
+imprimir("calle:"+@var1.calle+" avenida:"+@var1.avenida+" nombre:"+@var1.nombre+" descripcion:"+@var1.descripcion);
+imprimir(crearDireccion(12,11,"Tecpan","capital").nombre);
+
+#######################################
+
+DECLARAR @var1 INTEGER =12;
+imprimir(@var1);
+@var1++;
+imprimir(@var1);
+@var1--;
+imprimir(@var1);
 
 
+######################################
+
+imprimir("**  Decrementando  **");
+DECLARAR @c INTEGER =0;
+
+PARA(  DECLARAR @a integer   = 10 ; @a > 6; --){ 
+	imprimir(@a);
+} 
+
+PARA(  DECLARAR @a integer   = 6 ; @a > 3; @a--){ 
+	imprimir(@a);
+} 
+
+PARA(  @c = 3 ; @c > 0; @c--){ 
+	imprimir(@c);
+} 
+
+
+imprimir("**  Incrementando  **");
+
+PARA(  @c = 0 ; @c < 3; @c++){ 
+	imprimir(@c);
+} 
+
+PARA(  DECLARAR @a integer = 3 ; @a < 6; ++){ 
+	imprimir(@a);
+} 
+
+PARA(  DECLARAR @a integer = 6 ; @a < 10; @a++){ 
+	imprimir(@a);
+} 
+
+
+
+
+
+######################################
 
 
 CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
