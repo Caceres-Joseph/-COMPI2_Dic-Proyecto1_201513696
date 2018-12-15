@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Nodos.Expresion.E;
+using DBMS.Usql.Arbol.Nodos.Inicio;
+using DBMS.Usql.Arbol.Nodos.Ssl.Asignar;
 
 namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
 {

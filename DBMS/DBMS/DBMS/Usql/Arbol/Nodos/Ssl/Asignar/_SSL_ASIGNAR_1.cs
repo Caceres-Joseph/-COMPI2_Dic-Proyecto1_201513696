@@ -11,7 +11,7 @@ using DBMS.Usql.Arbol.Nodos.Expresion.Id;
 
 namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
 {
-    class _SSL_ASIGNAR_1 : nodoModelo
+    class _SSL_ASIGNAR_1 : _SSL_ASIGNAR
     {
         /*
          * SSL_ASIGNAR_1.Rule = ID_VAR_FUNC + VAL;
@@ -58,8 +58,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             {
                 itemValor valor = nodoVal.getValor(elementoEntor, destino.tipo);
 
-                asignarValor(destino, valor);
-
+                asignarValor(destino, valor); 
             }
             else
             {
@@ -69,45 +68,8 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Asignar
             return retorno;
 
         }
-        /*
 
-        public Boolean validandoTipo(itemEntorno tipo1, itemValor tipo2)
-        {
-
-
-            if (itemValor.getTipoApartirDeString(tipo1.tipo.valLower).Equals(tipo2.getTipo()) || tipo2.Equals("nulo"))
-            {
-
-                //revisando si es de tipo objeto
-                if (!tipo2.nombreObjeto.Equals(tipo1.tipo.valLower))
-                {
-                    tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.nombreObjeto, tipo1.nombre);
-                    return false;
-                }
-                return true;
-            }
-            else
-            {
-                tablaSimbolos.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + tipo1.nombre.val + " de tipo " + tipo1.tipo.valLower + ", un valor de tipo " + tipo2.getTipo(), tipo1.nombre);
-                return false;
-            }
-
-        }*/
-
-
-        public void asignarValor(itemEntorno destino, itemValor valor)
-        {
-
-            validarTipos validador = new validarTipos(tablaSimbolos);
-
-
-            
-            if (validador.validandoTipo(destino.nombre, destino.tipo, valor))
-            { 
-                //aquí le asigno el valor 
-                destino.valor = valor;
-            }
-        } 
+         
 
     }
 }

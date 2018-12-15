@@ -12,6 +12,11 @@ using DBMS.Usql.Arbol.Nodos.Ssl.Asignar;
 
 namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Para
 {
+    /*
+     * tPara + sAbreParent + SSL_DECLARAR + sPuntoComa + 
+     *  VALOR + sPuntoComa + SSL_ASIGNAR + sCierraParent +
+     *      sAbreLlave + LST_CUERPO + sCierraLlave;
+     */
     class _SSL_PARA_1 : nodoModelo
     {
         public _SSL_PARA_1(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
