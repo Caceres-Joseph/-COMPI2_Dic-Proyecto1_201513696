@@ -121,15 +121,17 @@ SELECCIONA (  @a * 10 ){
 ######################################
 
 #No puedo pasar de las 12 Horas 
-DECLARAR @f DATETIME ="15/12/2018 01:32:23";
+DECLARAR @f DATETIME =fecha_hora();
 imprimir(@f);
 
-DECLARAR @h DATE ="15/12/2018";
+DECLARAR @h DATE =fecha();
 imprimir(@h);
 
 
 
 ######################################
+
+
 
 
 

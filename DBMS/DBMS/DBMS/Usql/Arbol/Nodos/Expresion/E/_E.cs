@@ -11,6 +11,7 @@ using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeLogico;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
 using DBMS.Usql.Arbol.Nodos.Expresion.Id;
+using DBMS.Usql.Arbol.Nodos.Ssl.Nativas;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 {
@@ -51,13 +52,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
                 case 1:
 
-                    if (hijos[0].nombre.Equals("OPE_ARITME"))
+                    if (hijos[0].nombre.Equals("SSL_OPE_TIPO"))
                     {
-
-                        return hijos[0].ope_tipo(elmen);
-
+                        _SSL_OPE_TIPO opeTipo = (_SSL_OPE_TIPO)hijos[0];
+                        return opeTipo.getValor(elmen);
                     }
-                    else if (hijos[0].nombre.Equals("OPE_TIPO"))
+                    else if (hijos[0].nombre.Equals("SSL_OPE_TIPO"))
                     {
 
                         return hijos[0].ope_tipo(elmen);
