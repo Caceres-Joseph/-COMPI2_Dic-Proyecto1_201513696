@@ -382,7 +382,17 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             switch (tipo)
             {
                 case "text":
-                    return getCadena();
+                    if (isTypeFecha())
+                    {
+                        return getFechaHora().ToString("dd/MM/yyy");
+                    } 
+                    else
+                    {
+
+                        return getCadena();
+                    }
+
+
 
                 case "bool":
                     if (isTypeBooleano())

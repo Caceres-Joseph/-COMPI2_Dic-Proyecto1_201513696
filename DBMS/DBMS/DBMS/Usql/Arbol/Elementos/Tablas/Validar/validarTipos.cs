@@ -22,8 +22,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
 
         public  Boolean validandoTipo(token nombre, token tipo1, itemValor valor2)
         {
-            //aquí también hay que verificar las dimensiones
 
+             //probando si se pude parsera
 
             //if (tipo1.Equals(tipo2) || tipo2.Equals("nulo")) 
             String tipoDato1 = itemValor.getTipoApartirDeString(tipo1.valLower);
@@ -53,9 +53,46 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
             }
             else
             {
+                //aquí se intentan parsear los datos de tipo primitivo
 
-                tabla.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + nombre.val + " de tipo " + tipo1.valLower + ", un valor de tipo " + valor2.getTipo(), nombre);
-                return false;
+                Object objetoValor = valor2.getValorParseado(tipo1.valLower);
+                
+                if (objetoValor != null)
+                {
+
+                    switch (tipo1.valLower)
+                    {
+                        case "text":
+                            valor2.valor = (String)objetoValor;
+                            break;
+                        case "bool":
+                            valor2.valor = (Boolean)objetoValor;
+                            break;
+                        case "integer":
+                            valor2.valor = (Int32)objetoValor;
+                            break;
+                        case "double":
+                            valor2.valor = (Double)objetoValor;
+                            break;
+                        case "date":
+                            valor2.valor = (DateTime)objetoValor;
+                            break;
+
+                        case "datetime":
+                            valor2.valor = (DateTime)objetoValor;
+                            break; 
+                    }
+                    return true;
+                }
+                else
+                {
+
+                    tabla.tablaErrores.insertErrorSemantic("Se está intentando guardar en :" + nombre.val + " de tipo " + tipo1.valLower + ", un valor de tipo " + valor2.getTipo(), nombre);
+                    return false;
+                }
+
+
+
             }
 
         }
@@ -96,7 +133,42 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Validar
             else
             {
 
-                 return false;
+                //aquí se intentan parsear los datos de tipo primitivo
+
+                Object objetoValor = valor2.getValorParseado(tipo1.valLower);
+
+                if (objetoValor != null)
+                {
+
+                    switch (tipo1.valLower)
+                    {
+                        case "text":
+                            valor2.valor = (String)objetoValor;
+                            break;
+                        case "bool":
+                            valor2.valor = (Boolean)objetoValor;
+                            break;
+                        case "integer":
+                            valor2.valor = (Int32)objetoValor;
+                            break;
+                        case "double":
+                            valor2.valor = (Double)objetoValor;
+                            break;
+                        case "date":
+                            valor2.valor = (DateTime)objetoValor;
+                            break;
+
+                        case "datetime":
+                            valor2.valor = (DateTime)objetoValor;
+                            break;
+                    }
+                    return true;
+                }
+                else
+                { 
+                     return false;
+                }
+                 
             }
 
         }

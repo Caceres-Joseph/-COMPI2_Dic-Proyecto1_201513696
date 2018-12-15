@@ -70,7 +70,7 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Nativas
                     {
                         try
                         {
-                            Form1.mensajeConsola(temp.valor.ToString());
+                            Form1.mensajeConsola((String)temp.getValorParseado("text"));
                         }
                         catch (Exception e)
                         {
