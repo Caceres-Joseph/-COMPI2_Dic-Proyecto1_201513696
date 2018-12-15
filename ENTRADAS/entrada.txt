@@ -72,6 +72,10 @@ PARA(  @c = 3 ; @c > 0; @c--){
 	imprimir(@c);
 } 
 
+PARA(  @c = 0 ; @c > -3;--){ 
+	imprimir(@c);
+} 
+
 
 imprimir("**  Incrementando  **");
 
@@ -87,11 +91,28 @@ PARA(  DECLARAR @a integer = 6 ; @a < 10; @a++){
 	imprimir(@a);
 } 
 
+PARA(  @c = 10 ; @c < 13;++){ 
+	imprimir(@c);
+} 
 
 
 
 
 ######################################
+
+DECLARAR @a INTEGER =1;
+SELECCIONA (  @a * 10 ){ 
+	CASO 10 : 
+		imprimir("es 10");
+		detener;
+	CASO 10 : 
+		imprimir("es 15");  
+	DEFECTO : imprimir("es 15");
+} 
+
+######################################
+
+
 
 
 CREAR FUNCION set_Salario (DOUBLE @salario, DOUBLE
