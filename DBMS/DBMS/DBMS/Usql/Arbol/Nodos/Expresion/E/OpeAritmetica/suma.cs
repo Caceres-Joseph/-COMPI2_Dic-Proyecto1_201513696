@@ -206,7 +206,21 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
                     retorno.valor = val1.getCadena() + val2.getCadena();
                 }
 
+                /*
+                 *Cadena + fecha = Cadena
+                 */
 
+                else if (val1.isTypeCadena() && val2.isTypeFecha())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getCadena() + val2.getFechaHora().ToString("dd/MM/yyy");
+                }
+
+                else if (val1.isTypeCadena() && val2.isTypeFechaHora())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getCadena() + val2.getFechaHora().ToString();
+                }
                 /*
                 |--------------------------------------------------------------------------
                 | Decimal
@@ -259,6 +273,29 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
                     retorno.setTypeDecimal();
                     retorno.valor = val1.getDecimal() + val2.getDecimal();
                 }
+                /*
+                |--------------------------------------------------------------------------
+                | FECHA
+                |--------------------------------------------------------------------------
+                */
+
+                else if (val1.isTypeFechaHora() && val2.isTypeCadena())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getFechaHora().ToString() + val2.isTypeCadena();
+                }
+
+                else if (val1.isTypeFecha() && val2.isTypeCadena())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getFechaHora().ToString("dd/MM/yyy") + val2.isTypeCadena();
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | DEFECTO
+                |--------------------------------------------------------------------------
+                */
                 else
                 {
                     tabla.tablaErrores.insertErrorSemantic("No se pueden operar [SUMA] " + val1.getTipo() + " con " + val2.getTipo(), signo);
@@ -471,6 +508,23 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
                     retorno.valor = val1.getCadena() + val2.getCadena();
                 }
 
+                /*
+                 *Cadena + fecha = Cadena
+                 */
+
+                else if (val1.isTypeCadena() && val2.isTypeFecha())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getCadena() + val2.getFechaHora().ToString("dd/MM/yyy");
+                }
+
+                else if (val1.isTypeCadena() && val2.isTypeFechaHora())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getCadena() + val2.getFechaHora().ToString();
+                }
+
+
 
                 /*
                 |--------------------------------------------------------------------------
@@ -524,11 +578,34 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
                     retorno.setTypeDecimal();
                     retorno.valor = val1.getDecimal() + val2.getDecimal();
                 }
+
+                /*
+                |--------------------------------------------------------------------------
+                | FECHA
+                |--------------------------------------------------------------------------
+                */
+
+                else if (val1.isTypeFechaHora() && val2.isTypeCadena())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getFechaHora().ToString() + val2.isTypeCadena();
+                }
+
+                else if (val1.isTypeFecha() && val2.isTypeCadena())
+                {
+                    retorno.setTypeCadena();
+                    retorno.valor = val1.getFechaHora().ToString("dd/MM/yyy") + val2.isTypeCadena();
+                }
+
+                /*
+                |--------------------------------------------------------------------------
+                | DEFECTO
+                |--------------------------------------------------------------------------
+                */
                 else
                 {
                     tabla.tablaErrores.insertErrorSemantic("No se pueden operar [SUMA] " + val1.getTipo() + " con " + val2.getTipo(), signo);
                 }
-                
 
                 //aquí hay que parsear los objetos
 
