@@ -57,7 +57,7 @@ namespace DBMS.Usql.Gramatica
 
             //StringLiteral valCaracter = new StringLiteral("valCaracter", "\'");
             StringLiteral valCadena = new StringLiteral("valCadena", "\'");
-            var valCadena2 = new StringLiteral("valCadena2", "‘(.)*’");
+            StringLiteral valCadena2 = new StringLiteral("valCadena", "\""); 
 
 
 

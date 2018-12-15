@@ -85,6 +85,19 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
             return retorno;
         }
 
+        public elementoEntorno getEntornoGlobal()
+        {
+             
+            if (anterior==null)
+            {
+                return this;
+            }
+            else
+            {
+                return anterior.getEntornoGlobal();
+            } 
+        }
+
 
         /*
         |-------------------------------------------------------------------------------------------------------------------

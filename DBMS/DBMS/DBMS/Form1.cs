@@ -98,6 +98,11 @@ namespace DBMS
             txtPlyCs.Text = txtPlyCs.Text + System.Environment.NewLine+">>[" + hoy.ToString() + "]  " + mensaje;
         }
 
+        private void btnGrafo_Click(object sender, EventArgs e)
+        {
 
+            anlzUsql analizador = new anlzUsql();
+            analizador.dibujarGrafo(txtPlyCs.Text);
+        }
     }
 }

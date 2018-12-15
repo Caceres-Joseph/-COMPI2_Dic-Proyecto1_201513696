@@ -48,7 +48,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
 
 
             //le tengo que enviar el entorno global compa
-            itemValor retornoFunc = tablaSimbolos.lstMetodo_funcion.getMetodoFuncion(nombreFunc, new lstValores(), elementoEntor, nombreFunc.val);
+            itemValor retornoFunc = tablaSimbolos.lstMetodo_funcion.getMetodoFuncion(nombreFunc, new lstValores(), elementoEntor.getEntornoGlobal(), nombreFunc.val);
 
             return retorno;
         }
@@ -90,7 +90,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
 
 
             //le tengo que enviar el entorno global compa
-            itemValor retornoFunc = tablaSimbolos.lstMetodo_funcion.getMetodoFuncion(nombreFunc, new lstValores(), elementoEntor, nombreFunc.val);
+            itemValor retornoFunc = tablaSimbolos.lstMetodo_funcion.getMetodoFuncion(nombreFunc, new lstValores(), elementoEntor.getEntornoGlobal(), nombreFunc.val);
             return retornoFunc; 
         }
 

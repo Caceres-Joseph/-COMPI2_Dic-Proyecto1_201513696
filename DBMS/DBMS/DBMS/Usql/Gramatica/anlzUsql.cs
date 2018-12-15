@@ -49,7 +49,7 @@ namespace DBMS.Usql.Gramatica
             {
 
                 // seman.S(raiz);
-                grafo.generarImagen(raiz);
+                //grafo.generarImagen(raiz);
 
                 //generando el arbol
                 arbolUsql generar = new arbolUsql(gramatica.nombreArchivo);
@@ -67,8 +67,6 @@ namespace DBMS.Usql.Gramatica
                 raizArbol.ejecutar(global);
 
 
-                //Console.WriteLine("-------------- global ------------------");
-                //global.imprimir();
 
 
                 //imprimir();
@@ -81,9 +79,31 @@ namespace DBMS.Usql.Gramatica
         }
 
 
-        public void imprimir()
+
+        public void dibujarGrafo(String cadena)
         {
 
+
+            gramUsql gramatica = new gramUsql(tablaDeSimbolos.tablaErrores, "usql");
+            LanguageData lenguaje = new LanguageData(gramatica);
+            Parser parser = new Parser(lenguaje);
+            ParseTree arbol = parser.Parse(cadena);
+            ParseTreeNode raiz = arbol.Root;
+             
+            if (raiz != null)
+            {
+
+                grafo.generarImagen(raiz);
+            } 
+             
+        }
+
+
+        public void imprimir(elementoEntorno global)
+        {
+
+            Console.WriteLine("-------------- global ------------------");
+            global.imprimir();
             Console.WriteLine("--------------[ Objetos ]---------------------");
             tablaDeSimbolos.imprimirClases(); 
             Console.WriteLine("--------------[ Funciones metodos ]-----------");

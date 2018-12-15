@@ -33,6 +33,7 @@
             this.tabPly = new MetroFramework.Controls.MetroTabPage();
             this.btnStart = new MetroFramework.Controls.MetroButton();
             this.btnStop = new MetroFramework.Controls.MetroButton();
+            this.btnGrafo = new MetroFramework.Controls.MetroButton();
             this.MetroTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,11 +102,23 @@
             this.btnStop.UseSelectable = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
+            // btnGrafo
+            // 
+            this.btnGrafo.Location = new System.Drawing.Point(670, 20);
+            this.btnGrafo.Name = "btnGrafo";
+            this.btnGrafo.Size = new System.Drawing.Size(86, 34);
+            this.btnGrafo.TabIndex = 7;
+            this.btnGrafo.Text = "Grafo";
+            this.btnGrafo.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnGrafo.UseSelectable = true;
+            this.btnGrafo.Click += new System.EventHandler(this.btnGrafo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 588);
+            this.Controls.Add(this.btnGrafo);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.MetroTab);
@@ -123,6 +136,7 @@
         private MetroFramework.Controls.MetroTabPage tabPly;
         private MetroFramework.Controls.MetroButton btnStart;
         private MetroFramework.Controls.MetroButton btnStop;
+        private MetroFramework.Controls.MetroButton btnGrafo;
     }
 }
 
