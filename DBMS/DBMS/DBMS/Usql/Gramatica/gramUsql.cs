@@ -57,7 +57,7 @@ namespace DBMS.Usql.Gramatica
 
             //StringLiteral valCaracter = new StringLiteral("valCaracter", "\'");
             StringLiteral valCadena = new StringLiteral("valCadena", "\'");
-            StringLiteral valCadena2 = new StringLiteral("valCadena", "\""); 
+            StringLiteral valCadena2 = new StringLiteral("valCadena", "\"");
 
 
 
@@ -728,7 +728,7 @@ namespace DBMS.Usql.Gramatica
                        | tNo + tNulo
                        | tAutoincrementable
                        | tLlave_primaria
-                       | tLlave_foranea + valId
+                       | tLlave_foranea + valId+ valId
                        | tUnico
                        ;
             /*
