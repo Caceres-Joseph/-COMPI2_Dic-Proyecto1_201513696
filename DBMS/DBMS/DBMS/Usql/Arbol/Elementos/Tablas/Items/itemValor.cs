@@ -117,7 +117,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         {
             setTypeFechaHora();
             this.valor = entrada;
-             
+
         }
         /** 
          * Convierte el valor en nulo
@@ -127,7 +127,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             this.tipo = "nulo";
             this.valor = null;
         }
-         
+
 
         CultureInfo enUS = new CultureInfo("en-US");
         public void convertirCadena(String cadena)
@@ -141,7 +141,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 this.tipo = "datetime";
                 //DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
 
-                DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy HH:mm:ss", enUS, DateTimeStyles.None);
+                DateTime oDate = DateTime.ParseExact(cadena, "dd-MM-yyyy HH:mm:ss", enUS, DateTimeStyles.None);
 
                 this.valor = oDate;
             }
@@ -151,18 +151,18 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 try
                 {
                     this.tipo = "date";
-                    DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime oDate = DateTime.ParseExact(cadena, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
                     this.valor = oDate;
                 }
                 catch (Exception e2)
                 {
-                 
-                        // Console.WriteLine("[itemValor]No es hora" + e3);
-                        this.tipo = "text";
-                        this.valor = cadena;
-                     
-                } 
+
+                    // Console.WriteLine("[itemValor]No es hora" + e3);
+                    this.tipo = "text";
+                    this.valor = cadena;
+
+                }
             }
         }
 
@@ -190,17 +190,24 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         | nulo
         | objeto 
         */
+
+          
         public Boolean getBooleano()
         {
-            try
+
+
+            //usando los metodos de parseo
+
+            object val = getValorParseado("bool");
+            if (val != null)
             {
-                return (Boolean)valor;
+                return (Boolean)val;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("[itemValor]getBooleano_No se puede parser el booleano");
-                return false;
-            }
+
+            Console.WriteLine("[itemValor]getBooleano_No se puede parser el booleano");
+            return false;
+
+
         }
 
 
@@ -208,57 +215,70 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         {
 
 
-            try
+            //usando los metodos de parseo
+
+            object val = getValorParseado("integer");
+            if (val != null)
             {
-                return (int)valor;
+                return (int)val;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("[itemValor]getEntero_No se puede parser el getEntero");
-                return 0;
-            }
+
+
+            Console.WriteLine("[itemValor]getEntero_No se puede parser el getEntero");
+            return 0;
+
         }
 
         public double getDecimal()
         {
-            try
+
+            //usando los metodos de parseo
+
+            object val = getValorParseado("double");
+            if (val != null)
             {
-                return (Double)valor;
+                return (Double)val;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("[itemValor]getDecimal_No se puede parser el getDecimal");
-                return 0.0;
-            }
+
+            Console.WriteLine("[itemValor]getDecimal_No se puede parser el getDecimal _final");
+            return 0.0;
         }
+
+
+
         public DateTime getFechaHora()
         {
 
-            try
+            //usando los metodos de parseo
+
+            object val = getValorParseado("datetime");
+            if (val != null)
             {
-                return (DateTime)valor;
+                return (DateTime)val;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("[itemValor]getFechaHora_No se puede parser el DateTime");
-                return new DateTime();
-            }
+
+
+            Console.WriteLine("[itemValor]getFechaHora_No se puede parser el DateTime");
+            return new DateTime();
+
         }
 
         public String getCadena()
         {
 
-            try
+            object val = getValorParseado("text");
+            if (val != null)
             {
-                return valor.ToString();
+                return (String)val;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("[itemValor]getString_No se puede parser el getCadena");
-                return "";
-            }
+
+
+            Console.WriteLine("[itemValor]getString_No se puede parser el getCadena");
+            return "";
+
         }
 
+         
         public objetoClase getObjeto()
         {
 
@@ -272,6 +292,104 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 return null;
             }
         }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Para usar en el parseo
+        |--------------------------------------------------------------------------
+        | text
+        | bool
+        | integer
+        | double
+        | date
+        | datetime 
+        | nulo
+        | objeto 
+        */
+
+
+        public Boolean getBooleano1()
+        {
+
+
+            try
+            {
+                return (Boolean)valor;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[itemValor]getBooleano_No se puede parser el booleano");
+                return false;
+            }
+
+        }
+
+
+        public int getEntero1()
+        {
+
+
+            try
+            {
+                return (int)valor;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[itemValor]getEntero_No se puede parser el getEntero");
+                return 0;
+            }
+
+        }
+
+        public double getDecimal1()
+        {
+
+            try
+            {
+                return (Double)valor;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[itemValor]getDecimal_No se puede parser el getDecimal");
+                Console.WriteLine(e.Message.ToString());
+                return 0.0;
+            }
+        }
+
+
+
+        public DateTime getFechaHora1()
+        {
+
+            try
+            {
+                return (DateTime)valor;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[itemValor]getFechaHora_No se puede parser el DateTime");
+                return new DateTime();
+            }
+
+        }
+
+        public String getCadena1()
+        {
+
+            try
+            {
+                return valor.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[itemValor]getString_No se puede parser el getCadena");
+                return "";
+            }
+
+        }
+ 
 
 
         /*
@@ -319,31 +437,31 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 if (isTypeCadena())
                 {
 
-                    println(getCadena());
+                    println(getCadena1());
                 }
                 else if (isTypeBooleano())
                 {
-                    println(getBooleano());
+                    println(getBooleano1());
                 }
                 else if (isTypeEntero())
                 {
-                    println(getEntero());
+                    println(getEntero1());
                 }
                 else if (isTypeDecimal())
                 {
-                    println(getDecimal());
+                    println(getDecimal1());
                 }
                 else if (isTypeFecha())
                 {
-                    println(getFechaHora());
+                    println(getFechaHora1());
                 }
                 else if (isTypeFechaHora())
                 {
-                    println(getFechaHora());
+                    println(getFechaHora1());
                 }
                 else if (isTypeHora())
                 {
-                    println(getFechaHora());
+                    println(getFechaHora1());
                 }
                 else if (isTypeNulo())
                 {
@@ -382,14 +500,19 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             switch (tipo)
             {
                 case "text":
+
+                    if (valor is DateTime)
+                    {
+
+                    }
                     if (isTypeFecha())
                     {
-                        return getFechaHora().ToString("dd/MM/yyy");
-                    } 
+                        return getFechaHora1().ToString("dd/MM/yyy");
+                    }
                     else
                     {
 
-                        return getCadena();
+                        return getCadena1();
                     }
 
 
@@ -397,11 +520,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 case "bool":
                     if (isTypeBooleano())
                     {
-                        return getBooleano();
+                        return getBooleano1();
                     }
                     else if (isTypeEntero())
                     {
-                        int entero = getEntero();
+                        int entero = getEntero1();
                         if (entero == 0)
                         {
                             return false;
@@ -418,11 +541,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     }
                     else if (isTypeCadena())
                     {
-                        if (getCadena().ToLower().Equals("vardadero") || getCadena().ToLower().Equals("true"))
+                        if (getCadena1().ToLower().Equals("vardadero") || getCadena1().ToLower().Equals("true"))
                         {
                             return true;
                         }
-                        else if (getCadena().ToLower().Equals("falso") || getCadena().ToLower().Equals("false"))
+                        else if (getCadena1().ToLower().Equals("falso") || getCadena1().ToLower().Equals("false"))
                         {
                             return false;
                         }
@@ -440,11 +563,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
                     if (isTypeEntero())
                     {
-                        return getEntero();
+                        return getEntero1();
                     }
                     else if (isTypeBooleano())
                     {
-                        if (getBooleano())
+                        if (getBooleano1())
                         {
                             return 1;
                         }
@@ -455,13 +578,13 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     }
                     else if (isTypeDecimal())
                     {
-                        return Convert.ToInt32(getDecimal());
+                        return Convert.ToInt32(getDecimal1());
                     }
                     else if (isTypeFechaHora() || isTypeFecha() || isTypeHora())
                     {
 
                         DateTime starDate = DateTime.ParseExact("01/01/2000 00:00:00", "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                        DateTime endDate = getFechaHora();
+                        DateTime endDate = getFechaHora1();
 
                         Double numDays = (endDate - starDate).Days;
                         return Convert.ToInt32(numDays);
@@ -475,7 +598,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                         }
                         catch (Exception e)
                         {
-                            println("error al parsear a entrero"  );
+                            println("error al parsear a entrero");
                             return null;
                         }
                     }
@@ -483,15 +606,15 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 case "double":
                     if (isTypeDecimal())
                     {
-                        return getDecimal();
+                        return getDecimal1();
                     }
                     else if (isTypeEntero())
                     {
-                        return Convert.ToDouble(getEntero());
+                        return Convert.ToDouble(getEntero1());
                     }
                     else if (isTypeBooleano())
                     {
-                        if (getBooleano())
+                        if (getBooleano1())
                         {
                             return 1.0;
                         }
@@ -508,7 +631,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
                         DateTime starDate = DateTime.ParseExact("01/01/2000 00:00:00", "dd/MM/yyyy hh:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                        DateTime endDate = getFechaHora();
+                        DateTime endDate = getFechaHora1();
 
                         Double numDays = (endDate - starDate).Days;
 
@@ -522,7 +645,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 case "date":
                     if (isTypeFecha())
                     {
-                        return getFechaHora();
+                        return getFechaHora1();
                     }
                     else
                     {
@@ -532,13 +655,13 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 case "datetime":
                     if (isTypeFechaHora())
                     {
-                        return getFechaHora();
+                        return getFechaHora1();
                     }
                     else
                     {
                         return null;
                     }
-                     
+
 
                 case "nulo":
                     //tengo que validar el tipo antes prro
@@ -590,7 +713,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public void setTypeFechaHora()
         {
             this.tipo = "datetime";
-        } 
+        }
         public void setTypeNulo()
         {
             this.tipo = "nulo";
@@ -674,7 +797,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public static String getTipoApartirDeString(String tipo)
         {
 
-             
+
             if (tipo.Equals("integer"))
             {
                 return tipo;
@@ -694,11 +817,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             else if (tipo.Equals("date"))
             {
                 return tipo;
-            }  
+            }
             else if (tipo.Equals("datetime"))
             {
                 return tipo;
-            } 
+            }
             else if (tipo.Equals("nulo"))
             {
                 return tipo;
@@ -741,7 +864,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                     break;
                 case "datetime":
                     setTypeFechaHora();
-                    break; 
+                    break;
                 case "nulo":
                     setTypeNulo();
                     break;
@@ -767,34 +890,52 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
         public Boolean isTypeCadena()
         {
-            if (this.tipo.Equals("text"))
+
+            if (valor is String)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
+             
         }
         public Boolean isTypeBooleano()
         {
-            if (this.tipo.Equals("bool"))
+            if(valor is Boolean)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
+
+
         }
         public Boolean isTypeEntero()
         {
-            if (this.tipo.Equals("integer"))
+
+            if (valor is  int)
+            {
                 return true;
-            else
-                return false;
+            }
+            return false;
+
         }
         public Boolean isTypeDecimal()
         {
-            if (this.tipo.Equals("double"))
+            if (valor is Double)
+            {
                 return true;
-            else
-                return false;
+            }
+            return false;
+
         }
         public Boolean isTypeFecha()
         {
+           
             if (this.tipo.Equals("date"))
                 return true;
             else
@@ -870,14 +1011,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
                 case "date":
-                    setValorDate(DateTime.Today); 
+                    setValorDate(DateTime.Today);
                     break;
                 case "datetime":
                     setValorDateTime(DateTime.Now);
                     break;
                 case "nulo":
                     setValor();
-                    break; 
+                    break;
 
                 default:
                     setValor();
