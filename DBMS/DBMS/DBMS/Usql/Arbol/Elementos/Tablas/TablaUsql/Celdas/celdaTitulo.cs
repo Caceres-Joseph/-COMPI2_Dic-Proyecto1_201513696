@@ -37,8 +37,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         }
 
         public void insertarModificador(token modificador)
-        {
-
+        { 
             switch (modificador.valLower)
             {
                 case "nulo":

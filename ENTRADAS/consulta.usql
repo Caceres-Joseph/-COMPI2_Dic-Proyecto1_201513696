@@ -1,0 +1,17 @@
+CREAR BASE_DATOS Ejemplo1;
+
+usar ejemplo1;
+   
+
+CREAR TABLA Proveedor(   
+INTEGER id Llave_Primaria Autoincrementable,   
+TEXT nombre No Nulo,   
+TEXT direccion No Nulo );   
+
+CREAR TABLA Producto(   
+INTEGER id Llave_Primaria Autoincrementable,   
+TEXT nombre No Nulo,   
+DOUBLE precio No Nulo,   
+INTEGER id_proveedor Llave_Foranea Proveedor id );  
+
+

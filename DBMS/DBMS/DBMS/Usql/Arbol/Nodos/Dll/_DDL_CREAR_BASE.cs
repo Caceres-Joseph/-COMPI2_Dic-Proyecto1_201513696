@@ -7,8 +7,7 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
-using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB;
-using DBMS.Usql.Arbol.Nodos.Expresion.E;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB; 
 
 namespace DBMS.Usql.Arbol.Nodos.Dll
 {

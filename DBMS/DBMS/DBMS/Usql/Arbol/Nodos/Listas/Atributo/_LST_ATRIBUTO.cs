@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 
 namespace DBMS.Usql.Arbol.Nodos.Listas.Atributo
 {
@@ -19,6 +20,24 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Atributo
 
 
 
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | PARA CREAR TABLAS
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        public List<celdaTitulo> getLstCeldas()
+        {
+            List<celdaTitulo> retorno = new List<celdaTitulo>();
+
+
+            foreach (_ATRIBUTO atrib in hijos)
+            {
+                retorno.Add(atrib.getCeldaTitulo());
+            }
+
+            return retorno;
+        }
 
     }
 }

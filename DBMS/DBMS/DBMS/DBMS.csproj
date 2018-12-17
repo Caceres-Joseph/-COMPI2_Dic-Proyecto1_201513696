@@ -226,6 +226,7 @@
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_OBJETO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dll\_DDL_CREAR_TABLA.cs" />
     <Compile Include="Usql\Arbol\Nodos\Inicio\_TIPO.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Listas\Atributo\_ARIBUTO1.cs" />
     <Compile Include="Usql\Arbol\Nodos\Listas\Atributo\_ATRIBUTO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Listas\Atributo\_LST_ATRIBUTO.cs" />
     <Compile Include="Usql\Arbol\Nodos\Listas\Parametro\_LST_PARAMETRO.cs" />

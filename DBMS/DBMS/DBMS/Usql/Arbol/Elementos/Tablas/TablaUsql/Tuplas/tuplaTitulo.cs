@@ -10,8 +10,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 {
     class tuplaTitulo
     {
-        tablaSimbolos tabla;
-        List<celdaTitulo> filaTitulo = new List<celdaTitulo>();
+        public tablaSimbolos tabla;
+        public List<celdaTitulo> filaTitulo = new List<celdaTitulo>();
        
 
         public tuplaTitulo(tablaSimbolos tabla)

@@ -110,7 +110,7 @@ namespace DBMS
         {
 
             anlzUsql analizador = new anlzUsql();
-            analizador.iniciarAnalisis(txtPlyCs.Text);
+            analizador.dibujarGrafo(txtPlyCs.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
