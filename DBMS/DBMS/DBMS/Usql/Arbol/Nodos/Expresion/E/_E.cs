@@ -270,11 +270,24 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                     retorno.setTypeNulo();
                     return retorno;
 
-                case "nada":
+                case "valDate":
+
                     retorno = new itemValor();
                     retorno.setTypeNulo();
-                    return retorno;
+                    if (lstAtributos.listaAtributos.Count==2)
+                        //es de tipo date time
+                    {
 
+
+                        retorno.convertirCadena(tok.tok.val+" "+lstAtributos.getValItem(1));
+                        return retorno;
+                    }
+                    else
+                    {
+
+                        retorno.convertirCadena(tok.tok.val);
+                        return retorno;
+                    }
                 default:
                     tablaSimbolos.tablaErrores.insertErrorSemantic("No se reconoce el tipo: " + tok.tok.val, tok.tok);
                     return retorno;
