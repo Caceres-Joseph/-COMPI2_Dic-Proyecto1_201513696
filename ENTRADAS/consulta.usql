@@ -2,7 +2,7 @@ CREAR BASE_DATOS Ejemplo1;
 
 usar ejemplo1;
    
-
+#Creando tablas
 CREAR TABLA Proveedor(   
 INTEGER id Llave_Primaria Autoincrementable,   
 TEXT nombre No Nulo,   
@@ -15,3 +15,11 @@ DOUBLE precio No Nulo,
 INTEGER id_proveedor Llave_Foranea Proveedor id );  
 
 
+#Insertando registros
+INSERTAR EN TABLA Proveedor  (1,"Juan", "Guatemala");  
+INSERTAR EN TABLA Proveedor  (2,"Pedro", "Quiche");  
+INSERTAR EN TABLA Proveedor(id, nombre, direccion) VALORES (1, "Luis" , "Chimal"); 
+
+INSERTAR EN TABLA Proveedor(nombre, dirEccion) VALORES ("Jhosef" , "Santiago");
+INSERTAR EN TABLA Proveedor(nombre, dirEccion) VALORES ("Froy" , "Quiche");
+ 

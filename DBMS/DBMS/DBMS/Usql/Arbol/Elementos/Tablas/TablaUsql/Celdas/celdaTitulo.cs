@@ -11,9 +11,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 
     class celdaTitulo
     {
-        token nombre;
-        String tipo = "";
-        List<int> modificadores;
+        public token nombre;
+        public int posEnColumna = -1;
+        public List<int> modificadores;
 
         tablaSimbolos tablaSimbolo;
         /*
@@ -28,7 +28,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         | 5 = LlaveForanea
         | 6 = Unico
         */
-         
+
         public celdaTitulo(tablaSimbolos tabla, token nombre)
         {
             this.nombre = nombre;
@@ -37,7 +37,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         }
 
         public void insertarModificador(token modificador)
-        { 
+        {
             switch (modificador.valLower)
             {
                 case "nulo":
@@ -61,8 +61,37 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
                 default:
                     modificadores.Add(7);
                     tablaSimbolo.tablaErrores.insertErrorSemantic("No se reconoce el complemento(modificador) de tipo:" + modificador.val, modificador);
-                    break; 
-            } 
+                    break;
+            }
         }
+
+
+        public Boolean esAutoincrementable()
+        {
+
+            foreach(int item in modificadores)
+            {
+                if (item == 3)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public Boolean esNoNulo()
+        {
+            foreach (int item in modificadores)
+            {
+                if (item == 2)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

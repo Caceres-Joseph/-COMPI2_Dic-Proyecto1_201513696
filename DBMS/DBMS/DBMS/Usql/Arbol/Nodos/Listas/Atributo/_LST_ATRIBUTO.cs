@@ -26,17 +26,14 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Atributo
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
-        public List<celdaTitulo> getLstCeldas()
-        {
-            List<celdaTitulo> retorno = new List<celdaTitulo>();
-
+        public void insertarCeldas(tuplaTitulo tuplaTitulo)
+        { 
 
             foreach (_ATRIBUTO atrib in hijos)
             {
-                retorno.Add(atrib.getCeldaTitulo());
-            }
+                tuplaTitulo.insertar(atrib.getCeldaTitulo());
 
-            return retorno;
+            }
         }
 
     }

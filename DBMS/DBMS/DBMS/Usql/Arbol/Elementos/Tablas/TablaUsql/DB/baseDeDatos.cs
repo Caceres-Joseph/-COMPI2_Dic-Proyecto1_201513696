@@ -16,7 +16,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB
 
         public baseDeDatos(token nombre, tablaSimbolos tablaSimbolos)
         {
-            this.tablaSimbolos= tablaSimbolos;
+            this.tablaSimbolos = tablaSimbolos;
             this.nombre = nombre;
 
         }
@@ -31,7 +31,23 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB
             else
             {
                 lstTablas.Add(nuevaTabla.nombre.valLower, nuevaTabla);
-            } 
+            }
+        }
+
+
+        public usqlTabla getTabla(token nombreTabla)
+        {
+
+
+            if (lstTablas.ContainsKey(nombreTabla.valLower))
+            {
+                return lstTablas[nombreTabla.valLower];
+            }
+
+            tablaSimbolos.tablaErrores.insertErrorSemantic("No se encontró la tabla con nombre:" + nombreTabla.val + " en la base de datos :" + nombre.val, nombreTabla);
+
+
+            return new usqlTabla(new token("temp"),null,tablaSimbolos);
         }
 
     }

@@ -62,7 +62,7 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
             //filas de la tabla
             tuplaTitulo tuplaTitulo = new tuplaTitulo(tablaSimbolos);
             _LST_ATRIBUTO atribs = (_LST_ATRIBUTO)hijos[0];
-            tuplaTitulo.filaTitulo = atribs.getLstCeldas();
+            atribs.insertarCeldas(tuplaTitulo);
 
             //creando la tabla
             usqlTabla nuevaTabla = new usqlTabla(idTabla, tuplaTitulo, tablaSimbolos);

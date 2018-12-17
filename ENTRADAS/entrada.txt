@@ -129,9 +129,37 @@ imprimir(@h);
 
 
 
+DECLARAR @f DATETIME =17-12-2018 03:23:00;
+DECLARAR @h DATE =17-12-2018;
+
+imprimir(@f);
+imprimir(@h);
+
 ######################################
 
+CREAR PROCEDIMIENTO funcionamientos_minimos (INTEGER @variable1, INTEGER @variable2){
 
+	imprimir(@variable1);
+	imprimir(@variable2);
+	
+	
+	SI(@variable1 > @variable2){
+		IMPRIMIR("variable 1 es mayor");
+	}SINO{
+		SI(@variable1 < @variable2){
+			IMPRIMIR("variable 2 es mayor");
+		}SINO{
+			IMPRIMIR("los prarmentros son iguales");
+		}
+	} 
+}
+
+imprimir("Funcionamientos minimos");
+funcionamientos_minimos((15+2/2)*2-10, 5+(28/4)*2);
+
+
+
+######################################
 
 
 
@@ -220,6 +248,10 @@ BORRAR EN TABLA estudiante DONDE nombre =="Jose Luis Martinez" && trabaja ==0;
 BORRAR EN TABLA estudiante;
 
 SELECCIONAR nombre, fh_nac DE estudiante DONDE id > 10 ORDENAR POR fh_nac; 
+
+
+
+
 SELECCIONAR * DE estudiante, asignacion DONDE estudiante.id == asignacion.id_estudiante;
 SELECCIONAR nombre, fh_nac DE estudiante DONDE id < 10;
 SELECCIONAR * DE estudiante;
