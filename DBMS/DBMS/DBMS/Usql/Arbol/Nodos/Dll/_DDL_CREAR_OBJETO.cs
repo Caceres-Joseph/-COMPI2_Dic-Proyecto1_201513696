@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 
 namespace DBMS.Usql.Arbol.Nodos.Dll
 {
@@ -19,6 +20,35 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
         {
         }
 
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | EJECUCIÓN FINAL
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+        public override itemRetorno ejecutar(elementoEntorno tablaEntornos)
+        /*
+        |---------------------------- 
+        | EJECUTAR 
+        |----------------------------
+        | 0= normal
+        | 1 = return;
+        | 2 = break
+        | 3 = continue
+        | 4 = errores
+        */
+        {
+
+            itemRetorno retorno = new itemRetorno(0);
+            if (hayErrores())
+                return retorno;
+
+
+            cargando();
+
+            return retorno;
+        }
 
         /*
         |-------------------------------------------------------------------------------------------------------------------
@@ -26,8 +56,13 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
-         
+
         public override void ejecutar()
+        {
+
+        }
+
+        public void cargando()
         {
 
             //aqui tengo qu crear una clase real
@@ -43,7 +78,7 @@ namespace DBMS.Usql.Arbol.Nodos.Dll
             elementoClase nuevaClase = new elementoClase(nombreClase, visibilidad, extender, hijos, tablaSimbolos);
             ejecutarHijos(nuevaClase); //aqui cargo ele elmento clase 
             //ahora lo ingreso a la tabla de simbolos
-            tablaSimbolos.lstClases.Add(nuevaClase); 
+            tablaSimbolos.lstClases.Add(nuevaClase);
         }
 
         public token getNombre()
