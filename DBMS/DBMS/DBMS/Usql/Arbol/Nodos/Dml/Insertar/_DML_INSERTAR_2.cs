@@ -49,6 +49,13 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Insertar
             if (hayErrores())
                 return retorno;
 
+            if (tablaSimbolos.listaBaseDeDatos.usar == null)
+            {
+                tablaSimbolos.tablaErrores.insertErrorSemantic("No se ha seleccionado una base de datos para realizar la operacion de insertar nueva tabla", lstAtributos.getToken(3));
+                return retorno;
+            }
+
+
             token idTabla = lstAtributos.getToken(3);
 
             //recuperando id
