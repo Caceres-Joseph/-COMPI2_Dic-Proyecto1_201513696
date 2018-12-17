@@ -113,7 +113,15 @@
     <Compile Include="Usql\Arbol\Elementos\Tablas\Objetos\objetoClase.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaEntornos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaErrores.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\tablaMensajesUsql.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\tablaSimbolos.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Celdas\celdaTitulo.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\baseDeDatos.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\lstBaseDeDatos.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\Tuplas\tablaTemp.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tupla.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaTitulo.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\usqlTabla.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Validar\validarTipos.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dcl\_DCL.cs" />
     <Compile Include="Usql\Arbol\Nodos\Dcl\_DCL_DENEGAR.cs" />

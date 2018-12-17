@@ -24,8 +24,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Listas
         {
             itemAtributo elem = new itemAtributo(tok, nombre);
             listaAtributos.Add(elem);
-
-            
+             
         }
         public String getValItem(int indice)
         {

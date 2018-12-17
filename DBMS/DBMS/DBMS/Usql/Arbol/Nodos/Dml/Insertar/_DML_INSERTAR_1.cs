@@ -9,6 +9,9 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Insertar
 {
     class _DML_INSERTAR_1 : nodoModelo
     {
+        /*
+         *  tInsertar + tEn + tTabla + valId + sAbreParent + LST_VALOR + sCierraParent;
+         */
         public _DML_INSERTAR_1(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }

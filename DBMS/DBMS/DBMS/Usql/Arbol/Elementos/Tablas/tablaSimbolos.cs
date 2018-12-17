@@ -2,6 +2,7 @@
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Listas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         //lista de objetos
         public lstObjetos listaObjetos;
 
+        //lista de base de datos
+        public lstBaseDeDatos listaBaseDeDatos;
+
+        //tabla para mensajes usql
+        public tablaMensajesUsql tablaMensajesUsql;
 
 
         public tablaSimbolos()
@@ -37,6 +43,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
             this.lstMetodo_funcion = new lstMetodo_funcion(this, "metodos_funciones"); 
             this.lstVariablesGlobales = new lstVariablesGlobales(this, "var_globales");
             this.listaObjetos = new lstObjetos(this);
+            this.listaBaseDeDatos = new lstBaseDeDatos(this);
+            this.tablaMensajesUsql = new tablaMensajesUsql();
 
         }
          
