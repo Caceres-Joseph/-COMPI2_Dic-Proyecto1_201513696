@@ -7,10 +7,11 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Nodos.Expresion.E_Logico;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeLogico
 {
-    class And : opModelo
+    class And : _E_AND
     {
         public And(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

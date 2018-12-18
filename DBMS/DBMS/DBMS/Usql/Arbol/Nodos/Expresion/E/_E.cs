@@ -173,7 +173,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
                             case "&&":
                                 And opeAnd = new And(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeAnd.opAnd("And", elmen);
+                                return opeAnd.andUsql("And", elmen, lstAtributos.getToken(0));
                             case "||":
                                 Or opeOr = new Or(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeOr.opOr("Or", elmen);
