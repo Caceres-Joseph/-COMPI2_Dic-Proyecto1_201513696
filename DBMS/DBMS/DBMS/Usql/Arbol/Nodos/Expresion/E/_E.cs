@@ -169,17 +169,16 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                                 MenorIgualQue opeMenorIgual = new MenorIgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeMenorIgual.opMenorIgualQue("Menor o Igual Que", elmen);
 
-                            //logicas
-
+                            //logicas 
                             case "&&":
                                 And opeAnd = new And(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeAnd.andUsql("And", elmen, lstAtributos.getToken(0));
                             case "||":
                                 Or opeOr = new Or(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeOr.opOr("Or", elmen);
+                                return opeOr.orUsql("Or", elmen, lstAtributos.getToken(0));
 
                             default:
-                                tablaSimbolos.tablaErrores.insertErrorSyntax("[E]No se reconoció el sigono", lstAtributos.getToken(0));
+                                tablaSimbolos.tablaErrores.insertErrorSyntax("[E]No se reconoció el signo", lstAtributos.getToken(0));
                                 return ob;
                         }
                     }

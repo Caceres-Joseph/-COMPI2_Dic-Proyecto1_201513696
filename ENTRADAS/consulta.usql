@@ -53,9 +53,11 @@ SELECCIONAR * DE Proveedor DONDE nombre==direccion;
 
 SELECCIONAR * DE Proveedor, Producto DONDE proveedor.id==producto.id_proveedor; 
 SELECCIONAR * DE Proveedor, Producto DONDE producto.id_proveedor==proveedor.id;
+
+
+SELECCIONAR * DE Producto DONDE id_proveedor == 1 && precio == 12.12;
+SELECCIONAR * DE Producto;
 *#
 
-
-SELECCIONAR * DE Producto DONDE id_proveedor==(1+0)&& precio==12.12,
- 
+SELECCIONAR * DE producto DONDE id_proveedor== 1 || id_proveedor==2;
 
