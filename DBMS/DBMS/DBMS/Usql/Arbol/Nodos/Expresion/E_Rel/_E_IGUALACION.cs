@@ -21,7 +21,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
         }
          
 
-        public itemValor igualacionUsql(String ambito, elementoEntorno elem)
+        public itemValor igualacionUsql(String ambito, elementoEntorno elem, token tokLinea)
         {
             itemValor retorno = new itemValor();
             itemValor val1 = hijo1.getValor(elem);
@@ -30,12 +30,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 
             if (val1 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + "Hijo1 es null", new token("--"));
+                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + "Hijo1 es null", tokLinea);
                 return retorno;
             }
             if (val2 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + " Hijo1 es null", new token("--"));
+                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + " Hijo1 es null", tokLinea);
                 return retorno;
             }
 
