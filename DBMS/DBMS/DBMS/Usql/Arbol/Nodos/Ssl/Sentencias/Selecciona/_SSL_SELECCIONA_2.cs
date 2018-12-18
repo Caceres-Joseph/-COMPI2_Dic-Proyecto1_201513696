@@ -77,6 +77,28 @@ namespace DBMS.Usql.Arbol.Nodos.Ssl.Sentencias.Selecciona
 
             _SSL_SEL_DEFECTO defecto = (_SSL_SEL_DEFECTO)getNodo("SSL_SEL_DEFECTO");
             retorno = defecto.ejecutar(entornoIf);
+
+
+
+            if (retorno.isRomper())
+            //este codigo sirve para eliminar el romper en los nodos, más arriba, y solo se quede en el case
+            {
+                return new itemRetorno(0);
+            }
+            else if (retorno.isRetorno())
+            {
+                return retorno;
+            }
+            else if (retorno.isContinuar())
+            {
+                return new itemRetorno(0);
+                //retorno = new itemRetorno(0);
+            }
+            else if (hayErrores())
+            {
+                return retorno;
+            }
+
             return retorno;
         }
 
