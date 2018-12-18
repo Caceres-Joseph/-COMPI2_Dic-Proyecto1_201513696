@@ -11,14 +11,43 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
     class tuplaTitulo
     {
         public tablaSimbolos tabla;
-        public Dictionary<String,celdaTitulo> filaTitulo = new Dictionary<String,celdaTitulo>();
-        int numColumna=0;
+        public Dictionary<String, celdaTitulo> filaTitulo = new Dictionary<String, celdaTitulo>();
+        int numColumna = 0;
 
         public tuplaTitulo(tablaSimbolos tabla)
         {
             this.tabla = tabla;
         }
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | PARA LA TABLA CARTESIANA
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+
+
+
+
+
+        public void concatenar(tuplaTitulo filaTitulo2, int indiceTabla)
+        {
+
+            foreach (KeyValuePair<string, celdaTitulo> entry in filaTitulo2.filaTitulo)
+            {
+                // do something with entry.Value or entry.Key
+                insertar(entry.Value, indiceTabla);
+            }
+        }
          
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | CONSULTA USQL
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
         public void insertarNuevaColumna(token nombreCol)
         {
 
@@ -33,7 +62,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             nuevaCelda.posEnColumna = numColumna++;
 
             filaTitulo.Add(nombreCol.valLower, nuevaCelda);
-            
+
         }
 
         public void insertar(celdaTitulo nuevaCelda)
@@ -50,15 +79,29 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         }
 
 
+        public void insertar(celdaTitulo nuevaCelda, int indice)
+        {
+
+            if (filaTitulo.ContainsKey(nuevaCelda.nombre.valLower))
+            {
+                tabla.tablaErrores.insertErrorSemantic("La columna:" + nuevaCelda.nombre.val + " ya existe, cambie el nombre", nuevaCelda.nombre);
+                return;
+            }
+
+            nuevaCelda.posEnColumna = numColumna++;
+            filaTitulo.Add(indice.ToString()+"||"+nuevaCelda.nombre.valLower, nuevaCelda);
+        }
+
+
         public celdaTitulo getCeldaIndex(int indice)
         {
-             
+
 
             foreach (KeyValuePair<string, celdaTitulo> entry in filaTitulo)
             {
                 // do something with entry.Value or entry.Key
 
-                if (entry.Value.posEnColumna==indice)
+                if (entry.Value.posEnColumna == indice)
                 {
                     return entry.Value;
                 }
@@ -72,7 +115,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         {
             Console.WriteLine("[tuplaTitulo]" + mensaje);
         }
-         
+
     }
 
 }

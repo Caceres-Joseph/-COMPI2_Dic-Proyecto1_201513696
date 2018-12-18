@@ -40,5 +40,6 @@ namespace DBMS.Globales
             this.linea = linea;
             this.columna = columna;
         }
+         
     }
 }

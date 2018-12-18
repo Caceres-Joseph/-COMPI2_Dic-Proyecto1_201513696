@@ -9,6 +9,13 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Seleccionar
 {
     class _DML_SELECCIONAR : nodoModelo
     {
+        /*
+         * 
+            //  ''' SELECCIONAR '''
+            DML_SELECCIONAR.Rule = DML_SELECCIONAR_P
+                                    | DML_SELECCIONAR_P + DML_ORDENAR
+                                    ;
+         */
         public _DML_SELECCIONAR(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }

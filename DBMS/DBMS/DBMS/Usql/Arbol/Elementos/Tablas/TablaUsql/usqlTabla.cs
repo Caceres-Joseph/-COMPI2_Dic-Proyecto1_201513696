@@ -18,9 +18,6 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         public tablaSimbolos tablaSimbolos;
 
 
-
-
-
         public usqlTabla(token nombre, tuplaTitulo titulo, tablaSimbolos tablaSimbolos)
         {
 
@@ -30,6 +27,54 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             this.filas = new List<tupla>();
         }
 
+        /*Constructor para la tablaCartesiana*/
+        public usqlTabla(usqlTabla tablaOrigen)
+        {
+            this.tablaSimbolos = tablaOrigen.tablaSimbolos;
+            this.titulo = new tuplaTitulo(tablaSimbolos);
+            this.nombre = tablaOrigen.nombre;
+            this.filas = tablaOrigen.filas;
+
+
+            tuplaTitulo nuevoTitulo = new tuplaTitulo(tablaSimbolos);
+            nuevoTitulo.filaTitulo = tablaOrigen.titulo.filaTitulo; 
+            this.titulo.concatenar(nuevoTitulo,0);
+
+            //colocando los valores
+           
+
+
+        }
+
+
+        /*
+        public usqlTabla(token nombre1, token nombre2, tuplaTitulo titulo1, tuplaTitulo titulo2, tablaSimbolos tablaSimbolos)
+        {
+
+            this.tablaSimbolos = tablaSimbolos;
+
+            ///uniendo los titulos
+            tuplaTitulo nuevoTitulo1 = new tuplaTitulo(tablaSimbolos);
+            nuevoTitulo1.filaTitulo = titulo1.filaTitulo;
+            nuevoTitulo1.asignarNombreTabla(0);
+
+            tuplaTitulo nuevoTitulo2 = new tuplaTitulo(tablaSimbolos);
+            nuevoTitulo2.filaTitulo = titulo2.filaTitulo;
+            nuevoTitulo1.asignarNombreTabla(0);
+
+
+            tuplaTitulo nuevaTupla = new tuplaTitulo(tablaSimbolos);
+            nuevaTupla.concatenar(nuevoTitulo1);
+            nuevaTupla.concatenar(nuevoTitulo2);
+
+
+            this.titulo = nuevaTupla;
+            //concateno nombres
+            this.nombre = new token(nombre1.val+"||"+nombre2.val);
+            //inicializo lista
+            this.filas = new List<tupla>();
+        }
+        */
 
         public void insertRow(tupla nuevaFila, token nombreTabla)
         {
@@ -132,14 +177,83 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             foreach (itemValor itemTupl in tuplaFinal.listaValores)
             { 
             }*/
-
-
-
-
-
+             
             filas.Add(tuplaFinal);
             numIndices++;
         }
+         
 
+        public void imprimir()
+        {
+
+            Console.WriteLine("===   TABLA === ");
+
+            //imprimiendo los titulos
+           
+            String[] tituloArr = new String[titulo.filaTitulo.Count];
+            int i = 0;
+            foreach (KeyValuePair<string, celdaTitulo> entry in titulo.filaTitulo)
+            {
+
+                tituloArr[i++] = entry.Key;
+            }
+            PrintRow(tituloArr);
+            Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
+
+            foreach (tupla item in filas)
+            {
+
+
+                String[] columna=new String[item.listaValores.Count];
+                int indice = 0;
+                foreach(itemValor it in item.listaValores)
+                {
+                    String cad = it.getCadena();
+                    columna[indice++] = cad;
+
+                }
+                PrintRow(columna);
+            }
+        }
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | CONSULTA USQL
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        static int tableWidth = 120;
+
+        static void PrintLine()
+        {
+            Console.WriteLine(new string('-', tableWidth));
+        }
+
+        static void PrintRow(params string[] columns)
+        {
+            int width = (tableWidth - columns.Length) / columns.Length;
+            string row = "|";
+
+            foreach (string column in columns)
+            {
+                row += AlignCentre(column, width) + "|";
+            }
+
+            Console.WriteLine(row);
+        }
+
+        static string AlignCentre(string text, int width)
+        {
+            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return new string(' ', width);
+            }
+            else
+            {
+                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
+            }
+        }
     }
 }

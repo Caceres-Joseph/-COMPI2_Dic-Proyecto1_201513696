@@ -118,6 +118,8 @@
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Celdas\celdaTitulo.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\baseDeDatos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\lstBaseDeDatos.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaCartesiana.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\usqlTablaCartesiana.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Tuplas\tablaTemp.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tupla.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaTitulo.cs" />

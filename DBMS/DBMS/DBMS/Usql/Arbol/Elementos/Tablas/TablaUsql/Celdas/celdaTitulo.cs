@@ -15,6 +15,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         public int posEnColumna = -1;
         public List<int> modificadores;
 
+
+        //para la tabla cartesiana
+        public int posTabla = -1;
         tablaSimbolos tablaSimbolo;
         /*
         |---------------------------- 
