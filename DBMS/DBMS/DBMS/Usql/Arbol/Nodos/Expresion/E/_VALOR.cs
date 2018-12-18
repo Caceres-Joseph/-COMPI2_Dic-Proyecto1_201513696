@@ -17,6 +17,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
         }
 
 
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | GET VALOR
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
         public itemValor getValor(elementoEntorno elementoEntor, token tipo)
         {
              
@@ -47,6 +53,32 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             nodoModelo hijo = hijos[0];
             _E ope = (_E)hijo;
             return ope.getValor(elementoEntor);
+        }
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | SELECT
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        public itemValor operarTabla(elementoEntorno elementoEntor)
+        {
+            itemValor retorno = new itemValor();
+            retorno.setTypeNulo();
+
+
+
+            if (hayErrores())
+                return retorno;
+            nodoModelo hijo = hijos[0];
+            _E ope = (_E)hijo;
+
+            //envio al primer nodo la tabla
+            ope.tablaCartesiana = elementoEntor.tablaFrom;
+
+            return ope.operarTabla(elementoEntor);
+
         }
     }
 }

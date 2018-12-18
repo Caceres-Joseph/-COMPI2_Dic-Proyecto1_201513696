@@ -7,7 +7,6 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
-using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeLogico;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
@@ -16,25 +15,19 @@ using DBMS.Usql.Arbol.Nodos.Ssl.Nativas;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 {
-    class _E : _E_PADRE
+    class _E_PADRE:nodoModelo
     {
-        /*
-         * tablaActual
-         */
-        public usqlTablaCartesiana tablaCartesiana;
-
-        public _E(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
+        public _E_PADRE(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
 
         /*
         |-------------------------------------------------------------------------------------------------------------------
-        | SELECT
+        | GET VALOR
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
-
-        public itemValor operarTabla(elementoEntorno elmen)
+        public itemValor getValor(elementoEntorno elmen)
         {
             itemValor ob = new itemValor();
             ob.setTypeNulo();
@@ -152,7 +145,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                             //Relacional
                             case "==":
                                 IgualQue opeIgualacion = new IgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeIgualacion.igualacionUsql("Igualación", elmen);
+                                return opeIgualacion.opIgualacion("Igualación", elmen);
                             case "!=":
                                 DiferenteQue opeDiferenciacion = new DiferenteQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeDiferenciacion.opDiferenciacion("Diferenciación", elmen);
@@ -191,7 +184,118 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                 default:
                     return ob;
             }
+
+
         }
 
+
+        public itemValor parseandoDato(itemAtributo tok)
+        {
+            itemValor retorno = new itemValor();
+            retorno.setTypeNulo();
+
+            if (hayErrores())
+                return retorno;
+
+            switch (tok.nombretoken)
+            {
+                case "valBoolean":
+                    retorno = new itemValor();
+                    retorno.setTypeBooleano();
+                    switch (tok.tok.valLower)
+                    {
+                        case "false":
+                            retorno.valor = false;
+                            return retorno;
+                        case "true":
+                            retorno.valor = true;
+                            return retorno;
+                        case "verdadero":
+                            retorno.valor = true;
+                            return retorno;
+                        case "falso":
+                            retorno.valor = false;
+                            return retorno;
+                        default:
+                            tablaSimbolos.tablaErrores.insertErrorSemantic("No se puede parser a booleano el tipo:" + tok.tok.val, tok.tok);
+                            return retorno;
+                    }
+                case "valCaracter":
+                    retorno = new itemValor();
+                    retorno.setTypeNulo();
+                    retorno.convertirCadena(tok.tok.valLower);
+
+                    return retorno;
+                case "valCadena":
+
+
+                    retorno = new itemValor();
+                    retorno.setTypeNulo();
+                    retorno.convertirCadena(tok.tok.val);
+                    return retorno;
+                case "valCadena2":
+
+
+                    retorno = new itemValor();
+                    retorno.setTypeNulo();
+                    retorno.convertirCadena(tok.tok.val);
+                    return retorno;
+                case "valNumero":
+                    try
+                    {
+                        retorno = new itemValor();
+                        retorno.setTypeEntero();
+                        retorno.valor = int.Parse(tok.tok.valLower);
+                        return retorno;
+                    }
+                    catch (FormatException e)
+                    {
+                        tablaSimbolos.tablaErrores.insertErrorSemantic("No se pudo parsear a entero el valor: " + tok.tok.val, tok.tok);
+                        return retorno;
+                    }
+                case "valDecimal":
+                    try
+                    {
+                        retorno = new itemValor();
+                        retorno.setTypeDecimal();
+                        retorno.valor = double.Parse(tok.tok.valLower);
+                        return retorno;
+                    }
+                    catch (FormatException e)
+                    {
+                        tablaSimbolos.tablaErrores.insertErrorSemantic("No se pudo parsear a decimal el valor: " + tok.tok.val, tok.tok);
+                        return retorno;
+                    }
+                case "nulo":
+                    retorno = new itemValor();
+                    retorno.setTypeNulo();
+                    return retorno;
+
+                case "valDate":
+
+                    retorno = new itemValor();
+                    retorno.setTypeNulo();
+                    if (lstAtributos.listaAtributos.Count == 2)
+                    //es de tipo date time
+                    {
+
+
+                        retorno.convertirCadena(tok.tok.val + " " + lstAtributos.getValItem(1));
+                        return retorno;
+                    }
+                    else
+                    {
+
+                        retorno.convertirCadena(tok.tok.val);
+                        return retorno;
+                    }
+                default:
+                    tablaSimbolos.tablaErrores.insertErrorSemantic("No se reconoce el tipo: " + tok.tok.val, tok.tok);
+                    return retorno;
+
+            }
+
+            //return retorno;
+        }
     }
 }

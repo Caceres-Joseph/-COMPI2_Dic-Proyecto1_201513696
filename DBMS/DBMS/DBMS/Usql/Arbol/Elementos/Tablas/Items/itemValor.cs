@@ -1,6 +1,7 @@
 ﻿
 using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,6 +18,54 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         |--------------------------------------------------------------------------
         | Tipos que soporta el lenguaje
         |--------------------------------------------------------------------------
+        |
+        |
+        |
+        |
+        */
+        public token nombreCartTabla;
+        public token nombreCartColumna;
+        public usqlTablaCartesiana tablaCartesiana;
+
+        public void setCartColumna(token nombre)
+        {
+            nombreCartColumna = nombre;
+            this.tipo = "nombreCartColumna";
+        }
+
+
+        public void setCartTablaColumna(token tabla, token columna)
+        {
+
+            nombreCartTabla = tabla;
+            nombreCartColumna = columna;
+            this.tipo = "nombreCartTablaColumna";
+        }
+        /*
+         * Booleanos
+         */
+
+        public Boolean isTypeCartTablaColumna()
+        {
+            if (tipo.Equals("nombreCartTablaColumna"))
+            {
+                return true;
+            }
+            return false;
+        }
+        public Boolean isTypeCartColumna()
+        {
+            if (tipo.Equals("nombreCartColumna"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Tipos que soporta el lenguaje
+        |--------------------------------------------------------------------------
         | text
         | bool
         | integer
@@ -24,7 +73,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         | date
         | datetime 
         | nulo
-        | objeto 
+        | objeto  
         */
 
 
@@ -191,7 +240,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         | objeto 
         */
 
-          
+
         public Boolean getBooleano()
         {
 
@@ -278,7 +327,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
         }
 
-         
+
         public objetoClase getObjeto()
         {
 
@@ -389,7 +438,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             }
 
         }
- 
+
 
 
         /*
@@ -899,11 +948,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             {
                 return false;
             }
-             
+
         }
         public Boolean isTypeBooleano()
         {
-            if(valor is Boolean)
+            if (valor is Boolean)
             {
                 return true;
             }
@@ -917,7 +966,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public Boolean isTypeEntero()
         {
 
-            if (valor is  int)
+            if (valor is int)
             {
                 return true;
             }
@@ -935,7 +984,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         }
         public Boolean isTypeFecha()
         {
-           
+
             if (this.tipo.Equals("date"))
                 return true;
             else

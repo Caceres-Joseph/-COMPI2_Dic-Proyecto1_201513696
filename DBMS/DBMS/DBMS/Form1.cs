@@ -170,13 +170,52 @@ namespace DBMS
 
             tablaPrueba.selectAll();
             */
-
+            funcionamientos_minimos((15 + 2 / 2) * 2 - 10, 5 + (28 / 4) * 2);
 
         }
 
         public void pruebaLinq2()
         {
 
+
+        }
+
+        public void funcionamientos_minimos(int var1, int var2)
+        {
+            int contador = 0;
+            Boolean bandera = (((5 > 10) || (15 < 25)) && (contador == 0));
+            Console.WriteLine("bandera");
+            Console.WriteLine(bandera);
+            while ((contador >= 0) && ((contador < 10) || (bandera == false)))
+            {
+                if (contador>5)
+                {
+                    Console.WriteLine("salida de minetras [6-9]:" + contador);
+                }
+                switch (contador)
+                {
+                    case 6:
+                        Console.WriteLine("seis");
+                        break;
+
+                    case 7:
+                        Console.WriteLine("siete");
+                        break;
+
+                    case 8:
+                        Console.WriteLine("ocho");
+                        break;
+
+                    case 9:
+                        Console.WriteLine("nueve");
+                        break;
+                    default:
+                        Console.WriteLine("defecto");
+                        break;
+
+                }
+                contador++;
+            }
 
         }
 

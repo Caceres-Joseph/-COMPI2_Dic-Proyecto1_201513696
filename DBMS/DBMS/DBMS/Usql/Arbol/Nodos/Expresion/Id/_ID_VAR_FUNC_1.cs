@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
@@ -78,9 +79,18 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.Id
 
 
             itemValor destino1 = nodo1.getValor(elementoEntorno);
-            itemValor destino2 = nodo2.getValor(elementoEntorno, destino1);
 
+            //verificando si es columna
+            if (destino1.isTypeCartColumna())
+            {
+                itemValor retorno = new itemValor();
+                token id2 = nodo2.lstAtributos.getToken(1); 
+                retorno.setCartTablaColumna(destino1.nombreCartColumna, id2);
 
+                return retorno; 
+            }
+
+            itemValor destino2 = nodo2.getValor(elementoEntorno, destino1); 
             return destino2;
 
         }

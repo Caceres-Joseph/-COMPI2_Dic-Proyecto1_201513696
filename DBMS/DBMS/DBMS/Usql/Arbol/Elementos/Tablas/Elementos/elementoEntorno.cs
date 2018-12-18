@@ -1,6 +1,7 @@
 ﻿
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.Objetos;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,10 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Elementos
         public Dictionary<String, itemEntorno> lstEntorno;
         public elementoEntorno anterior;
         public tablaSimbolos tabla;
-        public String nombre; 
+        public String nombre;
+
+        public usqlTablaCartesiana tablaFrom;
+
 
         public elementoEntorno(elementoEntorno anterior, tablaSimbolos tabla, String nombre)
         { 

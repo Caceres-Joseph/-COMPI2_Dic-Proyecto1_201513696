@@ -187,6 +187,7 @@
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\opModelo.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\opRelacional.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\_E.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Expresion\E\_E_PADRE.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\_VALOR.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E_Aritmetic\_E_DIV.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E_Aritmetic\_E_MAS.cs" />

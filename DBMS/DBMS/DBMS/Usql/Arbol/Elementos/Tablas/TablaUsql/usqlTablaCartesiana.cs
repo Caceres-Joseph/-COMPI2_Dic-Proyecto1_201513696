@@ -15,7 +15,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql
         /*
          * Lista de tablas concatenadas
          */
-        List<token> listaNombreTablas = new List<token>();
+       public List<token> listaNombreTablas = new List<token>();
 
         /*
          * Constructor
@@ -23,6 +23,15 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql
         public usqlTablaCartesiana(usqlTabla tablaOrigen) : base(tablaOrigen)
         { 
         }
+
+        /*
+        * Constructor para copia
+        */
+        public usqlTablaCartesiana(usqlTabla tablaOrigen, int indice) : base(tablaOrigen, indice)
+        {
+        }
+
+
 
 
         /*
@@ -56,6 +65,24 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql
             listaNombreTablas.Add(tabla2.nombre);
         }
 
+        /*
+         * Indice nombre de tabla
+         */
+
+        public int getIndiceDeTabla(token tok)
+        {
+            int retorno = 0;
+            foreach(token item in listaNombreTablas)
+            {
+                if (tok.valLower.Equals(item.valLower))
+                {
+                    return retorno;
+                }
+                retorno++;
+            }
+            tablaSimbolos.tablaErrores.insertErrorSemantic("No existe la tabla:" + tok.val, tok);
+            return -1;
+        }
 
     }
 

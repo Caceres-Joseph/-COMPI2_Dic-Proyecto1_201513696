@@ -37,13 +37,20 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 
 
             tuplaTitulo nuevoTitulo = new tuplaTitulo(tablaSimbolos);
-            nuevoTitulo.filaTitulo = tablaOrigen.titulo.filaTitulo; 
-            this.titulo.concatenar(nuevoTitulo,0);
+            nuevoTitulo.filaTitulo = tablaOrigen.titulo.filaTitulo;
+            this.titulo.concatenar(nuevoTitulo, 0);
+            //colocando los valores 
+        }
 
-            //colocando los valores
-           
-
-
+    
+        /*Constructor para una copia  de tablaCartesiana*/
+        public usqlTabla(usqlTabla tablaOrigen, int indice)
+        {
+            this.tablaSimbolos = tablaOrigen.tablaSimbolos;
+            this.titulo = tablaOrigen.titulo;
+            this.nombre = tablaOrigen.nombre;
+            this.filas = tablaOrigen.filas;
+            
         }
 
 
@@ -195,7 +202,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             foreach (KeyValuePair<string, celdaTitulo> entry in titulo.filaTitulo)
             {
 
-                tituloArr[i++] = entry.Key;
+                tituloArr[i++] = "["+entry.Key.Replace("||","]");
             }
             PrintRow(tituloArr);
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");

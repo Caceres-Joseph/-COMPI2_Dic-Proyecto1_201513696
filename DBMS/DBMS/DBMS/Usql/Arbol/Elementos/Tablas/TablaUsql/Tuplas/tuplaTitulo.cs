@@ -75,7 +75,18 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             }
 
             nuevaCelda.posEnColumna = numColumna++;
-            filaTitulo.Add(nuevaCelda.nombre.valLower, nuevaCelda);
+            
+
+            String clave = nuevaCelda.nombre.valLower;
+
+            if (filaTitulo.ContainsKey(clave))
+            {
+                println("ERROR ya hay un registro con el mismo valor ___");
+            }
+            else
+            {
+                filaTitulo.Add(nuevaCelda.nombre.valLower, nuevaCelda);
+            }
         }
 
 
@@ -89,7 +100,17 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             }
 
             nuevaCelda.posEnColumna = numColumna++;
-            filaTitulo.Add(indice.ToString()+"||"+nuevaCelda.nombre.valLower, nuevaCelda);
+            String clave = indice.ToString() + "||" + nuevaCelda.nombre.valLower;
+
+            if (filaTitulo.ContainsKey(clave))
+            {
+                println("ERROR ya hay un registro con el mismo valor");
+            }
+            else
+            {
+
+                filaTitulo.Add(indice.ToString() + "||" + nuevaCelda.nombre.valLower, nuevaCelda);
+            }
         }
 
 
