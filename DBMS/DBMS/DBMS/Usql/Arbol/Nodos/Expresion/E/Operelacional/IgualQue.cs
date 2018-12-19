@@ -498,7 +498,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
         /*
         |-------------------------------------------------------------------------------------------------------------------
-        | EJECUCIÓN FINAL
+        | PARA EL CASE
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
@@ -873,9 +873,9 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
 
                 else if (val1.isTypeNulo() && val2.isTypeNulo())
-                { 
-                    retorno.setValue(true); 
-                    
+                {
+                    retorno.setValue(true);
+
 
 
                     println("Si se recoocieron los tipos");
@@ -909,11 +909,17 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
             return retorno;
         }
 
+
+
+
         public void println(String mensaje)
         {
-           // Console.WriteLine("[igualQue]" + mensaje);
+            // Console.WriteLine("[igualQue]" + mensaje);
         }
 
 
     }
+
+
+
 }

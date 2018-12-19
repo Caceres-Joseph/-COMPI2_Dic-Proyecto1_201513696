@@ -12,5 +12,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Aritmetic
         public _E_DIV(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
+
+
     }
 }

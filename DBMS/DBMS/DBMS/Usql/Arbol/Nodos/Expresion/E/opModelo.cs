@@ -112,5 +112,19 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
         }
 
 
+
+
+        public itemValor getTablaFinal(IList<tupla> concatList, usqlTablaCartesiana tempTabla)
+        {
+            itemValor retorno = new itemValor();
+
+            tempTabla.filas = concatList;
+            tempTabla.numIndices = concatList.Count;
+            retorno.setValor(true);
+            retorno.tablaCartesiana = tempTabla;
+            return retorno;
+        }
+
+
     }
 }

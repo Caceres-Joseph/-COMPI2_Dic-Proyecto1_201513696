@@ -187,6 +187,8 @@
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\opLogico.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\opModelo.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\opRelacional.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Expresion\E\Oprelacional2\SelectIgualQue.cs" />
+    <Compile Include="Usql\Arbol\Nodos\Expresion\E\Oprelacional2\SelectMayorQue.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\_E.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\_E_PADRE.cs" />
     <Compile Include="Usql\Arbol\Nodos\Expresion\E\_VALOR.cs" />

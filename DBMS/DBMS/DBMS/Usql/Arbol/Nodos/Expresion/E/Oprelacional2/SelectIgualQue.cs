@@ -1,40 +1,41 @@
-﻿using System;
+﻿using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DBMS.Globales;
-using DBMS.Usql.Arbol.Elementos.Tablas;
-using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
-using DBMS.Usql.Arbol.Elementos.Tablas.Items;
-using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 
-namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
+namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2
 {
-    class MayorQue : _E_MAYOR_QUE
+    class SelectIgualQue
     {
-        public MayorQue(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
-        {
-        }
 
 
-        public itemValor opMayorQue(String ambito, elementoEntorno elem)
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | PARA EL SELECT
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+         
+        public itemValor opIgualacionSelect(itemValor val1, itemValor val2, String ambito)
         {
             itemValor retorno = new itemValor();
-            itemValor val1 = hijo1.getValor(elem);
-            itemValor val2 = hijo2.getValor(elem);
 
+            retorno.setValor(false);
 
             if (val1 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + "Hijo1 es null", new token("--"));
                 return retorno;
             }
             if (val2 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + " Hijo1 es null", new token("--"));
                 return retorno;
             }
+
+
 
             try
             {
@@ -44,17 +45,24 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 |--------------------------------------------------------------------------
                 */
                 /*
-                 *Booleano > Booleano 
+                 *Booleano == Booleano 
                  */
                 if (val1.isTypeBooleano() && val2.isTypeBooleano())
                 {
 
-                    tabla.tablaErrores.insertErrorSemantic("No se pueden comparar valores booleanos  [" + ambito + "] " + val1.getTipo() + " == " + val2.getTipo(), signo);
+                    if (val1.getBooleano() == val2.getBooleano())
+                    {
+                        retorno.setValue(true);
+                    }
+                    else
+                    {
+                        retorno.setValue(false);
+                    }
                     return retorno;
                 }
 
                 /*
-                 *Booleano > Entero 
+                 *Booleano == Entero 
                  */
 
                 else if (val1.isTypeBooleano() && val2.isTypeEntero())
@@ -70,7 +78,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                         entero1 = 0;
 
 
-                    if (entero1 > val2.getEntero())
+                    if (entero1 == val2.getEntero())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -81,7 +89,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
 
                 /*
-                 *Booleano > Decimal 
+                 *Booleano == Decimal 
                  */
 
                 else if (val1.isTypeBooleano() && val2.isTypeDecimal())
@@ -96,7 +104,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                     else
                         entero1 = 0.0;
 
-                    if (entero1 > val2.getDecimal())
+                    if (entero1 == val2.getDecimal())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -106,7 +114,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
 
                 /*
-                 *Booleano > Cadena  
+                 *Booleano == Cadena  
                  */
 
                 else if (val1.isTypeBooleano() && val2.isTypeCadena())
@@ -121,7 +129,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                     else
                         entero1 = 0;
 
-                    if (entero1 > val2.getCadena().Length)
+                    if (entero1 == val2.getCadena().Length)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -136,7 +144,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 |--------------------------------------------------------------------------
                 */
                 /*
-                 *Entero > Booleano  
+                 *Entero == Booleano  
                  */
 
                 else if (val1.isTypeEntero() && val2.isTypeBooleano())
@@ -149,7 +157,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                     else
                         entero2 = 0;
 
-                    if (val1.getEntero() > entero2)
+                    if (val1.getEntero() == entero2)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -158,12 +166,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Entero > Entero  
+                 *Entero == Entero  
                  */
 
                 else if (val1.isTypeEntero() && val2.isTypeEntero())
                 {
-                    if (val1.getEntero() > val2.getEntero())
+                    if (val1.getEntero() == val2.getEntero())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -172,7 +180,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
 
                 /*
-                 *Entero > Decimal  
+                 *Entero == Decimal  
                  */
 
                 else if (val1.isTypeEntero() && val2.isTypeDecimal())
@@ -184,7 +192,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 
                     int valInt2 = (int)Math.Truncate(num2);
 
-                    if (val1.getEntero() > valInt2)
+                    if (val1.getEntero() == valInt2)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -192,14 +200,14 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Entero > Cadena 
+                 *Entero == Cadena 
                  * 
                  */
 
                 else if (val1.isTypeEntero() && val2.isTypeCadena())
                 {
 
-                    if (val1.getEntero() > val2.getCadena().Length)
+                    if (val1.getEntero() == val2.getCadena().Length)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -226,7 +234,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                     else
                         entero2 = 0;
 
-                    if (val1.getCadena().Length > entero2)
+                    if (val1.getCadena().Length == entero2)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -234,7 +242,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Cadena > Numerico 
+                 *Cadena == Numerico 
                  */
 
 
@@ -242,20 +250,20 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 {
 
 
-                    if (val1.getCadena().Length > val2.getEntero())
+                    if (val1.getCadena().Length == val2.getEntero())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
                     return retorno;
                 }
                 /*
-                 *Cadena > Decimal  
+                 *Cadena == Decimal  
                  */
 
                 else if (val1.isTypeCadena() && val2.isTypeDecimal())
                 {
 
-                    if (val1.getCadena().Length > val2.getDecimal())
+                    if (val1.getCadena().Length == val2.getDecimal())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -263,12 +271,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Cadena > Cadena 
+                 *Cadena == Cadena 
                  */
                 else if (val1.isTypeCadena() && val2.isTypeCadena())
                 {
 
-                    if (val1.getCadena().Length > val2.getCadena().Length)
+                    if (val1.getCadena().Equals(val2.getCadena()))
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -281,7 +289,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 |--------------------------------------------------------------------------
                 */
                 /*
-                 *Decimal > Booleano 
+                 *Decimal == Booleano 
                  */
 
                 else if (val1.isTypeDecimal() && val2.isTypeBooleano())
@@ -294,7 +302,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                     else
                         entero2 = 0.0;
 
-                    if (val1.getDecimal() > entero2)
+                    if (val1.getDecimal() == entero2)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -303,14 +311,14 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Decimal > Numerico 
+                 *Decimal == Numerico 
                  */
 
                 else if (val1.isTypeDecimal() && val2.isTypeEntero())
                 {
                     int valInt1 = (int)Math.Truncate(val1.getDecimal());
 
-                    if (valInt1 > val2.getEntero())
+                    if (valInt1 == val2.getEntero())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -318,12 +326,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Decimal > Cadena 
+                 *Decimal == Cadena 
                  */
 
                 else if (val1.isTypeDecimal() && val2.isTypeCadena())
                 {
-                    if (val1.getDecimal() > val2.getCadena().Length)
+                    if (val1.getDecimal() == val2.getCadena().Length)
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -331,12 +339,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 }
 
                 /*
-                 *Decimal > Decimal 
+                 *Decimal == Decimal 
                  */
 
                 else if (val1.isTypeDecimal() && val2.isTypeDecimal())
                 {
-                    if (val1.getDecimal() > val2.getDecimal())
+                    if (val1.getDecimal() == val2.getDecimal())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
@@ -350,29 +358,54 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 |--------------------------------------------------------------------------
                 */
                 /*
-                 *FechaHora > Fecha 
+                 *FechaHora == Fecha 
                  */
 
                 else if ((val1.isTypeFechaHora() || val1.isTypeFecha() || val1.isTypeHora()) && (val2.isTypeFechaHora() || val2.isTypeFecha() || val2.isTypeHora()))
                 {
-                    if (val1.getDecimal() > val2.getDecimal())
+                    if (val1.getFechaHora() == val2.getFechaHora())
                         retorno.setValue(true);
                     else
                         retorno.setValue(false);
                     return retorno;
                 }
-                 
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | NULO
+                |--------------------------------------------------------------------------
+                */
+                /*
+                 *Nulo == Nulo 
+                 */
+
+
+                else if (val1.isTypeNulo() && val2.isTypeNulo())
+                {
+                    retorno.setValue(true);
+
+
+
+                    return retorno;
+                }
+
                 else
                 {
-                    tabla.tablaErrores.insertErrorSemantic("No se pueden operar [" + ambito + "] " + val1.getTipo() + " con " + val2.getTipo(), signo);
+
+                    if (val1.valor.Equals(val2.valor))
+                        retorno.setValue(true);
+                    else
+                        retorno.setValue(false);
+                    return retorno;
+
                 }
             }
             catch (Exception)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmeticaSuma]No se pudo efectuar [" + ambito + " ]", signo);
-            }
 
-            return retorno;
+                return retorno;
+            }
         }
     }
 }

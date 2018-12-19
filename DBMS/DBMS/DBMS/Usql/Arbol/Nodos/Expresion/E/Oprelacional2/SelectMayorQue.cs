@@ -3,38 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DBMS.Globales;
-using DBMS.Usql.Arbol.Elementos.Tablas;
-using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
+
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
-using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 
-namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
+namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2
 {
-    class MayorQue : _E_MAYOR_QUE
+    class SelectMayorQue
     {
-        public MayorQue(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
-        {
-        }
 
 
-        public itemValor opMayorQue(String ambito, elementoEntorno elem)
+        public itemValor opMayorQue(itemValor val1, itemValor val2, String ambito)
         {
+
             itemValor retorno = new itemValor();
-            itemValor val1 = hijo1.getValor(elem);
-            itemValor val2 = hijo2.getValor(elem);
+
 
 
             if (val1 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + "Hijo1 es null", new token("--"));
                 return retorno;
             }
             if (val2 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + " Hijo1 es null", new token("--"));
                 return retorno;
             }
+
 
             try
             {
@@ -49,7 +42,6 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                 if (val1.isTypeBooleano() && val2.isTypeBooleano())
                 {
 
-                    tabla.tablaErrores.insertErrorSemantic("No se pueden comparar valores booleanos  [" + ambito + "] " + val1.getTipo() + " == " + val2.getTipo(), signo);
                     return retorno;
                 }
 
@@ -361,18 +353,16 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
                         retorno.setValue(false);
                     return retorno;
                 }
-                 
                 else
                 {
-                    tabla.tablaErrores.insertErrorSemantic("No se pueden operar [" + ambito + "] " + val1.getTipo() + " con " + val2.getTipo(), signo);
+                    return retorno;
                 }
             }
             catch (Exception)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmeticaSuma]No se pudo efectuar [" + ambito + " ]", signo);
+                return retorno;
             }
-
-            return retorno;
         }
+
     }
 }
