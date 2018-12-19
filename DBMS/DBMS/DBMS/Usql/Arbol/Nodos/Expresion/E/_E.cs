@@ -96,13 +96,11 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
                             case "!":
                                 Not opeNot = new Not(hijos[0], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeNot.opNot("Not", elmen);
-
+                                return opeNot.notUsql("Not", elmen, lstAtributos.getToken(0));
                             case "(":
                                 _E ope = (_E)hijos[0];
                                 itemValor te = ope.getValor(elmen);
                                 return te;
-
                             default:
                                 tablaSimbolos.tablaErrores.insertErrorSyntax("[E]No se reconoció el signo", lstAtributos.getToken(0));
                                 return ob;
