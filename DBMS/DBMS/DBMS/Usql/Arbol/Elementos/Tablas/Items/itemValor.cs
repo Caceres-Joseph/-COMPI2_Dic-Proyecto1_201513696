@@ -274,8 +274,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
             Console.WriteLine("[itemValor]getEntero_No se puede parser el getEntero");
-            return 0;
-
+            return 0; 
         }
 
         public double getDecimal()

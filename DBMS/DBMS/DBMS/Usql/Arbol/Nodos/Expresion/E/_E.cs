@@ -152,22 +152,22 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                             //Relacional
                             case "==":
                                 IgualQue opeIgualacion = new IgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeIgualacion.igualacionUsql("Igualación", elmen);
+                                return opeIgualacion.igualacionUsql("Igualación", elmen, lstAtributos.getToken(0));
                             case "!=":
                                 DiferenteQue opeDiferenciacion = new DiferenteQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeDiferenciacion.opDiferenciacion("Diferenciación", elmen);
+                                return opeDiferenciacion.diferenciacionUsql("Diferenciación", elmen, lstAtributos.getToken(0));
                             case ">":
                                 MayorQue opeMayor = new MayorQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeMayor.opMayorQue("Mayor Que", elmen);
+                                return opeMayor.mayorQueUsql("Mayor Que", elmen, lstAtributos.getToken(0));
                             case ">=":
                                 MayorIgualQue opeMayorIgual = new MayorIgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeMayorIgual.opMayorIgualQue("Mayor o Igual Que", elmen);
+                                return opeMayorIgual.mayorIgualQueUsql("Mayor o Igual Que", elmen, lstAtributos.getToken(0));
                             case "<":
                                 MenorQue opeMenor = new MenorQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeMenor.opMenorQue("Menor Que", elmen);
+                                return opeMenor.menorQueUsql("Menor Que", elmen, lstAtributos.getToken(0));
                             case "<=":
                                 MenorIgualQue opeMenorIgual = new MenorIgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeMenorIgual.opMenorIgualQue("Menor o Igual Que", elmen);
+                                return opeMenorIgual.menorIgualQueUsql("Menor o Igual Que", elmen, lstAtributos.getToken(0));
 
                             //logicas 
                             case "&&":

@@ -7,10 +7,11 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 {
-    class MenorIgualQue : opModelo
+    class MenorIgualQue : _E_MENOR_IGUAL
     {
         public MenorIgualQue(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

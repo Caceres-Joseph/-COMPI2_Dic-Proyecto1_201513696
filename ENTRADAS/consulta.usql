@@ -59,5 +59,7 @@ SELECCIONAR * DE Producto DONDE id_proveedor == 1 && precio == 12.12;
 SELECCIONAR * DE Producto;
 *#
 
-SELECCIONAR * DE producto DONDE id_proveedor== 1 || id_proveedor==2;
+#SELECCIONAR * DE producto DONDE id_proveedor != 1;
+
+SELECCIONAR * DE producto DONDE id_proveedor > 1;
 

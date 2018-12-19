@@ -30,12 +30,12 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 
             if (val1 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + "Hijo1 es null", tokLinea);
+                tabla.tablaErrores.insertErrorSemantic("[opRelacional]" + ambito + "Hijo1 es null", tokLinea);
                 return retorno;
             }
             if (val2 == null)
             {
-                tabla.tablaErrores.insertErrorSemantic("[opAritmetica]" + ambito + " Hijo1 es null", tokLinea);
+                tabla.tablaErrores.insertErrorSemantic("[opRelacional]" + ambito + " Hijo1 es null", tokLinea);
                 return retorno;
             }
 

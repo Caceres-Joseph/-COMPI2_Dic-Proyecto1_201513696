@@ -12,7 +12,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
     class usqlTabla
     {
         public token nombre;
-        public int numIndices = 0;
+        public int numIndices = 1;
         public IList<tupla> filas;
         public tuplaTitulo titulo;
         public tablaSimbolos tablaSimbolos;
