@@ -36,6 +36,20 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
+
+
+        public virtual tupla Seleccionar(tupla s)
+        {
+
+            itemValor aux1 = new itemValor();
+            aux1.setValor(-1);
+            itemValor aux2 = new itemValor();
+            aux2.setValor(-1);
+            s.listaValores.Add(aux1);
+            s.listaValores.Add(aux2);
+            return s;
+        }
+
         public usqlTablaCartesiana getTablaFinal()
         {
 
@@ -54,8 +68,37 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
             //inicializando la tabla cartesiana pvto
             nuevaTablaRetorno.inicializar();
 
+            usqlTablaCartesiana retorno = productoCartesiano(nuevaTablaRetorno, 1);
+            //return retorno;
 
-            return productoCartesiano(nuevaTablaRetorno, 1);
+
+
+
+            //tengo que agregar otras dos columnas
+            var salidaConsulta = from s in retorno.filas select new { tabla1 = s }; ;
+
+            IList<tupla> concatList = new List<tupla>();
+            foreach (var item in salidaConsulta)
+            {
+
+                List<itemValor> vale1 = item.tabla1.listaValores;
+                //creando una nueva tupla
+                tupla nuevaTupla = new tupla();
+                nuevaTupla.listaValores.AddRange(vale1);
+
+
+                itemValor aux1 = new itemValor();
+                aux1.setValor(-1);
+                itemValor aux2 = new itemValor();
+                aux2.setValor(-1);
+                nuevaTupla.listaValores.Add(aux1);
+                nuevaTupla.listaValores.Add(aux2);
+                concatList.Add(nuevaTupla);
+            }
+            retorno.filas = concatList;
+            retorno.numIndices = concatList.Count;
+
+            return retorno;
 
         }
 
@@ -80,8 +123,8 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
             {
                 tup.Add(temp);
             }*/
-             
-             
+
+
 
             var salidaConsulta = from s1 in tablaCart.filas
                                  from s2 in tabla2.filas
@@ -110,9 +153,9 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
                 retorno.Add(nuevaTupla);
             }
 
-            tablaCart.concatenarTabla(tabla2); 
+            tablaCart.concatenarTabla(tabla2);
             tablaCart.filas = retorno;
-            tablaCart.numIndices=retorno.Count;
+            tablaCart.numIndices = retorno.Count;
 
             return productoCartesiano(tablaCart, indice);
 

@@ -15,7 +15,7 @@ using DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 {
-    class _E_IGUALACION : opRelacional
+    class _E_IGUALACION : IgualQue
     {
 
 
@@ -23,6 +23,17 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
         {
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        |  VALOR VALOR
+        |--------------------------------------------------------------------------
+        */
+
+        public override itemValor operarValorValor(elementoEntorno entorno)
+        {
+
+            return opIgualacion("igualacion",entorno);
+        }
         /*
         |--------------------------------------------------------------------------
         | Sobrescribiendo el DONDE
@@ -40,9 +51,9 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
             else
             {
                 return false;
-            } 
+            }
         }
-         
+
         /*
         |--------------------------------------------------------------------------
         | OPERACION

@@ -10,7 +10,7 @@ using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
 {
-    class resta : opAritmetica
+    class resta : opRelacional
     {
         public resta(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

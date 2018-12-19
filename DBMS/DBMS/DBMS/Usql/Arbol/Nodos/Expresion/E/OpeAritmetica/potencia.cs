@@ -10,7 +10,7 @@ using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
 {
-    class potencia : opAritmetica
+    class potencia : opRelacional
     {
         public potencia(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

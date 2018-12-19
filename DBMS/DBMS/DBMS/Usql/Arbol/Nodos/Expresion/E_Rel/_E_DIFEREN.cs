@@ -16,12 +16,23 @@ using DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 {
-    class _E_DIFEREN : opRelacional
+    class _E_DIFEREN : DiferenteQue
     {
         public _E_DIFEREN(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        |  VALOR VALOR
+        |--------------------------------------------------------------------------
+        */
+
+        public override itemValor operarValorValor(elementoEntorno entorno)
+        {
+
+            return opDiferenciacion("diferent",entorno);
+        }
         /*
         |--------------------------------------------------------------------------
         | Sobrescribiendo el DONDE

@@ -27,6 +27,13 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public token nombreCartColumna;
         public usqlTablaCartesiana tablaCartesiana;
 
+
+
+        public void setColumnaExtra()
+        {
+            this.tipo = "columnaExtra";
+        }
+
         public void setCartColumna(token nombre)
         {
             nombreCartColumna = nombre;
@@ -45,6 +52,16 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
          * Booleanos
          */
 
+        public Boolean isTypeColumnaExtra()
+        {
+            if (tipo.Equals("columnaExtra"))
+            {
+                return true;
+            }
+            return false;
+
+        }
+
         public Boolean isTypeCartTablaColumna()
         {
             if (tipo.Equals("nombreCartTablaColumna"))
@@ -53,6 +70,8 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             }
             return false;
         }
+
+
         public Boolean isTypeCartColumna()
         {
             if (tipo.Equals("nombreCartColumna"))
@@ -77,7 +96,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         */
 
 
-        string tipo;
+        public string tipo;
         // public string tipo2 = "";
         public Object valor;
         public List<int> dimensiones;
@@ -274,7 +293,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
 
 
             Console.WriteLine("[itemValor]getEntero_No se puede parser el getEntero");
-            return 0; 
+            return 0;
         }
 
         public double getDecimal()

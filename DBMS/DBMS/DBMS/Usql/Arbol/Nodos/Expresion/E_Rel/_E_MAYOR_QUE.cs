@@ -10,16 +10,28 @@ using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 using DBMS.Usql.Arbol.Nodos.Expresion.E;
+using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 {
-    class _E_MAYOR_QUE : opRelacional
+    class _E_MAYOR_QUE : MayorQue
     {
         public _E_MAYOR_QUE(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        |  VALOR VALOR
+        |--------------------------------------------------------------------------
+        */
+
+        public override itemValor operarValorValor(elementoEntorno entorno)
+        {
+
+            return opMayorQue("mayor Que",entorno);
+        }
         /*
         |--------------------------------------------------------------------------
         | Sobrescribiendo el DONDE

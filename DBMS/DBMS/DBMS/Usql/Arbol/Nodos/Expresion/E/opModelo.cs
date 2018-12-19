@@ -65,7 +65,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                 tabla.tablaErrores.insertErrorSemantic("No existe la columna:" + nombreCol.valLower + " en la tabla", nombreCol);
             }
             return -1;
-        }
+        } 
 
 
         public int indiceColumnaEnTabla(token nombreCol, token nombreTabla, elementoEntorno elem)
@@ -111,6 +111,10 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             }
         }
 
+         
+
+
+
 
 
 
@@ -118,12 +122,25 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
         {
             itemValor retorno = new itemValor();
 
+
+
+
+
+
+
+
+
+
+
+
             tempTabla.filas = concatList;
             tempTabla.numIndices = concatList.Count;
             retorno.setValor(true);
             retorno.tablaCartesiana = tempTabla;
             return retorno;
         }
+
+         
 
 
     }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica
 {
-    class division : opAritmetica
+    class division : opRelacional
     {
         public division(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

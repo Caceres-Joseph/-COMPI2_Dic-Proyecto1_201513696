@@ -17,7 +17,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.Tuplas
                 return false;
             }
 
-            for(int i =0; i<x.listaValores.Count; i++)
+            for(int i =0; i<x.listaValores.Count-2; i++)
             {
 
                 if (x.getItemValor(i).valor.Equals(y.getItemValor(i).valor))

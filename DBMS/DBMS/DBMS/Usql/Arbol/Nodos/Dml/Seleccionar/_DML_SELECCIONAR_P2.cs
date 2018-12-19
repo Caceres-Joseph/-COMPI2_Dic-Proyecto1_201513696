@@ -59,6 +59,7 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Seleccionar
 
             //operando la tabla con el donde
             _VALOR nodoValor = (_VALOR)hijos[1];
+
             itemValor val= nodoValor.operarTabla(tablaEntornos);
 
             if (val.tablaCartesiana!=null)
@@ -72,6 +73,8 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Seleccionar
 
             return retorno;
         }
+
+
 
 
     }

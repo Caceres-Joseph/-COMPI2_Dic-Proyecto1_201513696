@@ -197,13 +197,18 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 
             //imprimiendo los titulos
            
-            String[] tituloArr = new String[titulo.filaTitulo.Count];
+            String[] tituloArr = new String[titulo.filaTitulo.Count+2];
             int i = 0;
             foreach (KeyValuePair<string, celdaTitulo> entry in titulo.filaTitulo)
             {
 
                 tituloArr[i++] = "["+entry.Key.Replace("||","]");
             }
+
+            tituloArr[titulo.filaTitulo.Count] = "aux1";
+            tituloArr[titulo.filaTitulo.Count + 1] = "aux2";
+
+
             PrintRow(tituloArr);
             Console.WriteLine("------------------------------------------------------------------------------------------------------------------------");
 

@@ -10,11 +10,12 @@ using DBMS.Usql.Arbol.Elementos.Tablas.Items;
 using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 using DBMS.Usql.Arbol.Nodos.Expresion.E;
+using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Oprelacional2;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
 {
-    class _E_MENOR_QUE : opRelacional
+    class _E_MENOR_QUE : MenorQue
     {
         
 
@@ -22,6 +23,17 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Rel
         {
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        |  VALOR VALOR
+        |--------------------------------------------------------------------------
+        */
+
+        public override itemValor operarValorValor(elementoEntorno entorno)
+        {
+
+            return opMenorQue("menor Que",entorno);
+        }
         /*
         |--------------------------------------------------------------------------
         | Sobrescribiendo el DONDE

@@ -11,6 +11,8 @@ using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeAritmetica;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.OpeLogico;
 using DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional;
+using DBMS.Usql.Arbol.Nodos.Expresion.E_Aritmetic;
+using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 using DBMS.Usql.Arbol.Nodos.Expresion.Id;
 using DBMS.Usql.Arbol.Nodos.Ssl.Nativas;
 
@@ -99,7 +101,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                                 return opeNot.notUsql("Not", elmen, lstAtributos.getToken(0));
                             case "(":
                                 _E ope = (_E)hijos[0];
-                                itemValor te = ope.getValor(elmen);
+                                itemValor te = ope.operarTabla(elmen);
                                 return te;
                             default:
                                 tablaSimbolos.tablaErrores.insertErrorSyntax("[E]No se reconoció el signo", lstAtributos.getToken(0));
@@ -131,40 +133,40 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                         {
                             //Aritmetica
                             case "+":
-                                suma ope = new suma(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return ope.opSuma(elmen);
+                                _E_MAS ope = new _E_MAS(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                return ope.sumaUsql("suma",elmen, lstAtributos.getToken(0));
                             case "-":
-                                resta opeRes = new resta(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeRes.opResta(elmen);
+                                _E_MENOS opeRes = new _E_MENOS(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                return opeRes.restaUsql("resta",elmen, lstAtributos.getToken(0));
                             case "*":
-                                multiplicacion opeMul = new multiplicacion(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeMul.opMultiplicacion(elmen);
+                                _E_POR opeMul = new _E_POR(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                return opeMul.porUsql("por", elmen, lstAtributos.getToken(0));
                             case "/":
-                                division opeDiv = new division(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opeDiv.opDivision(elmen);
+                                _E_DIV opeDiv = new _E_DIV(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                return opeDiv.divUsql("division", elmen, lstAtributos.getToken(0));
                             case "^":
-                                potencia opePot = new potencia(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
-                                return opePot.opPotencia(elmen);
+                                _E_POT opePot = new _E_POT(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                return opePot.potenciaUsql("potencia", elmen, lstAtributos.getToken(0));
 
 
                             //Relacional
                             case "==":
-                                IgualQue opeIgualacion = new IgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_IGUALACION opeIgualacion = new _E_IGUALACION(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeIgualacion.igualacionUsql("Igualación", elmen, lstAtributos.getToken(0));
                             case "!=":
-                                DiferenteQue opeDiferenciacion = new DiferenteQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_DIFEREN opeDiferenciacion = new _E_DIFEREN(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeDiferenciacion.diferenciacionUsql("Diferenciación", elmen, lstAtributos.getToken(0));
                             case ">":
-                                MayorQue opeMayor = new MayorQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_MAYOR_QUE opeMayor = new _E_MAYOR_QUE(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeMayor.mayorQueUsql("Mayor Que", elmen, lstAtributos.getToken(0));
                             case ">=":
-                                MayorIgualQue opeMayorIgual = new MayorIgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_MAYOR_IGUAL opeMayorIgual = new _E_MAYOR_IGUAL(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeMayorIgual.mayorIgualQueUsql("Mayor o Igual Que", elmen, lstAtributos.getToken(0));
                             case "<":
-                                MenorQue opeMenor = new MenorQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_MENOR_QUE opeMenor = new _E_MENOR_QUE(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeMenor.menorQueUsql("Menor Que", elmen, lstAtributos.getToken(0));
                             case "<=":
-                                MenorIgualQue opeMenorIgual = new MenorIgualQue(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
+                                _E_MENOR_IGUAL opeMenorIgual = new _E_MENOR_IGUAL(hijos[0], hijos[1], tablaSimbolos, lstAtributos.getToken(0));
                                 return opeMenorIgual.menorIgualQueUsql("Menor o Igual Que", elmen, lstAtributos.getToken(0));
 
                             //logicas 

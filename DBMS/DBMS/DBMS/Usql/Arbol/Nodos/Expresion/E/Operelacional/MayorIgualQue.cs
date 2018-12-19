@@ -11,7 +11,7 @@ using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 {
-    class MayorIgualQue : _E_MAYOR_IGUAL
+    class MayorIgualQue : opRelacional
     {
         public MayorIgualQue(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {

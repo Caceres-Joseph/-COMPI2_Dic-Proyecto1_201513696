@@ -11,7 +11,7 @@ using DBMS.Usql.Arbol.Nodos.Expresion.E_Rel;
 
 namespace DBMS.Usql.Arbol.Nodos.Expresion.E.Operelacional
 {
-    class DiferenteQue : _E_DIFEREN
+    class DiferenteQue : opRelacional
     {
         public DiferenteQue(nodoModelo hijo1, nodoModelo hijo2, tablaSimbolos tabla, token signo) : base(hijo1, hijo2, tabla, signo)
         {
