@@ -23,6 +23,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Logico
         public itemValor orUsql(String ambito, elementoEntorno elem, token tokLinea)
         {
             itemValor retorno = new itemValor();
+            retorno.setValor(false);
             itemValor val1 = hijo1.operarTabla(elem);
             itemValor val2 = hijo2.operarTabla(elem);
 

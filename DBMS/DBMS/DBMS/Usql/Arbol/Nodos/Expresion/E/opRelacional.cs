@@ -113,6 +113,8 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val1.tablaCartesiana, 0);
                 tempTabla.filas = tablaResultado;
 
+
+
                 //hago la consulta
                 var salidaConsulta = from s in tempTabla.filas
                                      where Donde(s.getItemValor(indice), s.getItemValor(indice2)) 

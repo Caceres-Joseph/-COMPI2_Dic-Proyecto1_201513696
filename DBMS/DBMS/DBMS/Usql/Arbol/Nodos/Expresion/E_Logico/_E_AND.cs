@@ -25,7 +25,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Logico
             itemValor retorno = new itemValor();
             itemValor val1 = hijo1.operarTabla(elem);
             itemValor val2 = hijo2.operarTabla(elem);
-
+            retorno.setValor(false);
             if (val1.tablaCartesiana == null)
             {
                 tabla.tablaErrores.insertErrorSemantic("La tabla del lado izquiero del and es  nula  [ null && tabla2]", tokLinea);
