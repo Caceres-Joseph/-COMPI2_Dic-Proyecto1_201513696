@@ -13,7 +13,7 @@ using DBMS.Usql.Arbol.Nodos.Listas.Valor;
 
 namespace DBMS.Usql.Arbol.Nodos.Dml.Seleccionar
 {
-    class _DML_SELECCIONAR_P4 : nodoModelo
+    class _DML_SELECCIONAR_P4 : _DML_SELECCIONAR_P
     {
         /*
          * tSeleccionar + sPor + tDe + LST_VAL_ID;
@@ -27,43 +27,78 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Seleccionar
 
         /*
         |-------------------------------------------------------------------------------------------------------------------
-        | EJECUCIÓN FINAL
+        | GET TABLA
         |-------------------------------------------------------------------------------------------------------------------
         |
         */
 
-        public override itemRetorno ejecutar(elementoEntorno tablaEntornos)
-        /*
-        |---------------------------- 
-        | EJECUTAR 
-        |----------------------------
-        | 0= normal
-        | 1 = return;
-        | 2 = break
-        | 3 = continue
-        | 4 = errores
-        */
+        public override usqlTablaCartesiana getTablaCartesiana(elementoEntorno tablaEntornos, nodoOrdenar ord)
         {
 
-            itemRetorno retorno = new itemRetorno(0);
-            if (hayErrores())
-                return retorno;
-
-            if (tablaSimbolos.listaBaseDeDatos.usar == null)
-            {
-                tablaSimbolos.tablaErrores.insertErrorSemantic("No se ha seleccionado una base de datos para realizar la operacion de insertar nueva tabla", lstAtributos.getToken(0));
-                return retorno;
-            }
-            //recuperando las tablas
-
-
+            /*
+             * +-----------------
+             * | FROM
+             * +-----------------
+             */
             _LST_VAL_ID nodoIds = (_LST_VAL_ID)hijos[0];
             usqlTablaCartesiana lstTablas = nodoIds.getTablaFinal();
-            lstTablas.imprimir();
 
-            
-            return retorno;
+
+            /*
+             * +-----------------
+             * | ORDENAR
+             * +-----------------
+             */
+
+            if ((ord.orden != -1) && !hayErrores())
+            {
+                celdaTitulo temp = getIndicesOrder(ord.val, lstTablas, lstAtributos.getToken(0));
+                if (temp != null)
+                {
+                    try
+                    {
+                        if (ord.orden == 0)
+                        {
+
+                            var ordenando = lstTablas.filas.OrderBy(s => s.getItemValor(temp.posEnColumna).valor);
+                            lstTablas.filas = ordenando.ToList<tupla>();
+
+                        }
+                        else
+                        {
+                            var ordenando = lstTablas.filas.OrderByDescending(s => s.getItemValor(temp.posEnColumna).valor);
+                            lstTablas.filas = ordenando.ToList<tupla>();
+
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        println("error al ordenar" + e);
+                    }
+                }
+            }
+
+            /*
+             * +-----------------
+             * | SELECT
+             * +-----------------
+             */ 
+            var salidaConsulta = from s in lstTablas.filas select selectMenos(s);
+            lstTablas.filas = salidaConsulta.ToList<tupla>();
+            lstTablas.titulo.filaTitulo.Remove("aux1");
+            lstTablas.titulo.filaTitulo.Remove("aux2"); 
+            return lstTablas; 
         }
-          
+
+        public tupla selectMenos(tupla t)
+        {
+            tupla nuevaTupla = new tupla();
+            nuevaTupla.listaValores.AddRange(t.listaValores);
+            nuevaTupla.listaValores.RemoveRange(t.listaValores.Count - 2, 2);
+
+
+            return nuevaTupla;
+        }
+
     }
 }

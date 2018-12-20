@@ -122,17 +122,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
         {
             itemValor retorno = new itemValor();
 
-
-
-
-
-
-
-
-
-
-
-
+             
             tempTabla.filas = concatList;
             tempTabla.numIndices = concatList.Count;
             retorno.setValor(true);

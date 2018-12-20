@@ -98,6 +98,10 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
             retorno.filas = concatList;
             retorno.numIndices = concatList.Count;
 
+            //agregando los dos items a la tabla titulo
+            retorno.titulo.filaTitulo.Add("aux1", new celdaTitulo(tablaSimbolos, new token("vale1")));
+            retorno.titulo.filaTitulo.Add("aux2", new celdaTitulo(tablaSimbolos, new token("vale2")));
+
             return retorno;
 
         }

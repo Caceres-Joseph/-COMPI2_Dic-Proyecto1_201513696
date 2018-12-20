@@ -22,8 +22,8 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E_Logico
 
         public itemValor notUsql(String ambito, elementoEntorno elem, token tokLinea)
         {
-            itemValor retorno = new itemValor();  
-
+            itemValor retorno = new itemValor();
+            retorno.setValor(false);
             if (elem.tablaFrom == null)
             {
                 tabla.tablaErrores.insertErrorSemantic("La tabla  es  nula  [ ! null]", tokLinea);

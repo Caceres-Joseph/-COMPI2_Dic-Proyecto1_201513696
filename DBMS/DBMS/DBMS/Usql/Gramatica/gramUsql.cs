@@ -542,9 +542,9 @@ namespace DBMS.Usql.Gramatica
 
 
 
-            DML_ORDENAR.Rule = tOrdenar + tPor + valId + tAsc
-                                    | tOrdenar + tPor + valId + tDesc
-                                    | tOrdenar + tPor + valId
+            DML_ORDENAR.Rule = tOrdenar + tPor + VALOR + tAsc
+                                    | tOrdenar + tPor + VALOR + tDesc
+                                    | tOrdenar + tPor + VALOR
                                     ;
 
             /*

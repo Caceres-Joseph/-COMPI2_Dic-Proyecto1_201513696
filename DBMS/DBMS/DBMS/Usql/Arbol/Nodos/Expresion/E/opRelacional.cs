@@ -100,8 +100,8 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             if (val1.isTypeColumnaExtra() && val2.isTypeColumnaExtra())
             { 
 
-                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count;
-                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count+1;
+                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count-2;
+                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count-1;
 
                 if (indice == -1)
                     return retorno;
@@ -135,7 +135,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val1.tablaCartesiana, 0);
 
 
-                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count-2;
                 int indice2 = indiceColumnaEnTabla(val2.nombreCartColumna, elem);
 
                 if (indice == -1)
@@ -161,7 +161,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val1.tablaCartesiana, 0);
 
-                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count-2;
                 int indice2 = indiceColumnaEnTabla(val2.nombreCartColumna, val2.nombreCartTabla, elem);
                 if (indice == -1)
                     return retorno;
@@ -185,7 +185,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             { 
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val1.tablaCartesiana, 0);
 
-                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice = val1.tablaCartesiana.titulo.filaTitulo.Count-2;
                 if (indice == -1)
                     return retorno;
 
@@ -252,7 +252,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val2.tablaCartesiana, 0);
 
                 int indice = indiceColumnaEnTabla(val1.nombreCartColumna, elem);
-                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count-2;
 
                 if (indice == -1)
                     return retorno;
@@ -343,7 +343,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
 
 
                 int indice = indiceColumnaEnTabla(val1.nombreCartColumna, val1.nombreCartTabla, elem);
-                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count-2;
 
                 if (indice == -1)
                     return retorno;
@@ -443,7 +443,7 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
             { 
                 usqlTablaCartesiana tempTabla = new usqlTablaCartesiana(val2.tablaCartesiana, 0);
 
-                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count;
+                int indice2 = val2.tablaCartesiana.titulo.filaTitulo.Count-2;
 
 
                 //hago la consulta

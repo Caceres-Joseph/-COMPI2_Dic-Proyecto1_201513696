@@ -30,6 +30,17 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         /*Constructor para la tablaCartesiana*/
         public usqlTabla(usqlTabla tablaOrigen)
         {
+            if (tablaOrigen == null)
+            {
+                println("Tabla nula");
+                this.tablaSimbolos = new tablaSimbolos();
+                this.titulo = new tuplaTitulo(tablaSimbolos);
+                this.nombre = new token("");
+                this.filas = new List<tupla>();
+                return;
+            }
+
+
             this.tablaSimbolos = tablaOrigen.tablaSimbolos;
             this.titulo = new tuplaTitulo(tablaSimbolos);
             this.nombre = tablaOrigen.nombre;
@@ -42,7 +53,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             //colocando los valores 
         }
 
-    
+
         /*Constructor para una copia  de tablaCartesiana*/
         public usqlTabla(usqlTabla tablaOrigen, int indice)
         {
@@ -50,7 +61,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             this.titulo = tablaOrigen.titulo;
             this.nombre = tablaOrigen.nombre;
             this.filas = tablaOrigen.filas;
-            
+
         }
 
 
@@ -120,14 +131,14 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             {
                 //corroborando si existe la columna
                 token nombreCol = item.tok;
-                
+
                 if (titulo.filaTitulo.ContainsKey(nombreCol.valLower))
                 {
 
                     //hay que insertarlo en la posicion indicada
                     celdaTitulo celda = titulo.filaTitulo[nombreCol.valLower];
                     tuplaFinal.insertar(celda.posEnColumna, nuevaFila.getItemValor(indice++));
-                    
+
                 }
                 else
                 {
@@ -138,7 +149,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 
 
 
-            for(int index=0; index < titulo.filaTitulo.Count; index++)
+            for (int index = 0; index < titulo.filaTitulo.Count; index++)
             {
                 itemValor itemTupl = tuplaFinal.listaValores[index];
 
@@ -163,7 +174,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
                     else if (tempCel.esNoNulo())
                     {
                         //mostrando un mensaje de error
-                        tablaSimbolos.tablaErrores.insertErrorSemantic("No puede dejar vacio un valor para la columna "+ tempCel.nombre.val+ " con el complemento NO NULO", nombreTabla);
+                        tablaSimbolos.tablaErrores.insertErrorSemantic("No puede dejar vacio un valor para la columna " + tempCel.nombre.val + " con el complemento NO NULO", nombreTabla);
                     }
                     else
                     //asignando un valor nulo
@@ -184,29 +195,39 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             foreach (itemValor itemTupl in tuplaFinal.listaValores)
             { 
             }*/
-             
+
             filas.Add(tuplaFinal);
             numIndices++;
         }
-         
+
+
 
         public void imprimir()
+        {
+            try
+            {
+                println();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[usqlTabla]" + e);
+            }
+        }
+        public void println()
         {
 
             Console.WriteLine("===   TABLA === ");
 
             //imprimiendo los titulos
-           
-            String[] tituloArr = new String[titulo.filaTitulo.Count+2];
+
+            String[] tituloArr = new String[titulo.filaTitulo.Count];
             int i = 0;
             foreach (KeyValuePair<string, celdaTitulo> entry in titulo.filaTitulo)
             {
 
-                tituloArr[i++] = "["+entry.Key.Replace("||","]");
+                tituloArr[i++] = "[" + entry.Key.Replace("||", "]");
             }
 
-            tituloArr[titulo.filaTitulo.Count] = "aux1";
-            tituloArr[titulo.filaTitulo.Count + 1] = "aux2";
 
 
             PrintRow(tituloArr);
@@ -216,9 +237,9 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             {
 
 
-                String[] columna=new String[item.listaValores.Count];
+                String[] columna = new String[item.listaValores.Count];
                 int indice = 0;
-                foreach(itemValor it in item.listaValores)
+                foreach (itemValor it in item.listaValores)
                 {
                     String cad = it.getCadena();
                     columna[indice++] = cad;
@@ -227,6 +248,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
                 PrintRow(columna);
             }
         }
+        public void println(String mensaje)
+        {
+            Console.WriteLine("[usqlTAbla]" + mensaje);
+        }
+
 
         /*
         |-------------------------------------------------------------------------------------------------------------------
