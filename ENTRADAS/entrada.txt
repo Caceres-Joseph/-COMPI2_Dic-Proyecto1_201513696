@@ -266,5 +266,76 @@ DENEGAR PERMISOS usuario1, Proyecto1.*;
 @val= CONTAR(<<SELECCIONAR * DE estudiante>>);
 
 
+########################################################################
+
+SELECCIONAR * DE Proveedor, Producto;
+
+SELECCIONAR * DE Proveedor DONDE fh_creacion ==17-08-2017 12:00:00;
+
+SELECCIONAR * DE Proveedor DONDE id==1;
+SELECCIONAR * DE Proveedor DONDE 1==id;
+ 
+SELECCIONAR * DE Proveedor, Producto DONDE proveedor.id==1;
+SELECCIONAR * DE Proveedor, Producto DONDE 1==proveedor.id;
+
+SELECCIONAR * DE Proveedor DONDE nombre==direccion;
+
+SELECCIONAR * DE Proveedor, Producto DONDE proveedor.id==producto.id_proveedor; 
+SELECCIONAR * DE Proveedor, Producto DONDE producto.id_proveedor==proveedor.id;
+
+
+SELECCIONAR * DE Producto DONDE id_proveedor == 1 && precio == 12.12;
+SELECCIONAR * DE Producto;
+SELECCIONAR * DE producto DONDE id_proveedor > 2;
+SELECCIONAR * DE producto DONDE id_proveedor >=2;
+SELECCIONAR * DE producto DONDE id_proveedor < 4;
+SELECCIONAR * DE producto DONDE id_proveedor <= 3;
+SELECCIONAR * DE producto DONDE id_proveedor != 1;
+
+SELECCIONAR * DE Proveedor DONDE nombre==direccion; 
+SELECCIONAR * DE Proveedor, Producto DONDE proveedor.id==producto.id_proveedor;  
+SELECCIONAR * DE Proveedor, Producto DONDE 1==proveedor.id;
+
+SELECCIONAR * DE Producto DONDE (id_proveedor+1)+3;
+
+SELECCIONAR * DE Producto DONDE   (precio+(2+2));
+SELECCIONAR * DE Producto DONDE   (id_proveedor+(2+2))+(id_proveedor+(2+2))&&id+1==2;
+ 
+SELECCIONAR * DE Proveedor, Producto DONDE proveedor.id+1==producto.id_proveedor+1;  
+ 
+SELECCIONAR * DE Producto DONDE   (id_proveedor+(2+2));
+SELECCIONAR * DE Producto DONDE   (id_proveedor+(2+2))+(id_proveedor+(2+2));
+SELECCIONAR * DE Producto DONDE  id+3-1==2;
+
+
+SELECCIONAR * DE Producto DONDE   (id_proveedor+(2+2))+(id_proveedor+(2+2))>13||id+1==2;
+seleccionar id, nombre de producto;
+  
+SELECCIONAR proveedor.id, producto.id, proveedor.nombre, proveedor.nombre DE Proveedor, Producto DONDE proveedor.id==producto.id_proveedor; 
+
+SELECCIONAR * DE Producto ; 
+SELECCIONAR * DE Producto ORDENAR por precio asc; 
+ 
+SELECCIONAR * DE Proveedor ; 
+SELECCIONAR * DE Proveedor ORDENAR por nombre desc; 
+ 
+SELECCIONAR id, nombre DE Proveedor ; 
+SELECCIONAR id, nombre DE Proveedor ORDENAR por nombre desc; 
+ 
+SELECCIONAR id, nombre DE Proveedor DONDE id>=1 ; 
+SELECCIONAR id, nombre DE Proveedor DONDE id>=1 ORDENAR por nombre desc;  
+SELECCIONAR id, nombre DE Proveedor DONDE id>=1 ORDENAR por Proveedor.nombre asc; 
+ 
+SELECCIONAR * DE Proveedor DONDE id>=1 ; 
+SELECCIONAR * DE Proveedor DONDE id>=1 ORDENAR por nombre desc;  
+SELECCIONAR * DE Proveedor DONDE id>=1 ORDENAR por Proveedor.nombre asc; 
+ 
+SELECCIONAR id, nombre DE Proveedor  ; 
+SELECCIONAR id, nombre DE Proveedor   ORDENAR por nombre desc;  
+SELECCIONAR id, nombre DE Proveedor   ORDENAR por Proveedor.nombre asc; 
+ 
+SELECCIONAR * DE Proveedor  ; 
+SELECCIONAR * DE Proveedor   ORDENAR por nombre desc;  
+SELECCIONAR * DE Proveedor   ORDENAR por Proveedor.nombre asc; 
 
 

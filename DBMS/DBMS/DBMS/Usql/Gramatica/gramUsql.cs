@@ -508,9 +508,9 @@ namespace DBMS.Usql.Gramatica
                                      ;
 
 
-            DML_ACTUALIZAR_1.Rule = tActualizar + tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent;
+            DML_ACTUALIZAR_1.Rule = tActualizar + tTabla + LST_VAL_ID + sAbreParent + LST_VALOR + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent;
 
-            DML_ACTUALIZAR_2.Rule = tActualizar + tTabla + valId + sAbreParent + LST_VAL_ID + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent + tDonde + VALOR;
+            DML_ACTUALIZAR_2.Rule = tActualizar + tTabla + LST_VAL_ID + sAbreParent + LST_VALOR + sCierraParent + tValores + sAbreParent + LST_VALOR + sCierraParent + tDonde + VALOR;
 
 
             //  ''' BORRAR '''
