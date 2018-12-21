@@ -9,6 +9,10 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Borrar
 {
     class _DML_BORRAR : nodoModelo
     {
+        /*
+         *                            DML_BORRAR_1
+                                    | DML_BORRAR_2
+         */
         public _DML_BORRAR(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }

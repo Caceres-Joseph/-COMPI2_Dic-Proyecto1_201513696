@@ -11,6 +11,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using MetroFramework.Controls;
 using DBMS.PlyCs.Gramatica;
+using DBMS.Usql.Arbol.Elementos.Tablas;
 
 namespace DBMS.Sockets
 {
@@ -20,7 +21,7 @@ namespace DBMS.Sockets
         // Incoming data from the client.  
         public static string data = null;
 
-        public static void StartListening()
+        public static void StartListening(tablaSimbolos tabl)
         {
             // Data buffer for incoming data.  
             byte[] bytes = new Byte[1024];
@@ -71,7 +72,7 @@ namespace DBMS.Sockets
 
 
                     //Iniciando el analisis de plyCs
-                    String mensajeRetorno= analizarPly(data);
+                    String mensajeRetorno= analizarPly(data, tabl);
 
 
 
@@ -96,11 +97,11 @@ namespace DBMS.Sockets
         }
 
 
-        public static String analizarPly(String data)
+        public static String analizarPly(String data, Usql.Arbol.Elementos.Tablas.tablaSimbolos tabl)
         {
 
             anlzPly gramPly = new anlzPly();
-            return gramPly.iniciarAnalisis(data);
+            return gramPly.iniciarAnalisis(data, tabl);
 
         }
     }

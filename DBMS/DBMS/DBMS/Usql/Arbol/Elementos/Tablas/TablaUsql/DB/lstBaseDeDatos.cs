@@ -2,6 +2,7 @@
 using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,5 +52,42 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB
         }
 
 
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | XML
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        public void escribirXML()
+        {
+
+            String contenidoXML = "";
+            contenidoXML += "\n<BASES>";
+            foreach (KeyValuePair<string, baseDeDatos> claveValor in listaDeBases)
+            {
+
+
+                contenidoXML += "\n<DB>";
+
+                contenidoXML += "\n\t<nombre>" + claveValor.Key + "</nombre>";
+                contenidoXML += "\n\t<path>" + claveValor.Key + ".xml</path>";
+
+                contenidoXML += "\n</DB>";
+
+                //escribiendo
+                claveValor.Value.escribirXML();
+
+            }
+            contenidoXML += "\n</BASES>";
+
+
+
+            /*
+             * Escribiendo el archivo
+             */
+            escribirArchivo archivoXml = new escribirArchivo(contenidoXML, "maestro");
+            archivoXml.escribir(); 
+        }
     }
 }

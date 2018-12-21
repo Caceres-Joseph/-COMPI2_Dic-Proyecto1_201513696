@@ -11,23 +11,25 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-
-
-//Linq
-
-using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms; 
 using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Xml.Gramatica;
+using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Xml.Arbol.Cargar;
 
 namespace DBMS
 {
-    public partial class Form1 : MetroFramework.Forms.MetroForm
+    partial class Form1 : MetroFramework.Forms.MetroForm
     {
         public static MetroFramework.Controls.MetroTextBox txtConsola = new MetroFramework.Controls.MetroTextBox();
         public static MetroFramework.Controls.MetroTextBox txtPlyCs = new MetroFramework.Controls.MetroTextBox();
         Thread thread;
+
+
+        public static anlzUsql analizador;
+        public tablaSimbolos tablaSimbolos = new tablaSimbolos();
+
 
         public Form1()
         {
@@ -68,7 +70,8 @@ namespace DBMS
 
             mensajeConsola("Iniciando servidor..");
 
-            thread = new Thread(() => Servidor_socket.StartListening());
+            tablaSimbolos.resetarParte();
+            thread = new Thread(() => Servidor_socket.StartListening(tablaSimbolos));
             thread.IsBackground = true;
             thread.Start();
         }
@@ -81,14 +84,13 @@ namespace DBMS
         [SecurityPermissionAttribute(SecurityAction.Demand, ControlThread = true)]
         private void btnStop_Click(object sender, EventArgs e)
         {
-
-            //anlzPly gramPly = new anlzPly();
-            //gramPly.iniciarAnalisis(txtPlyCs.Text);
-
-
-
-            anlzUsql analizador = new anlzUsql();
+        
+            tablaSimbolos.resetarParte();
+            analizador = new anlzUsql(tablaSimbolos);
             analizador.iniciarAnalisis(txtPlyCs.Text);
+
+
+
         }
 
 
@@ -109,67 +111,14 @@ namespace DBMS
         private void btnGrafo_Click(object sender, EventArgs e)
         {
 
-            anlzUsql analizador = new anlzUsql();
+
+            //creo ua nueva instancia
+            analizador = new anlzUsql(tablaSimbolos);
             analizador.dibujarGrafo(txtPlyCs.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*
-            //primero hay que crear el titulo
-            tuplaTitulo titulo = new tuplaTitulo();
-            titulo.insertarNuevaColumna("id");
-            titulo.insertarNuevaColumna("nombre");
-            titulo.insertarNuevaColumna("edad");
-
-            //creando la tabla
-            tabla tablaPrueba = new tabla("prueba", titulo);
-
-
-            //haciendo inserts
-            tupla nuevaFila = new tupla();
-
-            //datos
-            itemValor id = new itemValor();
-            id.setValor(3);
-
-            itemValor nombre = new itemValor();
-            nombre.setValor("Diego");
-
-            itemValor edad = new itemValor();
-            edad.setValor(11);
-
-            //haciendo el insert
-            nuevaFila.insertar(id);
-            nuevaFila.insertar(nombre);
-            nuevaFila.insertar(edad);
-
-
-
-            //haciendo inserts
-            tupla nuevaFila2 = new tupla();
-
-            //datos
-            itemValor id2 = new itemValor();
-            id2.setValor(12);
-
-            itemValor nombre2 = new itemValor();
-            nombre2.setValor("Jhosef");
-
-            itemValor edad2 = new itemValor();
-            edad2.setValor(12);
-
-            //haciendo el insert
-            nuevaFila2.insertar(id2);
-            nuevaFila2.insertar(nombre2);
-            nuevaFila2.insertar(edad2);
-
-
-            tablaPrueba.insertar(nuevaFila);
-            tablaPrueba.insertar(nuevaFila2);
-
-            tablaPrueba.selectAll();
-            */
             funcionamientos_minimos((15 + 2 / 2) * 2 - 10, 5 + (28 / 4) * 2);
 
         }
@@ -188,7 +137,7 @@ namespace DBMS
             Console.WriteLine(bandera);
             while ((contador >= 0) && ((contador < 10) || (bandera == false)))
             {
-                if (contador>5)
+                if (contador > 5)
                 {
                     Console.WriteLine("salida de minetras [6-9]:" + contador);
                 }
@@ -246,6 +195,59 @@ namespace DBMS
 
         }
 
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            if (analizador != null)
+            {
+
+                //primero escribo el archivo maestro
+                analizador.tablaDeSimbolos.listaBaseDeDatos.escribirXML();
+
+                MessageBox.Show("Se escribieron los archivos xml");
+            }
+            else
+            {
+                println("El analizador es nulo");
+            }
+
+
+
+        }
+
+
+        public void println(String mensaje)
+        {
+            Console.WriteLine("[Form1]" + mensaje);
+        }
+
+        private void metroTabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAnalizarXml_Click(object sender, EventArgs e)
+        {
+            String txt = txtXml.Text;
+
+            anlzXml analizador = new anlzXml();
+            analizador.graficar(txt);
+
+
+        }
+
+        private void btnCargaInicial_Click(object sender, EventArgs e)
+        {
+            tablaSimbolos.resetearCompleto();
+            cargarMaestro maestro = new cargarMaestro(tablaSimbolos);
+            maestro.cargar();
+             
+        }
+
+        private void txtReset_Click(object sender, EventArgs e)
+        {
+            //Con esto borro todo lo que tengo en memoria temporal
+            tablaSimbolos = new tablaSimbolos();
+        }
     }
 
     public class Order

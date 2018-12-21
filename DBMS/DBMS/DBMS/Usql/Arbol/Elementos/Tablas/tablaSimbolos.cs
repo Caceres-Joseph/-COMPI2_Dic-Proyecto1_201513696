@@ -35,6 +35,29 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas
         public tablaMensajesUsql tablaMensajesUsql;
 
 
+
+        public void resetarParte()
+        {
+            lstClases = new List<elementoClase>();
+            this.lstMetodo_funcion = new lstMetodo_funcion(this, "metodos_funciones");
+            this.lstVariablesGlobales = new lstVariablesGlobales(this, "var_globales");
+            this.listaObjetos = new lstObjetos(this);
+            //this.listaBaseDeDatos = new lstBaseDeDatos(this);
+            this.tablaMensajesUsql = new tablaMensajesUsql();
+
+        }
+
+        public void resetearCompleto()
+        {
+
+            lstClases = new List<elementoClase>();
+            this.lstMetodo_funcion = new lstMetodo_funcion(this, "metodos_funciones");
+            this.lstVariablesGlobales = new lstVariablesGlobales(this, "var_globales");
+            this.listaObjetos = new lstObjetos(this);
+            this.listaBaseDeDatos = new lstBaseDeDatos(this);
+            this.tablaMensajesUsql = new tablaMensajesUsql();
+        }
+
         public tablaSimbolos()
         { 
 

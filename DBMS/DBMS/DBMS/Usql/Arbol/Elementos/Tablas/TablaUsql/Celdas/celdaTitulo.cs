@@ -72,7 +72,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         public Boolean esAutoincrementable()
         {
 
-            foreach(int item in modificadores)
+            foreach (int item in modificadores)
             {
                 if (item == 3)
                 {
@@ -95,6 +95,41 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             return false;
         }
 
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | XML
+        |-------------------------------------------------------------------------------------------------------------------
+        
+            
+            public token nombre;
+            public int posEnColumna = -1;
+            public List<int> modificadores;
+
+
+        */
+        public String getXml()
+        {
+
+            String contenidoXML = "";
+
+            String tab1 = "\n\t\t\t";
+            String tab2 = "\n\t\t\t\t";
+
+            contenidoXML += tab1 + "<posEnColumna>" + posEnColumna.ToString() + "</posEnColumna>";
+
+
+            contenidoXML += tab1 + "<MODIFICADOR>";
+            foreach (int mod in modificadores)
+            {
+                contenidoXML += tab2 + "<mod>" + mod.ToString() + "</mod>";
+            }
+            contenidoXML += tab1 + "</MODIFICADOR>";
+
+
+            return contenidoXML;
+        }
 
     }
 }

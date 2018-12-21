@@ -3,6 +3,7 @@ using DBMS.Usql.Arbol;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB;
 using DBMS.Usql.Arbol.Nodos;
 using Irony.Parsing;
 using System;
@@ -19,11 +20,12 @@ namespace DBMS.Usql.Gramatica
         public nodoModelo raizArbol;
          
 
-        public anlzUsql()
+        public anlzUsql(tablaSimbolos tabla)
         {
 
 
-            tablaDeSimbolos = new tablaSimbolos(); 
+
+            this.tablaDeSimbolos = tabla; 
             raizArbol = new nodoModelo("raiz", tablaDeSimbolos);
         }
 

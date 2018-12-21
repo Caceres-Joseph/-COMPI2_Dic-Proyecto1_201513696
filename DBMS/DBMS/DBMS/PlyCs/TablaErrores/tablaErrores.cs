@@ -42,7 +42,7 @@ namespace DBMS.TablaErrores
             elem.descripcion = mensaje;
 
             this.listaErrores.Add(elem);
-            println("[Error]Sintactico-> " + mensaje);
+            println("[Error]Sintactico-> " + mensaje + " linea:" + elem.linea);
         }
 
         public void insertErrorSyntax(String mensaje, token tok)
@@ -55,7 +55,7 @@ namespace DBMS.TablaErrores
             elem.descripcion = mensaje;
 
             this.listaErrores.Add(elem);
-            println("[Error]Sintactico-> " + mensaje);
+            println("[Error]Sintactico-> " + mensaje + " linea:" + elem.linea);
         }
 
         public void insertErrorLexical(String ambito, int linea, int columna, String mensaje)
@@ -67,7 +67,7 @@ namespace DBMS.TablaErrores
             elem.columna = (columna + 1).ToString();
             elem.descripcion = mensaje;
             this.listaErrores.Add(elem);
-            println("[Error]Lexico-> " + mensaje);
+            println("[Error]Lexico-> " + mensaje + " linea:" + elem.linea);
         }
         public void insertErrorLexical(String mensaje, token tok)
         {
@@ -79,7 +79,7 @@ namespace DBMS.TablaErrores
             elem.descripcion = mensaje;
 
             this.listaErrores.Add(elem);
-            println("[Error]Lexico-> " + mensaje);
+            println("[Error]Lexico-> " + mensaje + " linea:" + elem.linea);
         }
 
 

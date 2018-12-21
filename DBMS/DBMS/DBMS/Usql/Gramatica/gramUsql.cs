@@ -518,7 +518,7 @@ namespace DBMS.Usql.Gramatica
                                     | DML_BORRAR_2
                                     ;
 
-            DML_BORRAR_1.Rule = tBorrar + tEn + tTabla + valId + tDonde + VALOR;
+            DML_BORRAR_1.Rule = tBorrar + tEn + tTabla + LST_VAL_ID + tDonde + VALOR;
 
 
             DML_BORRAR_2.Rule = tBorrar + tEn + tTabla + valId;

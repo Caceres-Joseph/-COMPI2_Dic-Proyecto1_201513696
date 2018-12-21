@@ -280,13 +280,13 @@ namespace DBMS.Usql.Arbol.Nodos.Expresion.E
                     {
 
 
-                        retorno.convertirCadena(tok.tok.val + " " + lstAtributos.getValItem(1));
+                        retorno.convertirFecha(tok.tok.val + " " + lstAtributos.getValItem(1));
                         return retorno;
                     }
                     else
                     {
 
-                        retorno.convertirCadena(tok.tok.val);
+                        retorno.convertirFecha(tok.tok.val);
                         return retorno;
                     }
                 default:

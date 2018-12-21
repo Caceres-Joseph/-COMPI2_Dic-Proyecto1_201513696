@@ -43,9 +43,6 @@ INSERTAR EN TABLA Producto  (7,"Zanahoria", 3.1,4);
 #* 
 SELECCIONAR id, nombre DE Proveedor ;
 ACTUALIZAR TABLA Proveedor (id, nombre) VALORES (1,"hola");
-*#
-
-
 Alterar tabla Proveedor agregar(integer edad No Nulo,TEXT apellido);
 seleccionar * de proveedor;
 
@@ -57,4 +54,15 @@ seleccionar * de proveedor;
 Alterar tabla Proveedor agregar(integer edad No Nulo);
 seleccionar * de proveedor;
 
+*#
 
+
+SELECCIONAR * DE Producto DONDE   (id_proveedor+(2+2))+(id_proveedor+(2+2))>13&&id+1==7; 
+seleccionar * de producto;
+Borrar en tabla Producto DONDE  (id_proveedor+(2+2))+(id_proveedor+(2+2))>13&&id+1==7; 
+seleccionar * de producto;
+
+
+CREAR BASE_DATOS Ejemplo1;
+CREAR BASE_DATOS Ejemplo2;
+CREAR BASE_DATOS Ejemplo3;

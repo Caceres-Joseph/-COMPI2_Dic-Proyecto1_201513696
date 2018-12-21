@@ -38,14 +38,17 @@
     <Reference Include="Irony.Interpreter">
       <HintPath>..\..\..\..\Compi2_2Semestre2018\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\Irony.Interpreter.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework">
-      <HintPath>..\..\..\..\Compi2_2Semestre2018\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.dll</HintPath>
+    <Reference Include="MetroFramework, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Compi2_2Semestre2018\FORM_USAC-master\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework.Design">
-      <HintPath>..\..\..\..\Compi2_2Semestre2018\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.Design.dll</HintPath>
+    <Reference Include="MetroFramework.Design, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Compi2_2Semestre2018\FORM_USAC-master\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.Design.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework.Fonts">
-      <HintPath>..\..\..\..\Compi2_2Semestre2018\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.Fonts.dll</HintPath>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Compi2_2Semestre2018\FORM_USAC-master\[COMPI]Proyecto1\[COMPI]Proyecto1\bin\Debug\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,8 +73,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs" />
+    <Compile Include="Globales\escribirArchivo.cs" />
     <Compile Include="PlyCs\Arbol\arbolPlycs.cs" />
     <Compile Include="PlyCs\Arbol\Elementos\itemRetorno.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Cuerpo\Cuerpo.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Cuerpo\Fila.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\TablaDb.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Tablas.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Titulo\Celda.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Titulo\Modificador.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Base\Tablas\Titulo\Titulo.cs" />
+    <Compile Include="Xml\Arbol\Cargar\cargarBase.cs" />
+    <Compile Include="Xml\Arbol\Cargar\cargarMaestro.cs" />
+    <Compile Include="Xml\Arbol\Cargar\cargarModelo.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Maestro\BASES.cs" />
+    <Compile Include="Xml\Arbol\Cargar\Maestro\DB.cs" />
+    <Compile Include="Xml\Arbol\Elementos\Class1.cs" />
+    <Compile Include="Xml\Arbol\Elementos\xmlProcesado.cs" />
     <Compile Include="PlyCs\Arbol\Nodos\nodoModelo.cs" />
     <Compile Include="PlyCs\Arbol\Nodos\_INSTR.cs" />
     <Compile Include="PlyCs\Arbol\Nodos\_LST_INSTR.cs" />
@@ -119,8 +138,11 @@
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\baseDeDatos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\DB\lstBaseDeDatos.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\CompararTupla.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\CompararTuplaCompleta.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaCartesiana.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaTituloPadre.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\usqlTablaCartesiana.cs" />
+    <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\usqlTablaXml.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\Tuplas\tablaTemp.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tupla.cs" />
     <Compile Include="Usql\Arbol\Elementos\Tablas\TablaUsql\Tuplas\tuplaTitulo.cs" />
@@ -281,6 +303,18 @@
     <Compile Include="Usql\Arbol\Nodos\Ssl\_SSL.cs" />
     <Compile Include="Usql\Gramatica\anlzUsql.cs" />
     <Compile Include="Usql\Gramatica\gramUsql.cs" />
+    <Compile Include="Xml\Arbol\arbolXml.cs" />
+    <Compile Include="Xml\Arbol\Nodos\Maestro\_M_BASES.cs" />
+    <Compile Include="Xml\Arbol\Nodos\nodoModeloXml.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_ABRE.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_CIERRA.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_E.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_LST_HIJO.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_LST_PADRE.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_S.cs" />
+    <Compile Include="Xml\Arbol\Nodos\_VALOR.cs" />
+    <Compile Include="Xml\Gramatica\anlzXml.cs" />
+    <Compile Include="Xml\Gramatica\gramXml.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

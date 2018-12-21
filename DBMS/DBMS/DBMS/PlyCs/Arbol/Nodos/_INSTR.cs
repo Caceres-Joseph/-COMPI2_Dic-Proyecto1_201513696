@@ -1,4 +1,5 @@
 ﻿using DBMS.PlyCs.Arbol.Elementos;
+using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Gramatica;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace DBMS.PlyCs.Arbol.Nodos
         }
 
 
-        public override itemRetorno ejecutar()
+        public override itemRetorno ejecutar(tablaSimbolos tabl)
         {
 
 
@@ -39,12 +40,11 @@ namespace DBMS.PlyCs.Arbol.Nodos
                 //Console.WriteLine(segundaCadena);
 
 
-                
-                anlzUsql analizador = new anlzUsql();
+                Form1.analizador = new anlzUsql(tabl);
                 try
                 {
 
-                    analizador.iniciarAnalisis(segundaCadena);
+                    Form1.analizador.iniciarAnalisis(segundaCadena);
                 }
                 catch (Exception e)
                 {
@@ -52,9 +52,7 @@ namespace DBMS.PlyCs.Arbol.Nodos
                     Console.WriteLine(e.Message.ToString());
                 }
 
-
-
-
+                 
 
                 //el retorno del analizador
                 String respuestaUSQL = "Respuesta de retorno";

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.Tuplas
 {
-    class CompararTupla : IEqualityComparer<tupla>
+    class CompararTuplaCompleta : IEqualityComparer<tupla>
     {
         public bool Equals(tupla x, tupla y)
         { 
-            if (x.listaValores.Count!=y.listaValores.Count)
+            if (x.listaValores.Count != y.listaValores.Count)
             {
                 return false;
             }
 
-            for(int i =0; i<x.listaValores.Count-2; i++)
+            for (int i = 0; i < x.listaValores.Count; i++)
             {
 
                 if (x.getItemValor(i).valor.Equals(y.getItemValor(i).valor))
@@ -28,7 +28,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.Tuplas
                     return false;
                 }
             }
-             
+
             return true;
 
         }
@@ -40,7 +40,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.Tuplas
 
         public void println(String mensaje)
         {
-           // Console.WriteLine("[CompararTupla]" + mensaje);
+            // Console.WriteLine("[CompararTupla]" + mensaje);
         }
     }
 }

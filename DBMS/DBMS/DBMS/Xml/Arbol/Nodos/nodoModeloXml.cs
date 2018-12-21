@@ -1,74 +1,69 @@
-﻿using DBMS.PlyCs.Arbol.Elementos;
-using DBMS.TablaErrores;
+﻿
 using DBMS.Usql.Arbol.Elementos.Tablas;
+using DBMS.Usql.Arbol.Elementos.Tablas.Listas;
+using DBMS.Xml.Arbol.Elementos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBMS.PlyCs.Arbol.Nodos
+namespace DBMS.Xml.Arbol.Nodos
 {
-    class nodoModelo
+    class nodoModeloXml
     {
         public String nombre = "";
-        public List<nodoModelo> hijos = new List<nodoModelo>();
+        public List<nodoModeloXml> hijos = new List<nodoModeloXml>();
         public lstAtributos lstAtributos;
         // public elementoClase clase=new elementoClase(new token("",0,0,"--"), new token("", 0, 0, "--"), new token("", 0, 0, "--"), false);
-         
 
-        public nodoModelo(String nombre)
+
+        public nodoModeloXml(String nombre)
         {
 
             this.nombre = nombre;
-            this.lstAtributos = new lstAtributos();
+            this.lstAtributos = new lstAtributos(new tablaSimbolos());
         }
 
-        public void insertar(nodoModelo hijo)
+        public void insertar(nodoModeloXml hijo)
         {
             hijos.Add(hijo);
         }
+         
 
+
+             
         /*
         |--------------------------------------------------------------------------
-        | EJECUTAR
+        | Imprimir NOdos
         |--------------------------------------------------------------------------
         |
         */
-        
-
-     
-
-        public virtual itemRetorno ejecutar(tablaSimbolos tabla)
+        public virtual xmlProcesado ejecutarXML()
         {
 
 
-             return ejecutarHijos(tabla);
-             
+            return ejecutarHijosXML();
+
 
         }
 
-        public itemRetorno ejecutarHijos(tablaSimbolos tabla)
+        public xmlProcesado ejecutarHijosXML()
         {
 
 
-           itemRetorno retorno = new itemRetorno(0);
+            xmlProcesado retorno = new xmlProcesado("ad");
 
-            foreach (nodoModelo temp in hijos)
+            foreach (nodoModeloXml temp in hijos)
             {
 
-                itemRetorno resultado = temp.ejecutar(tabla);
+                xmlProcesado resultado = temp.ejecutarXML();
+                return resultado;
 
-                if (resultado.isRetorno())
-                {
-                    return resultado;
-                }
-                 
-            } 
-            return retorno; 
+            }
+            return retorno;
         }
 
-           
         /*
         |--------------------------------------------------------------------------
         | Imprimir NOdos
@@ -78,24 +73,24 @@ namespace DBMS.PlyCs.Arbol.Nodos
 
         public void imprimirNodos()
         {
-            foreach (nodoModelo temp in hijos)
+            foreach (nodoModeloXml temp in hijos)
             {
                 Console.WriteLine("padre:" + nombre + "->hijo:" + temp.nombre);
-               
+                temp.imprimirNodos();
             }
         }
 
 
 
 
-            
 
-        public nodoModelo getNodo(String nombre)
+
+        public nodoModeloXml getNodo(String nombre)
         {
 
-            nodoModelo retorno = null;
+            nodoModeloXml retorno = null;
 
-            foreach (nodoModelo temp in hijos)
+            foreach (nodoModeloXml temp in hijos)
             {
                 if (temp.nombre.Equals(nombre))
                 {

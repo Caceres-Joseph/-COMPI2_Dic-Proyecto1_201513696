@@ -19,7 +19,7 @@ namespace DBMS.PlyCs.Gramatica
         public tablaErrores tabla = new tablaErrores();
         public nodoModelo raizArbol=new nodoModelo("raiz");
 
-        public String iniciarAnalisis(String cadena)
+        public String iniciarAnalisis(String cadena, Usql.Arbol.Elementos.Tablas.tablaSimbolos tabl)
         { 
 
 
@@ -46,7 +46,7 @@ namespace DBMS.PlyCs.Gramatica
                 //generando el arbol
                 arbolPlycs generar = new arbolPlycs(gramatica.nombreArchivo); 
                 raizArbol = generar.generar(raizArbol, raiz);
-                itemRetorno ret= raizArbol.ejecutar();
+                itemRetorno ret= raizArbol.ejecutar(tabl);
 
 
 

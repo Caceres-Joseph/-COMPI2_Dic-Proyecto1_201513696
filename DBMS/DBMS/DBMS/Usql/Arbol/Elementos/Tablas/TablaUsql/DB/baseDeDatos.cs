@@ -47,8 +47,40 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB
             tablaSimbolos.tablaErrores.insertErrorSemantic("No se encontró la tabla con nombre:" + nombreTabla.val + " en la base de datos :" + nombre.val, nombreTabla);
 
 
-            return new usqlTabla(new token("temp"),null,tablaSimbolos);
+            return new usqlTabla(new token("temp"), null, tablaSimbolos);
         }
+
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | XML
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        public void escribirXML()
+        {
+
+            String contenidoXML = "";
+            contenidoXML += "\n<TABLAS>";
+            foreach (KeyValuePair<string, usqlTabla> claveValor in lstTablas)
+            {
+                contenidoXML += "\n<TABLA>";
+                contenidoXML += "\n\t<nombre>" + claveValor.Key + "</nombre>";
+                contenidoXML += claveValor.Value.getXml();
+                contenidoXML += "\n</TABLA>";
+            }
+            contenidoXML += "\n</TABLAS>";
+
+             
+            /*
+             * Escribiendo el archivo
+             */
+            escribirArchivo archivoXml = new escribirArchivo(contenidoXML, nombre.valLower);
+            archivoXml.escribir();
+        }
+
+
 
     }
 }

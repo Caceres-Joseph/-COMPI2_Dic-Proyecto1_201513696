@@ -201,6 +201,49 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
         public void convertirCadena(String cadena)
         {
 
+            /*
+            //parseando a fecha/hora
+            //parseando a fecha
+            //paresando a hora
+            try
+            {
+                this.tipo = "datetime";
+                //DateTime oDate = DateTime.ParseExact(cadena, "dd/MM/yyyy hh:mm:ss ", System.Globalization.CultureInfo.InvariantCulture);
+
+                DateTime oDate = DateTime.ParseExact(cadena, "dd-MM-yyyy HH:mm:ss", enUS, DateTimeStyles.None);
+
+                this.valor = oDate;
+            }
+            catch (Exception e)
+            {
+                //  Console.WriteLine("[itemValor]No es fechaHora"+e);
+                try
+                {
+                    this.tipo = "date";
+                    DateTime oDate = DateTime.ParseExact(cadena, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                    this.valor = oDate;
+                }
+                catch (Exception e2)
+                {
+                    */
+            // Console.WriteLine("[itemValor]No es hora" + e3);
+
+
+            this.tipo = "text";
+            this.valor = cadena;
+
+            /*
+                }
+            }*/
+        }
+
+
+
+        public void convertirFecha(String cadena)
+        {
+
+
             //parseando a fecha/hora
             //parseando a fecha
             //paresando a hora
@@ -227,8 +270,11 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
                 {
 
                     // Console.WriteLine("[itemValor]No es hora" + e3);
+
+
                     this.tipo = "text";
                     this.valor = cadena;
+
 
                 }
             }
@@ -568,13 +614,13 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Items
             {
                 case "text":
 
-                    if (valor is DateTime)
-                    {
-
-                    }
                     if (isTypeFecha())
                     {
-                        return getFechaHora1().ToString("dd/MM/yyy");
+                        return getFechaHora1().ToString("dd-MM-yyyy");
+                    }
+                    else if (isTypeFechaHora())
+                    {
+                        return getFechaHora1().ToString("dd-MM-yyyy HH:mm:ss");
                     }
                     else
                     {
