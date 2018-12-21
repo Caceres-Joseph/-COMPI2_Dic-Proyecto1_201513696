@@ -77,8 +77,7 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Alterar
         public void eliminandoColumnas(usqlTablaCartesiana tablaFinal, Dictionary<string, celdaTitulo> cols)
         {
             foreach (tupla item in tablaFinal.filas)
-            {
-
+            { 
                 foreach (KeyValuePair<string, celdaTitulo> entry in cols)
                 {
                     //eliminando la posicion indicada
@@ -90,8 +89,7 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Alterar
         public void eliminarColumnasTitulo(usqlTabla tablaFinal, Dictionary<string, celdaTitulo> cols)
         {
             foreach (KeyValuePair<string, celdaTitulo> entry in cols)
-            {
-
+            { 
                 String clave = entry.Key.Replace("0||", "");
                 if (tablaFinal.titulo.filaTitulo.ContainsKey(clave))
                 {
@@ -101,7 +99,6 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Alterar
                 {
                     println("No viene con el nombre de la clave");
                 }
-
             }
         }
 

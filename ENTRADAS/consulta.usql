@@ -46,9 +46,15 @@ ACTUALIZAR TABLA Proveedor (id, nombre) VALORES (1,"hola");
 *#
 
 
- Alterar tabla Proveedor agregar(integer edad No Nulo,TEXT apellido);
- seleccionar * de proveedor;
+Alterar tabla Proveedor agregar(integer edad No Nulo,TEXT apellido);
+seleccionar * de proveedor;
 
  
-  Alterar tabla Proveedor Quitar integer edad;
-  seleccionar * de proveedor;
+Alterar tabla Proveedor Quitar  edad;
+seleccionar * de proveedor;
+  
+  
+Alterar tabla Proveedor agregar(integer edad No Nulo);
+seleccionar * de proveedor;
+
+
