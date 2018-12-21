@@ -460,7 +460,7 @@ namespace DBMS.Usql.Gramatica
 
 
 
-            DML_ALT_TABLA_QUIT.Rule = tAlterar + tTabla + valId + tQuitar + LST_VAL_ID;
+            DML_ALT_TABLA_QUIT.Rule = tAlterar + tTabla + LST_VAL_ID + tQuitar + LST_VALOR;
 
             DML_ALT_OBJ_ADD.Rule = tAlterar + tObjeto + valId + tAgregar + sAbreParent + LST_ATRIBUTO + sCierraParent;
 

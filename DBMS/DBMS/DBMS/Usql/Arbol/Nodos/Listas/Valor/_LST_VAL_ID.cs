@@ -108,6 +108,32 @@ namespace DBMS.Usql.Arbol.Nodos.Listas.Valor
 
 
 
+        public usqlTablaCartesiana getTablaFinalAlter()
+        {
+
+            if (lstAtributos.listaAtributos.Count < 1)
+
+                return null;
+
+            usqlTabla tablaInicio = getTabla(lstAtributos.listaAtributos[0]);
+            usqlTablaCartesiana nuevaTablaRetorno = new usqlTablaCartesiana(tablaInicio);
+            nuevaTablaRetorno.inicializar();
+
+            usqlTablaCartesiana retorno = productoCartesiano(nuevaTablaRetorno, 1);
+            return retorno;
+
+        }
+
+        public usqlTabla getTablaUsql()
+        {
+
+            usqlTabla tablaInicio = getTabla(lstAtributos.listaAtributos[0]);
+            return tablaInicio;
+
+        }
+
+
+
         private usqlTablaCartesiana productoCartesiano(usqlTablaCartesiana tablaCart, int indice)
         {
 

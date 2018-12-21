@@ -7,21 +7,24 @@ using DBMS.Globales;
 using DBMS.Usql.Arbol.Elementos.Tablas;
 using DBMS.Usql.Arbol.Elementos.Tablas.Elementos;
 using DBMS.Usql.Arbol.Elementos.Tablas.Items;
+using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql;
 using DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB;
 using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
+using DBMS.Usql.Arbol.Nodos.Dml.Seleccionar;
 using DBMS.Usql.Arbol.Nodos.Listas.Atributo;
+using DBMS.Usql.Arbol.Nodos.Listas.Valor;
 
 namespace DBMS.Usql.Arbol.Nodos.Dml.Alterar
 {
     class _DML_ALT_TABLA_QUIT : nodoModelo
     {
         /*
-         * 
+         * tAlterar + tTabla + LST_VAL_ID + tQuitar + LST_VALOR;
          */
         public _DML_ALT_TABLA_QUIT(string nombre, tablaSimbolos tabla) : base(nombre, tabla)
         {
         }
-         
+
         /*
         |-------------------------------------------------------------------------------------------------------------------
         | EJECUCIÓN FINAL
@@ -52,49 +55,97 @@ namespace DBMS.Usql.Arbol.Nodos.Dml.Alterar
                 return retorno;
             }
 
-            //recupero la tabla
-            token idTabla = lstAtributos.getToken(2);
-            usqlTabla tablaFinal = tablaSimbolos.listaBaseDeDatos.usar.getTabla(idTabla);
-            if (hayErrores())
-                return retorno;
 
-
-
-
-            //filas de la tabla
-            tuplaTitulo tuplaTitulo = new tuplaTitulo(tablaSimbolos);
-            _LST_ATRIBUTO atribs = (_LST_ATRIBUTO)hijos[0];
-            atribs.insertarCeldas(tuplaTitulo);
-
-            //concatenando el titulo
-            tablaFinal.titulo.concatenarAlterar(tuplaTitulo);
-
-
-            //ahora debo llenar de null las nuevas columnas pvto
-            llenarColumnasExtras(tablaFinal, atribs.hijos.Count);
+            //primero recupero la tabla
+            usqlTablaCartesiana tablaFinal = getTablaCartesiana(tablaEntornos);
+            
 
 
             //mensaje de exitoso
-            tablaSimbolos.tablaMensajesUsql.println("La tabla: " + idTabla.val + " se altero exitosamente");
+            tablaSimbolos.tablaMensajesUsql.println("La tabla:   se altero exitosamente");
 
             return retorno;
         }
 
 
-        public void llenarColumnasExtras(usqlTabla tablaFinal, int cantidad)
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | ELIMINAR FILAS Y TUTIULO
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+        public void eliminandoColumnas(usqlTablaCartesiana tablaFinal, Dictionary<string, celdaTitulo> cols)
         {
             foreach (tupla item in tablaFinal.filas)
             {
 
-                for (int i = 0; i < cantidad; i++)
+                foreach (KeyValuePair<string, celdaTitulo> entry in cols)
                 {
-                    //llenando de valores null
-                    itemValor val = new itemValor();
-                    val.setValor(-1);
-                    item.listaValores.Add(val);
+                    //eliminando la posicion indicada
+                    item.listaValores.RemoveAt(entry.Value.posEnColumna);
+                }
+            }
+        }
+
+        public void eliminarColumnasTitulo(usqlTabla tablaFinal, Dictionary<string, celdaTitulo> cols)
+        {
+            foreach (KeyValuePair<string, celdaTitulo> entry in cols)
+            {
+
+                String clave = entry.Key.Replace("0||", "");
+                if (tablaFinal.titulo.filaTitulo.ContainsKey(clave))
+                {
+                    tablaFinal.titulo.filaTitulo.Remove(clave);
+                }
+                else
+                {
+                    println("No viene con el nombre de la clave");
                 }
 
             }
+        }
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | GET TABLA
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+        public usqlTablaCartesiana getTablaCartesiana(elementoEntorno tablaEntornos)
+        {
+
+            /*
+             * +-----------------
+             * | FROM
+             * +-----------------
+             */
+            _LST_VAL_ID nodoIds = (_LST_VAL_ID)hijos[0];
+            usqlTablaCartesiana lstTablas = nodoIds.getTablaFinalAlter();
+
+            usqlTabla tablaOrigina = nodoIds.getTablaUsql();
+
+
+            /*
+             * +-----------------
+             * | SELECT
+             * +-----------------
+             */
+
+            _LST_VALOR nodValor = (_LST_VALOR)hijos[1];
+            Dictionary<string, celdaTitulo> cols = nodValor.getIndicesSelect(tablaEntornos, lstTablas, lstAtributos.getToken(0));
+
+
+            /*
+             * +-----------------
+             * | QUITANDO COLUMNAS
+             * +-----------------
+             */
+            eliminandoColumnas(lstTablas, cols);
+            eliminarColumnasTitulo(tablaOrigina, cols);
+
+            return lstTablas;
         }
     }
 }
