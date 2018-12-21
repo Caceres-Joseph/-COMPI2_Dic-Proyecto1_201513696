@@ -182,6 +182,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
 
                         //asignando el valor nulo
                         itemValor val = new itemValor();
+                        val.setValor(-1);
                         tuplaFinal.listaValores[index] = val;
                     }
 

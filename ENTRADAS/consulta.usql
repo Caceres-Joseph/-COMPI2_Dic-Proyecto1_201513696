@@ -46,6 +46,5 @@ ACTUALIZAR TABLA Proveedor (id, nombre) VALORES (1,"hola");
 *#
 
 
-SELECCIONAR id, nombre DE Proveedor DONDE id==4 ;
-ACTUALIZAR TABLA Proveedor (nombre) VALORES ("Emanuel") DONDE id==4;
-SELECCIONAR id, nombre DE Proveedor DONDE id==4 ;
+ Alterar tabla Proveedor agregar(integer edad No Nulo,TEXT apellido);
+ select * de proveedor;

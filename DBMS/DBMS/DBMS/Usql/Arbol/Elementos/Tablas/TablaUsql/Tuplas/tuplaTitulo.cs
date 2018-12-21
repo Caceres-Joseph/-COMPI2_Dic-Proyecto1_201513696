@@ -27,11 +27,6 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         |
         */
 
-
-
-
-
-
         public void concatenar(tuplaTitulo filaTitulo2, int indiceTabla)
         {
 
@@ -41,7 +36,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
                 insertar(entry.Value, indiceTabla);
             }
         }
-         
+
         /*
         |-------------------------------------------------------------------------------------------------------------------
         | CONSULTA USQL
@@ -75,7 +70,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
             }
 
             nuevaCelda.posEnColumna = numColumna++;
-            
+
 
             String clave = nuevaCelda.nombre.valLower;
 
@@ -135,6 +130,43 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.Tuplas
         public void println(String mensaje)
         {
             Console.WriteLine("[tuplaTitulo]" + mensaje);
+        }
+
+
+
+        /*
+        |-------------------------------------------------------------------------------------------------------------------
+        | PARA EL ALTERAR TABLA
+        |-------------------------------------------------------------------------------------------------------------------
+        |
+        */
+
+        public void concatenarAlterar(tuplaTitulo filaTitulo2)
+        {
+
+            foreach (KeyValuePair<string, celdaTitulo> entry in filaTitulo2.filaTitulo)
+            {
+                // do something with entry.Value or entry.Key
+                insertarAlterar(entry.Value);
+            }
+        }
+
+
+
+
+
+        public void insertarAlterar(celdaTitulo nuevaCelda)
+        {
+
+            if (filaTitulo.ContainsKey(nuevaCelda.nombre.valLower))
+            {
+                tabla.tablaErrores.insertErrorSemantic("La columna:" + nuevaCelda.nombre.val + " ya existe, cambie el nombre", nuevaCelda.nombre);
+                return;
+            }
+
+            nuevaCelda.posEnColumna = numColumna++;            
+            filaTitulo.Add(nuevaCelda.nombre.valLower, nuevaCelda);
+
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using DBMS.Globales;
+using DBMS.Usql.Arbol.Elementos.Tablas.Tuplas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,5 +49,7 @@ namespace DBMS.Usql.Arbol.Elementos.Tablas.TablaUsql.DB
 
             }
         }
+
+
     }
 }
